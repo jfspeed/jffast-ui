@@ -38,7 +38,7 @@ jobs:
       - name: Type check
         run: npm run build:type
 
-      # 构建门禁：vite.config.ts 对 VITE_RSA_PUBLIC_KEY 做 fail-fast（为空或=仓库示例公钥即失败）。
+      # 构建门禁：vite.config.ts 对 VITE_RSA_PUBLIC_KEY 做 fail-fast（为空、或不是合法 RSA 公钥即失败）。
       # CI 优先用仓库 secret 注入真实公钥；未配置时生成一次性密钥对，仅保证产物可编译校验，
       # 该 artifact 不可用于部署（私钥不在任何人手中，登录必然失败）。
       - name: Provide RSA public key for build

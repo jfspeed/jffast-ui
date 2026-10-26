@@ -30,9 +30,10 @@ src/        应用页面、路由、API、入口
 shared/     @jfspeed/shared 公共包（http、createCrud、加密工具、类型声明）
 ```
 
-环境变量见 `.env`（通用）、`.env.development`（开发）、`.env.production`（生产），示例参考 `.env.example`。
+环境变量见 `.env`（通用）、`.env.development`（开发），示例参考 `.env.example`。
+仓库**不提供 `.env.production`**：生产构建走的是 `--mode release`，读 `.env` / `.env.release` / `.env.release.local`。
 
-**生产构建必须注入 RSA 公钥**：`vite.config.ts` 对 `VITE_RSA_PUBLIC_KEY` 做 fail-fast（为空或等于仓库公开的示例公钥即构建失败）。生产构建走 `--mode release`，读 `.env` / `.env.release`（`.env.production` 仅在 `--mode production` 时生效），因此用环境变量或 `.env.release.local`（不入库）注入；后端 `RSA_PRIVATE_KEY` 必须成对更换。
+**生产构建必须注入 RSA 公钥**：`vite.config.ts` 对 `VITE_RSA_PUBLIC_KEY` 做 fail-fast（为空、或不是合法的 RSA 公钥——Base64 编码的 X.509 SPKI DER——即构建失败；仓库不存任何密钥字面量，也没有示例公钥可抄）。生产构建走 `--mode release`，因此用环境变量或 `.env.release.local`（不入库）注入；后端 `RSA_PRIVATE_KEY` 必须成对更换。
 
 ## 提交规范
 

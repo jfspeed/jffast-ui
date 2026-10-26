@@ -244,7 +244,7 @@ jffast-ui/
 - 路由守卫（`src/permission.ts`）对声明了 `meta.perm` 的路由做页面级权限校验，**冷加载（刷新/直连 URL）与热跳转同口径**；新增静态路由若要控权限必须显式写 `meta.perm`，否则任何登录用户知道 URL 即可直达
 - **登出只有单一流程**（`shared/src/layouts/components/Header.vue` 的 `handleLogout`）：先 `await getAuthApi().auth.logout()` 吊销后端会话（失败不阻塞退出），再 `await user.logout()` 清 Pinia / localStorage / cookie / WebSocket，再 `await permissionStore.restoreRoutes()` 卸载动态路由，最后 `router.replace(buildLoginRoute(...))`。新增登出入口必须复用这条链；只跳转 `/login` 会留下上一账号的菜单与权限（同标签页、多标签页都会），因为页面不刷新、Pinia 与动态路由仍在内存里
 - 安全：密码 RSA（`crypto.js`）；Token 不写明文敏感信息
-- **生产构建必填 `VITE_RSA_PUBLIC_KEY`**：`vite.config.ts` fail-fast（为空或=仓库示例公钥即构建失败）。构建走 `--mode release` 读 `.env` / `.env.release`，用环境变量或 `.env.release.local` 注入；`.env.production` 该值为**空占位**；CI 由 `ci.yml` 注入。开发联调时公钥由后端 `GET /sys/rsaPublicKey` 动态下发（后端 dev/test 启动时生成一次性密钥对），**仓库不存任何密钥字面量**
+- **生产构建必填 `VITE_RSA_PUBLIC_KEY`**：`vite.config.ts` fail-fast（为空、或不是合法 RSA 公钥即 Base64(X.509 SPKI DER) 解析失败即构建失败）。构建走 `--mode release` 读 `.env` / `.env.release`，用环境变量或 `.env.release.local` 注入；仓库不提供 `.env.production`；CI 由 `ci.yml` 注入。开发联调时公钥由后端 `GET /sys/rsaPublicKey` 动态下发（后端 dev/test 启动时生成一次性密钥对），**仓库不存任何密钥字面量**，也没有示例公钥可供比对
 
 ## 七、待填占位符
 

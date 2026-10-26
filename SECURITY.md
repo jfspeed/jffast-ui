@@ -22,8 +22,8 @@
 ## 安全基线（部署检查）
 
 - 构建时注入自有公钥：`VITE_RSA_PUBLIC_KEY=<公钥> npm run build`（或写入 `.env.release.local`）
-  - `vite.config.ts` 已 fail-fast：公钥为空或等于仓库公开的示例公钥，构建直接失败
-  - `.env.production` 的该值为**空占位**；`npm run build` 走 `--mode release`，实际读 `.env` / `.env.release`
+  - `vite.config.ts` 已 fail-fast：公钥为空、或不是合法的 RSA 公钥（Base64 编码的 X.509 SPKI DER），构建直接失败
+  - 仓库**不存任何密钥字面量**，也不提供 `.env.production`；`npm run build` 走 `--mode release`，实际读 `.env` / `.env.release`
   - 后端 `RSA_PRIVATE_KEY` 必须与该公钥成对更换（后端工具类 `RsaKeyGenerator`）
 - Token 存储位置与 CSRF 策略按业务风险评估（当前为 localStorage）
 - 关闭开发代理：`VITE_IS_REQUEST_PROXY=false`

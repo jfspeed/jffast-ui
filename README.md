@@ -73,7 +73,7 @@ jffast-ui/
 | npm     | >= 10.x                                                   |
 
 > **RSA 公钥**：开发模式由后端 `GET /sys/rsaPublicKey` 动态下发，无需配置。
-> 生产构建（`npm run build` / `--mode release`）必须注入本次部署自己的公钥，缺失会被 `vite.config.ts` 直接拦截（见「构建生产版本」）；沿用仓库里那把示例公钥没有意义——它配不上你后端的私钥（登录必然失败），而任何公开过的示例密钥都应视为已泄露。
+> 生产构建（`npm run build` / `--mode release`）必须注入本次部署自己的公钥，缺失会被 `vite.config.ts` 直接拦截（见「构建生产版本」）。仓库里**不存任何密钥字面量**，也没有可沿用的示例公钥可抄。
 
 ### 1. 安装依赖
 
@@ -98,7 +98,9 @@ npm run dev
 VITE_RSA_PUBLIC_KEY=<公钥> npm run build
 ```
 
-公钥**必填**：`vite.config.ts` 对 `VITE_RSA_PUBLIC_KEY` 做 fail-fast，为空或等于仓库公开的示例公钥时构建直接失败。
+公钥**必填**：`vite.config.ts` 对 `VITE_RSA_PUBLIC_KEY` 做 fail-fast——为空、或不是合法的
+RSA 公钥（要求 Base64 编码的 X.509 SPKI DER）时构建直接失败。仓库不提供示例公钥，
+所以拦截条件是"这把钥匙本身合不合法"，而不是"有没有抄到示例值"。
 
 - 生产构建走 `--mode release`，依次读 `.env`、`.env.release`、`.env.release.local`
   （后两者**均不入库**，需要时自行创建；不存在则跳过，不影响构建）
@@ -403,8 +405,8 @@ server: {
 
 ## 🏛️ 相关项目
 
-| 项目                                        | 说明      | 许可证     |
-| ------------------------------------------- | --------- | ---------- |
+| 项目                                            | 说明      | 许可证     |
+| ----------------------------------------------- | --------- | ---------- |
 | [jffast](https://github.com/summerZstar/jffast) | Base 后端 | Apache 2.0 |
 
 完整开发约束（Monorepo、别名映射、组件/Hooks 准入、权限指令、i18n、样式、安全约束、测试）详见 [前端开发指南](https://github.com/summerZstar/jffast/blob/master/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md)。
