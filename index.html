@@ -4,20 +4,32 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--
+      CSP 说明：
+      - 【已收紧】script-src 去掉 'unsafe-inline'：原先的 `window.global = window` 内联脚本已外置为
+        public/global-shim.js（同源），因此在不放开内联的前提下保持完全等效的行为。
+      - 【已收紧】connect-src 移除了 http/https://localhost:*：dev 的跨域由 vite proxy 承接，
+        浏览器侧始终是同源请求；留在生产里等于给 localhost 留一条无用的放行口。
+      - 【保留】'unsafe-eval' 目前**不可去除**，曾经试过并实测白屏（见下方说明），请勿再次删除：
+        TDesign 的分步表单（把函数 toString 后重建）、TDesign 内置的 intlify 消息编译器
+        （编译带插值的文案）、echarts 的 GeoJSON 解析三处都用 `new Function(...)`。
+        去掉后首屏 EvalError，**页面整片空白**（不是局部降级）。要真正移除需先替换这三个依赖，
+        故按现状保留，并在 script-src 之外继续维持其余收紧项。
+      - ⚠️ style-src 仍保留 'unsafe-inline'：Vue / TDesign 运行时会注入 <style>，属已知取舍，
+        不涉及脚本执行面。
+    -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' http://localhost:* https://localhost:*; frame-src 'self' https://github.com https://gitee.com;"
+      content="default-src 'self'; script-src 'self' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self'; frame-src 'self' https://github.com https://gitee.com;"
     />
     <title>疾风 (jffast)</title>
   </head>
   <body>
     <div id="app"></div>
+    <!-- global shim：经典脚本先于模块化入口执行（等价于此前的文档末尾内联脚本） -->
+    <script src="/global-shim.js"></script>
     <!-- TDesign 图标 sprite（本地同源，避免 CSP 拦截 CDN / 离线环境无图标） -->
     <script src="/tdesign-icons-sprite.js"></script>
     <script type="module" src="/src/main.ts"></script>
   </body>
-
-  <script>
-    window.global = window;
-  </script>
 </html>

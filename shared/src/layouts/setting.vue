@@ -124,7 +124,7 @@ limitations under the License.
 import { useClipboard } from '@vueuse/core';
 import type { PopupVisibleChangeContext } from 'tdesign-vue-next';
 import { MessagePlugin } from 'tdesign-vue-next';
-import { computed, onMounted, ref, watchEffect } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watchEffect } from 'vue';
 
 import ColorContainer from '@/components/color/index.vue';
 import Thumbnail from '@/components/thumbnail/index.vue';
@@ -181,11 +181,24 @@ const changeColor = (hex: string) => {
   formData.value.brandTheme = hex;
 };
 
+const onColorPickerToggle = () => {
+  isColoPickerDisplay.value = true;
+};
+
+// 记录挂载时命中的元素，卸载时按**同一个引用**解绑（匿名箭头函数无法被 removeEventListener 命中）
+let colorBtnTarget: HTMLElement | null = null;
+
 onMounted(() => {
   // 按钮可能未渲染（如主题配置差异），判空避免 TypeError
-  document.querySelector('.dynamic-color-btn')?.addEventListener('click', () => {
-    isColoPickerDisplay.value = true;
-  });
+  colorBtnTarget = document.querySelector<HTMLElement>('.dynamic-color-btn');
+  colorBtnTarget?.addEventListener('click', onColorPickerToggle);
+});
+
+// 解绑与挂载必须成对：`document.querySelector` 是全局查询，命中的不一定是本实例的元素
+// （多实例 / HMR 场景），只按同一引用解绑才能保证监听器与元素一一对应、不残留。
+onUnmounted(() => {
+  colorBtnTarget?.removeEventListener('click', onColorPickerToggle);
+  colorBtnTarget = null;
 });
 
 const onPopupVisibleChange = (visible: boolean, context: PopupVisibleChangeContext) => {

@@ -2,8 +2,8 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 格式，版本号遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
-> **版本口径说明**：本项目**尚未正式发布**，当前 `package.json` 与 `shared/package.json` 保持 `1.0.0-SNAPSHOT`（见 [release-info.md](release-info.md)）。
-> 下文标题中的版本号与日期是**开发里程碑**（能力批次）标记，**不是已发布的 tag**；正式发布时将由发布指令统一定版（**首发 = v1.0.0**）。
+> **版本口径说明**：`package.json` 与 `shared/package.json` 已由发布指令统一从 `1.0.0-SNAPSHOT` 定版为 **`1.0.0`**（首发，见 [release-info.md](release-info.md)）。
+> 下文的 `## [未发布]` 段落即首发内容，打 `v1.0.0` tag 时定版为该版本并标注日期。
 
 ## [未发布]
 
@@ -38,6 +38,13 @@
 - **i18n 死键清理**：中英两份语言包各 1581 个叶子键，其中 **534 个无人引用**（两个方向都不会坏，但中英副本会各自漂移、评审也看不出哪些还在用）。按「**全消费方并集**」清理——本包的语言文件被所有同源前端共用，只按本仓统计会把别的入口正在用的键当成死键删掉（实测就有一枚 Pro 登录页在用的键会被误删）；清理后两份各 1047 个叶子键、**零未使用**，且所有保留键的取值**一字未改**
 - 定时任务「查看日志」按钮零反应：`(window as any).$router?.push(...)` —— 本仓**从未给 `window.$router` 赋值**（应用走 `app.use(router)` → `globalProperties.$router` 与 `requireRouter()` 注入），可选链短路 ⇒ 点击无跳转、无报错；任务日志页读 query 的同一写法导致从任务页跳过来时 `jobName`/`jobGroup` 预筛选永远不生效。两处改用 `useRouter()` / `useRoute()`
 - 示例管理「导入」按钮不发请求：TDesign Upload 的 `onChange` 首参是**数组**（`onChange?: (value: Array<T>, context) => void`），原写法从首参解构 `{ file }` 恒为 `undefined` ⇒ 直接 return、永远不发请求且无任何提示。改为取数组首项的 `.raw`（与用户导入页同写法）
+- **静态路由模式不再等于「免鉴权」**：`VITE_USE_STATIC_ROUTES=true` 时 `buildAsyncRoutes()` 此前直接 `return`，而这里是全仓**唯一**在路由初始化阶段向后端确认 token 有效性的位置（`auth.getUserInfo()`）。后果是双重的：① 已过期 / 已被踢出 / 已吊销的 token 仍能带着 localStorage 里的旧权限进全量路由树（首屏照渲染，直到后续接口 401 才被弹回）；② `user_permissions` 永不刷新，权限被回收后要等到显式登出才生效。现在该模式**只跳过「按后端菜单拼装路由树」**，仍然请求一次会话并用返回刷新权限缓存，401 与其它模式一样转成「登录已失效」。`.env.example` 同步标明「仅适合离线演示 / 截图」
+- **CSP 收紧（实测验证）**：`index.html` 的内联脚本 `window.global = window` 外置为同源的 `public/global-shim.js`（等价执行顺序：经典脚本先于 `type="module"` 执行），从而可以把 `script-src` 从 `'self' 'unsafe-inline' 'unsafe-eval'` 收紧；同时移除 `connect-src` 里的 `http/https://localhost:*`（dev 跨域由 vite proxy 承接，浏览器侧始终同源）。**`unsafe-eval` 经实测必须保留**：TDesign 分步表单、其内置的 intlify 消息编译器、echarts 的 GeoJSON 解析三处都用 `new Function`，去掉后首屏 `EvalError`、**整页空白**，已在 `index.html` 注释里写明以免再次误删。产物已用 headless 渲染冒烟确认：0 内联脚本、无 CSP 违规、首屏正常
+- **`window.open` 补齐 `noopener,noreferrer`**：文件管理预览（URL 来自后端记录）与菜单外链（后台可编辑，属不可信输入）缺 `noopener` 时新页面可通过 `window.opener` 反向操作本页（标签劫持），referer 也会外泄。社交绑定授权弹窗**刻意不加**：它依赖 `window.open` 的返回值做 `event.source` 身份校验，加了会被置空导致回调失效
+- **监听器泄漏修复**：`layouts/setting.vue` 用匿名箭头函数 `addEventListener` 却没有 `onUnmounted`，无法解绑；该组件同时被登录页与主布局使用，来回切换会反复叠加监听器（HMR 下更明显）。改为保存元素引用 + 命名函数，成对解绑（全仓其余 8 处监听/定时器均已正确配对）
+- **依赖升级并清零审计告警**：`vite` `6.4.3 → 6.4.5`（修 dev server 的任意文件可读 / 跨域脚本执行 / launch-editor 命令注入三个 High）、`happy-dom` `^20.14.5 → ^21.0.4`（CVE-2026-33943 未修完全的宿主代码执行，需跨大版本）、`npm audit fix` 处理 `fast-uri`（stylelint 链路）。至此含 dev 依赖在内 **`npm audit` 0 漏洞**
+- **包元数据补齐**：根 `package.json` 补 `description` / `repository` / `homepage` / `bugs`（此前只有 `shared/package.json` 有，两边不一致）
+- **版本定版：`1.0.0-SNAPSHOT` → `1.0.0`（首发）**，根 `package.json` 与 `shared/package.json` 同步
 - BPMN 选文件完全失效：TDesign Upload **没有 `select` 事件**（emits 只有 `onChange` / `onSelectChange`），`@select` 被当作原生 DOM 事件落到根 `<div>`，选文件时永不触发；且形参期望 `{ files }` 而 `onChange` 给的是数组。流程定义部署弹窗与流程设计器的「导入BPMN」两处改为 `@change` + 取 `files[0].raw` —— **流程设计器此前无法导入任何 BPMN**
 - 用户列表「创建时间」范围筛选静默失效：日期选择器的数组值经 axios 默认序列化变成 `createTime[]=…`（扁平数组统一加 `[]` 后缀），后端 `@RequestParam Map<String,Object>` 收到的键是 `"createTime[]"` ⇒ `map.get("createTime") instanceof List` 恒 false ⇒ `beginTime`/`endTime` 永不生成 ⇒ **筛选完全无效且无任何报错**。改按 log 页口径：选择器值落 `dateRange`，`@change` 归一化成 `beginTime`/`endTime`；导出与异步导出同步改为直接透传
 - 代码生成器补「打包下载」：后端本就有 `POST /sys/codegen/download-zip`（其注释明写「JAR/Docker/K8s 部署同样可用」），前端却只实现了 `saveLocal`（JAR 下必然报错，并提示用户去用一个 UI 里并不存在的功能）。补 `downloadZip` 与「打包下载」按钮，payload 与 save-local 共用同一构造器

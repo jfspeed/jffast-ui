@@ -1,6 +1,6 @@
 {
   "name": "@jfspeed/shared",
-  "version": "1.0.0-SNAPSHOT",
+  "version": "1.0.0",
   "description": "JFFast 前端公共包：HTTP/CRUD、鉴权指令、i18n、状态管理、图表与工具集，供 jffast-ui 应用复用",
   "license": "Apache-2.0",
   "type": "module",

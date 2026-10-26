@@ -151,7 +151,15 @@ const columns = computed<PrimaryTableCol[]>(() => [
     cell: (h, { row }) => {
       const btns = [];
       if (row.mime && String(row.mime).startsWith('image/') && row.url) {
-        btns.push(h('a', { onClick: () => window.open(row.url, '_blank') }, t('pages.system.file.preview')));
+        // noopener/noreferrer：row.url 来自后端记录，打开的是不可信目标，
+        // 缺了它新页面可通过 window.opener 反向操作本页（标签劫持），referer 也会外泄。
+        btns.push(
+          h(
+            'a',
+            { onClick: () => window.open(row.url, '_blank', 'noopener,noreferrer') },
+            t('pages.system.file.preview'),
+          ),
+        );
       }
       if (hasPermission('system:file:download')) {
         btns.push(h('a', { onClick: () => handleDownload(row) }, t('common.download')));

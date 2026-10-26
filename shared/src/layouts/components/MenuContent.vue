@@ -132,7 +132,9 @@ const getPath = (item: ListItemType) => {
   return item.meta?.single ? item.redirect : item.path;
 };
 
+// url 取自菜单的外链配置（后台可编辑，属不可信输入）：
+// noopener 防新页通过 window.opener 反向操作本页（标签劫持），noreferrer 防止 referer 携带后台地址外泄
 const openHref = (url: string) => {
-  window.open(url);
+  window.open(url, '_blank', 'noopener,noreferrer');
 };
 </script>

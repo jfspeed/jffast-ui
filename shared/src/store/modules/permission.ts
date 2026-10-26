@@ -18,6 +18,7 @@ import cloneDeep from 'lodash/cloneDeep';
 import { defineStore } from 'pinia';
 import type { RouteRecordRaw } from 'vue-router';
 
+import type { AuthRouteData } from '@/runtime';
 import { getAuthApi, getFixedRouterList, getHomepageRouterList, requireRouter } from '@/runtime';
 import { store, useUserStore } from '@/store';
 
@@ -48,6 +49,23 @@ function sessionExpiredError(): SessionExpiredError {
   const error = new Error('登录已失效，请重新登录') as SessionExpiredError;
   error.sessionExpired = true;
   return error;
+}
+
+/**
+ * 用 getUserInfo 的结果刷新本地会话缓存（权限 / 用户信息 / 租户）。
+ * 静态与动态路由两条分支共用，避免两处各改一半导致口径漂移。
+ */
+function applySessionCache(data: AuthRouteData) {
+  if (data.permissions) {
+    localStorage.setItem('user_permissions', JSON.stringify(data.permissions));
+  }
+  if (data.user) {
+    useUserStore().setUserInfo(data.user);
+    useUserStore().getUserInfo();
+  }
+  if (data.tenantId) {
+    localStorage.setItem('tenantId', String(data.tenantId));
+  }
 }
 
 /** 菜单 path 的前导 `/`（顶层目录由后端 `getRouterPath` 拼上） */
@@ -97,6 +115,18 @@ export const usePermissionStore = defineStore('permission', {
     async buildAsyncRoutes() {
       try {
         if (this.useStaticRoutes) {
+          // 静态路由只是「不按后端菜单拼装路由」，**不等于可以跳过会话校验**。
+          // auth.getUserInfo() 是全仓唯一在路由初始化阶段向后端确认 token 有效性的调用点——
+          // 此前这里直接 return，导致：
+          //   1) 已过期 / 已被踢出 / 已吊销的 token 仍能带着 localStorage 里的旧权限进全量路由树；
+          //   2) 'user_permissions' 永不刷新，权限被回收后要等到显式登出才生效。
+          // 因此这里仍然请求一次：用它的身份与权限结果刷新本地缓存，但路由树依旧取静态清单。
+          // 注意：本模式同样要求后端可达 —— 非 200 业务码与 HTTP 401 都由响应拦截器 reject，
+          // 再由外层 catch 统一登出并跳登录页（不要把它当成离线演示模式）。
+          const staticRes = await getAuthApi().auth.getUserInfo();
+          if (staticRes?.data) {
+            applySessionCache(staticRes.data);
+          }
           this.asyncRoutes = cloneDeep(getFixedRouterList());
           await this.initRoutes();
           return this.asyncRoutes;
@@ -105,16 +135,8 @@ export const usePermissionStore = defineStore('permission', {
         const res = await getAuthApi().auth.getUserInfo();
         if (res && res.code === 200 && res.data) {
           const data = res.data;
-
-          if (data.permissions) {
-            localStorage.setItem('user_permissions', JSON.stringify(data.permissions));
-          }
-
-          // 回填当前登录用户信息：页面刷新后姓名/头像取自后端，不靠登录页残留
-          if (data.user) {
-            useUserStore().setUserInfo(data.user);
-            useUserStore().getUserInfo();
-          }
+          // 刷新权限 / 用户信息 / 租户缓存（页面刷新后姓名头像取自后端，不靠登录页残留）
+          applySessionCache(data);
 
           if (data.menuRoutes) {
             let asyncRoutes: RouteItem[] = data.menuRoutes as RouteItem[];
@@ -124,10 +146,6 @@ export const usePermissionStore = defineStore('permission', {
             this.asyncRoutes = transformObjectToRoute(asyncRoutes);
           } else {
             this.asyncRoutes = [PAGE_NOT_FOUND_ROUTE];
-          }
-
-          if (data.tenantId) {
-            localStorage.setItem('tenantId', String(data.tenantId));
           }
         } else {
           if (res && res.code === 401) {
