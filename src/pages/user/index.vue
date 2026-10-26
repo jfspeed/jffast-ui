@@ -372,6 +372,10 @@ const handleBind = async (provider: string) => {
     const height = 700;
     const left = (window.screen.width - width) / 2;
     const top = (window.screen.height - height) / 2;
+    // ⚠️ 这里**故意不加** `noopener`：回调校验靠 `window.open` 的返回值 `popup` 与
+    // `event.source` 做身份比对（见下方 handleCallback）。`noopener` 会把返回值置为 null，
+    // 于是所有回调消息都会被当成第三方窗口丢弃 ⇒ 社交账号绑定静默失败。
+    // 其它地方的 `window.open`（如文件预览）才应该加 `noopener`。
     const popup = window.open(
       res.data,
       'social-auth',

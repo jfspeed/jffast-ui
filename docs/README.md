@@ -111,3 +111,30 @@ CI 按 `.nvmrc` 安装 Node，四道门禁任一失败即红。
 | `npm run build` 报 RSA 公钥缺失 | 未注入 `VITE_RSA_PUBLIC_KEY`，按第 6 节注入                            |
 | 登录一直失败但后端正常          | 前后端 RSA 密钥不成对，用 `gen-rsa.sh` 重新生成并同时更新两侧          |
 | 17 位部门/角色 id 编辑后串号    | 不要对雪花 id 做 `Number()`，全链路用字符串（见 `user-edit-rules.ts`） |
+
+## 9. 安全基线与已知取舍
+
+> 后端侧的安全取舍与加固基线见后端仓库的 [`SECURITY.md`](https://github.com/summerZstar/jffast/blob/main/SECURITY.md)。本节只管前端这一侧。
+
+### 9.1 已收紧项（改动前先读这里的理由）
+
+| 项                | 现状                                                        | 为什么                                                                                         |
+| ----------------- | ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| CSP `script-src`  | 去掉 `'unsafe-inline'`                                      | 原先内联的 `window.global = window` 已外置为 `public/global-shim.js`（同源脚本），行为完全等效 |
+| CSP `connect-src` | 去掉 `http/https://localhost:*`                             | dev 的跨域由 vite proxy 承接，浏览器侧始终同源；留在生产里等于给 localhost 留一条无用放行口    |
+| 静态路由模式      | `VITE_USE_STATIC_ROUTES=true` 时也会走 `getUserInfo()` 校验 | 此前直接返回静态路由，token 校验被整个跳过 —— 失效 token 仍放行、权限永不刷新                  |
+| `window.open`     | 弹窗类调用补 `noopener`                                     | 防止被打开页面用 `window.opener` 反向操纵本页                                                  |
+| 依赖版本          | vite 6.4.5 / happy-dom 21.0.4 / fast-uri 等                 | 修复 `npm audit` 的 high 级漏洞                                                                |
+
+### 9.2 已知取舍（有意保留，不是缺陷，请勿当漏洞提交）
+
+- **CSP 保留 `'unsafe-eval'`** —— **当前不可去除**，去掉并实测过：TDesign 分步表单（把函数 `toString` 后重建）、TDesign 内置的 intlify 消息编译器（编译带插值的文案）、echarts 的 GeoJSON 解析，三处都用 `new Function(...)`。去掉后首屏 `EvalError`、**页面整片空白**（不是局部降级）。要真正移除需先替换这三个依赖。详见 `index.html` 里的 CSP 注释。
+- **CSP `style-src` 保留 `'unsafe-inline'`** —— Vue / TDesign 运行时会注入 `<style>`，属已知取舍，不涉及脚本执行面。
+- **`/upload/**` 匿名可读** —— 头像、附件这类图片要能被 `<img src="...">` 直接引用，而 `<img>` 不会携带 Authorization 头，一旦要求鉴权会全部失效。**因此存储根内的每一个文件都视同对外公开**，敏感文件不要放进去（服务端产物写在存储根之外）。
+- **`user/index.vue` 的 `window.open` 不加 `noopener`** —— 社交授权回调靠 `window.open` 的返回值与 `event.source` 做身份校验，加了会被置为 null 导致绑定静默失败。其它弹窗仍应加 `noopener`。
+
+### 9.3 密钥
+
+- 仓库**不存任何密钥字面量**，也不提供 `.env.production`；`npm run build` 走 `--mode release`，实际读 `.env` / `.env.release`
+- 生产构建必须注入 `VITE_RSA_PUBLIC_KEY`（缺失或不是合法 RSA 公钥时 `vite.config.ts` 直接 fail-fast）
+- 后端 `RSA_PRIVATE_KEY` 必须与该公钥**成对**更换（见第 6 节）
