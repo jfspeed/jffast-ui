@@ -1,0 +1,354 @@
+@import './font-family.less';
+@import './variables.less';
+
+// layout rewrite
+
+.t-layout__sider {
+  width: fit-content;
+}
+
+.t-button + .t-button {
+  margin-left: var(--td-comp-margin-s);
+}
+
+.t-transfer,
+.t-jumper,
+.t-pagination-mini {
+  .t-button + .t-button {
+    margin-left: 0;
+  }
+}
+
+.@{starter-prefix}-link {
+  color: var(--td-brand-color);
+  text-decoration: none;
+  margin-right: 24px;
+  cursor: pointer;
+  transition: color 0.2s cubic-bezier(0.38, 0, 0.24, 1);
+}
+
+.left-operation-container,
+.operation-container {
+  .t-button + .t-button {
+    margin-left: var(--td-comp-margin-s);
+  }
+}
+
+.t-layout.t-layout--with-sider {
+  > .t-layout {
+    flex: 1;
+    min-width: 760px;
+  }
+}
+
+.t-menu--dark .t-menu__operations .t-icon {
+  color: rgb(255 255 255 / 55%);
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.t-default-menu.t-menu--dark {
+  background: var(--td-gray-color-13);
+}
+
+.@{starter-prefix} {
+  // 布局元素调整
+  &-wrapper {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &-main-wrapper {
+    height: 500px;
+    overflow: scroll;
+  }
+
+  &-side-nav-layout {
+    &-relative {
+      height: 100%;
+    }
+  }
+
+  &-content-layout {
+    padding: var(--td-comp-paddingTB-xl) var(--td-comp-paddingLR-xl);
+  }
+
+  &-layout {
+    height: calc(100vh - var(--td-comp-size-xxxl));
+    overflow-y: scroll;
+
+    &-tabs-nav {
+      max-width: 100%;
+      position: fixed;
+      overflow: visible;
+      z-index: 100;
+    }
+    &-tabs-nav + .@{starter-prefix}-content-layout {
+      padding-top: var(--td-comp-paddingTB-xxl);
+    }
+
+    &::-webkit-scrollbar {
+      width: 8px;
+      background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      border-radius: 6px;
+      border: 2px solid transparent;
+      background-clip: content-box;
+      background-color: var(--td-scrollbar-color);
+    }
+  }
+
+  &-footer-layout {
+    padding: 0;
+    margin-bottom: var(--td-comp-margin-xxl);
+  }
+
+  // slideBar
+  &-sidebar-layout {
+    height: 100%;
+  }
+
+  &-sidebar-compact {
+    width: 64px;
+  }
+
+  &-sidebar-layout-side {
+    z-index: 100;
+  }
+
+  &-side-nav {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 200;
+    transition: all 0.3s;
+    min-height: 100%;
+
+    &-mix {
+      top: var(--td-comp-size-xxxl);
+
+      &-fixed {
+        top: var(--td-comp-size-xxxl);
+        z-index: 0;
+      }
+    }
+
+    &-no-fixed {
+      position: relative;
+      z-index: 1;
+    }
+
+    &-no-logo {
+      z-index: 1;
+
+      // mix 布局下侧边栏不显示 logo，用一行收起/展开按钮替代
+      .t-default-menu__inner .t-menu__logo:not(:empty) {
+        height: 40px;
+      }
+    }
+
+    // logo 行：左侧 logo（side 布局），右侧统一放收起/展开按钮
+    .t-default-menu__inner .t-menu__logo:not(:empty) {
+      justify-content: flex-start;
+      padding: 0 8px 0 12px;
+      border-bottom: none;
+    }
+
+    &-logo-bar {
+      display: flex;
+      align-items: center;
+      // TDesign 给 logo 子元素默认加了 margin-left，这里重置以贴近左侧边缘
+      margin: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    &-collapse-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-left: auto;
+      height: 100%;
+    }
+
+    // 收起态：顶部只展示 logo，hover 时浮动显示展开按钮
+    &.t-is-collapsed {
+      .t-default-menu__inner .t-menu__logo:not(:empty) {
+        padding: 0;
+      }
+
+      .@{starter-prefix}-side-nav-logo-bar {
+        position: relative;
+        justify-content: center;
+      }
+
+      .@{starter-prefix}-side-nav-collapse-wrapper {
+        position: absolute;
+        inset: 0;
+        justify-content: center;
+        margin-left: 0;
+        opacity: 0;
+        transition: opacity 0.2s;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        .t-button {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .@{starter-prefix}-side-nav-logo-bar:hover .@{starter-prefix}-side-nav-logo-wrapper {
+        visibility: hidden;
+      }
+
+      // mix 布局顶部没有 logo，收起态需要常显展开按钮
+      &.@{starter-prefix}-side-nav-no-logo .@{starter-prefix}-side-nav-collapse-wrapper {
+        opacity: 1;
+      }
+    }
+
+    // 收紧左侧菜单与浏览器边缘的间距
+    .t-default-menu__inner .t-menu {
+      padding-left: 4px;
+      padding-right: 4px;
+    }
+
+    .t-default-menu__inner .t-menu > .t-menu__item,
+    .t-default-menu__inner .t-menu > .t-submenu > .t-menu__item {
+      padding-left: 12px;
+    }
+
+    // 收紧菜单项图标与文字的距离
+    .t-default-menu__inner .t-menu__item > .t-icon {
+      margin-right: 4px;
+    }
+
+    &-logo-wrapper {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      flex: 1;
+      min-width: 0;
+      gap: 8px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &-logo-title {
+      font: var(--td-font-title-large);
+      white-space: nowrap;
+      color: var(--td-text-color-primary);
+    }
+
+    // 收起态 logo 由 logoCls 生成 -logo-collapsed-logo，此处需与模板类名一致，否则按原始尺寸溢出
+    &-logo-collapsed-logo {
+      height: 28px;
+      width: 28px;
+    }
+
+    &-logo-jffast-logo {
+      height: 28px;
+      width: 28px;
+      color: var(--td-text-color-primary);
+    }
+
+    &-logo-normal {
+      color: var(--td-brand-color);
+      font: var(--td-font-body-large);
+      transition: all 0.3s;
+    }
+  }
+
+  &-side-nav-dark {
+    color: var(--td-font-white-1) !important;
+  }
+
+  &-side-nav-placeholder {
+    flex: 1 1 232px;
+    min-width: 232px;
+    transition: all 0.3s;
+
+    &-hidden {
+      flex: 1 1 72px;
+      min-width: 72px;
+      transition: all 0.3s;
+    }
+  }
+}
+
+.route-tabs-dropdown {
+  .t-icon {
+    margin-right: 8px;
+  }
+}
+
+.logo-container {
+  cursor: pointer;
+  display: inline-flex;
+  margin-left: 24px;
+}
+
+.version-container {
+  color: var(--td-text-color-primary);
+  opacity: 0.4;
+}
+
+.t-menu__popup {
+  z-index: 1000;
+}
+
+.container-base-margin-top {
+  margin-top: 16px;
+}
+
+// ========== 响应式适配 ==========
+// 断点口径与 shared/src/hooks/useResponsive.ts 的 RESPONSIVE_BREAKPOINTS 保持一致：
+// 手机 ≤768px、平板 ≤960px；>960px 一律保持桌面布局形态。
+
+// 平板及以下：去掉内容侧 760px 最小宽，窄屏不再整页横向溢出
+@media (width <= 960px) {
+  .t-layout.t-layout--with-sider > .t-layout {
+    min-width: 0;
+  }
+}
+
+// 手机：内容区收窄、表格横向滚动、栅格堆叠、触摸目标加大
+@media (width <= 768px) {
+  .@{starter-prefix}-content-layout {
+    padding: var(--td-comp-paddingTB-l) var(--td-comp-paddingLR-l);
+    // 表格等宽内容在容器内横向滚动，不破版
+    overflow-x: auto;
+  }
+
+  // 表格给最小宽度，配合上面的容器横向滚动，避免列被压碎
+  .@{starter-prefix}-content-layout .t-table {
+    min-width: 640px;
+  }
+
+  // 未使用 t-col 响应式属性（xs/sm/md…）的普通栅格列在手机上堆叠为单列
+  .@{starter-prefix}-content-layout .t-row > .t-col-6,
+  .@{starter-prefix}-content-layout .t-row > .t-col-7,
+  .@{starter-prefix}-content-layout .t-row > .t-col-8,
+  .@{starter-prefix}-content-layout .t-row > .t-col-9,
+  .@{starter-prefix}-content-layout .t-row > .t-col-10,
+  .@{starter-prefix}-content-layout .t-row > .t-col-11,
+  .@{starter-prefix}-content-layout .t-row > .t-col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  // 触摸友好：菜单点击目标加大（移动端只有抽屉里的菜单会渲染）
+  .t-default-menu .t-menu__item {
+    min-height: 44px;
+  }
+}

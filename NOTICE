@@ -1,0 +1,60 @@
+jffast-ui - Vue 3 Frontend for jffast Framework
+Copyright 2024-2026 jffast
+
+This product includes software developed by:
+- Vue.js (https://vuejs.org/) - MIT
+- Vue Router (https://router.vuejs.org/) - MIT
+- Pinia (https://pinia.vuejs.org/) - MIT
+- pinia-plugin-persistedstate (https://github.com/prazdev/pinia-plugin-persistedstate) - MIT
+- TDesign Vue Next (https://tdesign.tencent.com/vue-next/overview) - MIT
+- TDesign Icons Vue Next (https://github.com/Tencent/tdesign-icons-vue-next) - MIT
+- ECharts (https://echarts.apache.org/) - Apache 2.0
+- bpmn-js (https://bpmn.io/toolkit/bpmn-js/) - MIT (Camunda Services GmbH), with the bpmn.io
+  watermark-retention clause - see the note below
+- bpmn-moddle (https://github.com/bpmn-io/bpmn-moddle) - MIT (Camunda Services GmbH)
+- Vue I18n (https://vue-i18n.intlify.dev/) - MIT
+- VueUse (https://vueuse.org/) - MIT
+- Axios (https://axios-http.com/) - MIT
+- Day.js (https://day.js.org/) - MIT
+- Lodash (https://lodash.com/) - MIT
+- JSEncrypt (https://github.com/travist/jsencrypt) - MIT
+- NProgress (https://github.com/rstacruz/nprogress) - MIT
+- tvision-color (https://github.com/Tencent/tvision-color) - ISC
+- qs (https://github.com/ljharb/qs) - BSD-3-Clause
+- Vite (https://vite.dev/) - MIT
+- Vitest (https://vitest.dev/) - MIT
+- TypeScript (https://www.typescriptlang.org/) - Apache 2.0
+
+
+bpmn.io watermark-retention clause
+----------------------------------
+
+bpmn-js is distributed under the MIT License **plus** one additional clause (verbatim from
+node_modules/bpmn-js/LICENSE):
+
+    The source code responsible for displaying the bpmn.io project watermark that
+    links back to https://bpmn.io as part of rendered diagrams MUST NOT be
+    removed or changed. When this software is being used in a website or application,
+    the watermark must stay fully visible and not visually overlapped by other elements.
+
+How this project complies:
+
+- The clause applies to the bpmn.js source itself. That source is used unmodified from
+  the npm package; nothing in it is patched, vendored or stripped.
+- This project uses the bpmn-js **Modeler** (bpmn-js/lib/Modeler), which renders the
+  "powered by bpmn.io" link in the diagram. That link is kept intact and functional.
+- The application-level watermark (shared/src/components/Watermark.vue, a TDesign
+  <t-watermark> overlay) is this project's own watermark and does not remove or alter
+  any bpmn.io element. Its overlay layer is declared `pointer-events: none` and is
+  rendered at low opacity, so the bpmn.io link underneath stays fully visible and
+  remains clickable.
+
+
+TDesign icon sprite
+-------------------
+
+public/tdesign-icons-sprite.js is a **redistribution of third-party artwork** generated
+from tdesign-icons-vue-next@0.4.4 by scripts/gen-tdesign-icon-sprite.cjs. It is not
+covered by this project's Apache-2.0 license. The file keeps the upstream Tencent MIT
+copyright and permission notice in its header, as MIT requires. The generator script is
+included in this repository so the artifact can be reproduced locally.

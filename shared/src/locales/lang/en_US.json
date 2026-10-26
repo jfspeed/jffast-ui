@@ -1,0 +1,2114 @@
+{
+  "lang": "English",
+  "common": {
+    "appName": "jffast Admin",
+    "copyright": "Copyright @ 2021-2026 JP Fast Admin. All Rights Reserved",
+    "conjunction": "and",
+    "admin": "admin",
+    "add": "Add",
+    "create": "Create",
+    "edit": "Edit",
+    "delete": "Delete",
+    "remove": "Remove",
+    "search": "Search",
+    "reset": "Reset",
+    "query": "Query",
+    "export": "Export",
+    "import": "Import",
+    "download": "Download",
+    "upload": "Upload",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "submit": "Submit",
+    "success": "Success",
+    "fail": "Fail",
+    "remark": "Remark",
+    "status": "Status",
+    "operation": "Operation",
+    "detail": "Detail",
+    "view": "View",
+    "loading": "Loading...",
+    "pleaseSelect": "Please select",
+    "pleaseInput": "Please input",
+    "tips": "Tips",
+    "openNavMenu": "Open navigation menu",
+    "confirmDelete": "Are you sure you want to delete?",
+    "deleteSuccess": "Deleted successfully",
+    "deleteFail": "Delete failed",
+    "addSuccess": "Added successfully",
+    "updateSuccess": "Updated successfully",
+    "saveSuccess": "Saved successfully",
+    "saveFail": "Save failed",
+    "clear": "Clear",
+    "clearSuccess": "Cleared successfully",
+    "clearFail": "Clear failed",
+    "copy": "Copy",
+    "copySuccess": "Copied successfully",
+    "copyFail": "Copy failed",
+    "enable": "Enable",
+    "disable": "Disable",
+    "disabled": "Disabled",
+    "normal": "Normal",
+    "yes": "Yes",
+    "no": "No",
+    "all": "All",
+    "root": "Root",
+    "name": "Name",
+    "code": "Code",
+    "type": "Type",
+    "description": "Description",
+    "sort": "Sort",
+    "userName": "Username",
+    "realName": "Name",
+    "nickName": "Nickname",
+    "phone": "Phone",
+    "email": "Email",
+    "createTime": "Create Time",
+    "updateTime": "Update Time",
+    "operateFail": "Operation failed",
+    "dialogCancel": "Cancel",
+    "dialogSave": "Save",
+    "title": "Title",
+    "batchDelete": "Batch Delete",
+    "downloadTemplate": "Download Template",
+    "exportSuccess": "Exported successfully",
+    "templateDownloaded": "Template downloaded",
+    "importSuccess": "Imported successfully",
+    "uploadFail": "Upload failed"
+  },
+  "components": {
+    "isSetup": {
+      "on": "Enabled",
+      "off": "Disabled"
+    },
+    "manage": "Manage",
+    "delete": "Delete",
+    "deleteSuccess": "Deleted successfully",
+    "copySuccess": "Copied successfully",
+    "copyFail": "Copy failed",
+    "submitSuccess": "Submitted successfully",
+    "commonTable": {
+      "contractName": "Name",
+      "contractStatus": "Status",
+      "contractNum": "Number",
+      "contractType": "Type",
+      "contractPayType": "Pay Type",
+      "contractAmount": "Amount",
+      "contractNamePlaceholder": "enter contract name",
+      "contractStatusPlaceholder": "enter contract status",
+      "contractNumPlaceholder": "enter contract number",
+      "contractTypePlaceholder": "enter contract type",
+      "operation": "Operation",
+      "detail": "detail",
+      "delete": "delete",
+      "placeholder": "please enter to search",
+      "contractStatusEnum": {
+        "fail": "fail",
+        "audit": "audit",
+        "executing": "executing",
+        "pending": "pending",
+        "finish": "finish"
+      },
+      "contractTypeEnum": {
+        "main": "main",
+        "sub": "sub",
+        "supplement": "supplement"
+      },
+      "reset": "reset",
+      "query": "query"
+    }
+  },
+  "layout": {
+    "header": {
+      "code": "Code Repository",
+      "help": "Document",
+      "user": "Profile",
+      "signOut": "Sign Out",
+      "setting": "Setting"
+    },
+    "notice": {
+      "title": "Notification Center",
+      "clear": "Clear",
+      "setRead": "Set Read",
+      "empty": "Empty",
+      "emptyNotice": "No Notice",
+      "viewAll": "View All",
+      "tabAll": "All",
+      "tabUnread": "Unread",
+      "emptyUnread": "No unread notifications",
+      "emptyByType": "No {type}",
+      "connected": "Realtime push connected",
+      "disconnected": "Realtime push disconnected",
+      "from": "From {sender}",
+      "justNow": "Just now",
+      "minutesAgo": "{n} min ago",
+      "hoursAgo": "{n} h ago",
+      "daysAgo": "{n} d ago",
+      "type": {
+        "system": "System",
+        "biz": "Business",
+        "flow": "Workflow"
+      }
+    },
+    "tagTabs": {
+      "closeOther": "close other",
+      "closeLeft": "close left",
+      "closeRight": "close right",
+      "refresh": "refresh"
+    },
+    "searchPlaceholder": "Enter search content",
+    "search": {
+      "placeholder": "Enter search content"
+    },
+    "setting": {
+      "title": "Setting",
+      "theme": {
+        "mode": "Theme Mode",
+        "color": "Theme Color",
+        "options": {
+          "light": "Light",
+          "dark": "Dark ",
+          "auto": "Follow System"
+        }
+      },
+      "navigationLayout": "Navigation Layout",
+      "sideMode": "Side Menu Mode",
+      "splitMenu": "Split Menu (Only Mix mode)",
+      "fixedSidebar": "Fixed Sidebar",
+      "element": {
+        "title": "Element Switch",
+        "showHeader": "Show Header",
+        "showBreadcrumb": "Show Breadcrumb",
+        "showFooter": "Show Footer",
+        "useTagTabs": "Use Tag Tabs",
+        "menuAutoCollapsed": "Menu Auto Collapsed"
+      },
+      "tips": "Please copy and manually modify the configuration file: /src/config/style.ts",
+      "copy": {
+        "title": "Copy",
+        "success": "copied",
+        "fail": "fail to copy"
+      }
+    }
+  },
+  "constants": {
+    "contract": {
+      "name": "Name",
+      "status": "Status",
+      "num": "Number",
+      "type": "Type",
+      "typePlaceholder": "Please enter type",
+      "payType": "Pay Type",
+      "amount": "Amount",
+      "amountPlaceholder": "Please enter amount",
+      "signDate": "Sign Date",
+      "effectiveDate": "Effective Date",
+      "endDate": "End Date",
+      "createDate": "Create Date",
+      "attachment": "Attachment",
+      "company": "Company",
+      "employee": "Employee",
+      "pay": "pay",
+      "receive": "received",
+      "remark": "remark",
+      "statusOptions": {
+        "fail": "Failure",
+        "auditPending": "Pending audit",
+        "execPending": "Pending performance",
+        "executing": "Successful",
+        "finish": "Finish"
+      },
+      "typeOptions": {
+        "main": "Master contract",
+        "sub": "Subcontract",
+        "supplement": "Supplementary contract"
+      }
+    }
+  },
+  "pages": {
+    "dashboardBase": {
+      "title": "Overview Dashboard",
+      "stats": {
+        "userCount": "Total Users",
+        "todayLogCount": "Today Ops",
+        "successLogCount": "Success",
+        "failLogCount": "Failed"
+      },
+      "chart": {
+        "trendTitle": "Operation Trend (Last 7 Days)",
+        "totalCount": "Total",
+        "successCount": "Success"
+      },
+      "quickEntry": {
+        "title": "Quick Entry",
+        "user": "Users",
+        "role": "Roles",
+        "menu": "Menus",
+        "dept": "Departments",
+        "dict": "Dictionaries",
+        "log": "Logs"
+      },
+      "recentLogs": {
+        "title": "Recent Operations",
+        "colUser": "Operator",
+        "colTitle": "Title",
+        "colIp": "IP Address",
+        "colState": "Status",
+        "colTime": "Time"
+      },
+      "error": {
+        "loadStats": "Failed to load stats",
+        "loadLogs": "Failed to load recent logs",
+        "loadTrend": "Failed to load trend"
+      },
+      "outputOverview": {
+        "title": "In/Out Overview",
+        "subtitle": "(pieces)",
+        "export": "Export data",
+        "month": {
+          "input": "Total in store this month",
+          "output": "Total out store this month"
+        },
+        "since": "Since last week"
+      },
+      "rankList": {
+        "title": "Sales order ranking",
+        "week": "This week",
+        "month": "Latest 3 months",
+        "info": "Detail"
+      },
+      "topPanel": {
+        "card1": "Total Revenue",
+        "card2": "Total Refund",
+        "card3": "Active User(s)",
+        "card4": "Generate Order(s)",
+        "cardTips": "since last week",
+        "analysis": {
+          "title": "Analysis Data",
+          "unit": "ten thousand yuan",
+          "series1": "this month",
+          "series2": "last month",
+          "channels": "Sales Channels",
+          "channel1": "online",
+          "channel2": "shop",
+          "channelTips": " sales ratio"
+        }
+      },
+      "saleColumns": {
+        "index": "Ranking",
+        "productName": "Customer",
+        "growUp": "Grow up",
+        "count": "Count",
+        "operation": "Operation"
+      },
+      "buyColumns": {
+        "index": "Ranking",
+        "productName": "Supplier",
+        "growUp": "Grow up",
+        "count": "Count",
+        "operation": "Operation"
+      },
+      "saleTend": {
+        "item1": "State Grid Corporation of China",
+        "item2": "Shenzhen Gas Group Co., Ltd",
+        "item3": "State Administration of Tobacco Monopoly",
+        "item4": "China Telecom Group Co., Ltd",
+        "item5": "China Mobile Communications Group Co., Ltd",
+        "item6": "Xinyu City Office Supplies Procurement Project"
+      },
+      "buyTend": {
+        "item1": "Huawei Technologies Co., Ltd",
+        "item2": "Darunfa Co., Ltd",
+        "item3": "Sichuan Haidilao Co., Ltd",
+        "item4": "Sony (China) Co., Ltd",
+        "item5": "Panasonic Electronics (China) Co., Ltd",
+        "item6": "Xinyu City Office Supplies Procurement Project"
+      }
+    },
+    "dashboardDetail": {
+      "topPanel": {
+        "title": "Purchase applications for this month",
+        "quarter": "Quarter on quarter",
+        "paneList": {
+          "totalRequest": "Apply count",
+          "suppliers": "Number of Suppliers",
+          "productCategory": "Product Category",
+          "applicant": "Number of Application",
+          "completionRate": "Completion Rate(%)",
+          "arrivalRate": "Arrival Rate(%)"
+        }
+      },
+      "procurement": {
+        "title": "Trends in purchase requisitions for goods",
+        "goods": {
+          "cup": "cup",
+          "tea": "tea",
+          "honey": "honey",
+          "flour": "flour",
+          "coffeeMachine": "coffee machine",
+          "massageMachine": "massage machine"
+        }
+      },
+      "ssl": "SSL certificate",
+      "sslDescription": "SSL certificate, also known as a server certificate, is a digital certificate that authenticates the identity of a website and encrypts information sent to the server using SSL technology.",
+      "satisfaction": {
+        "title": "distribution of satisfaction levels for purchased goods",
+        "export": "export data"
+      },
+      "chart": {
+        "week1": "MON",
+        "week2": "TUE",
+        "week3": "WED",
+        "week4": "THU",
+        "week5": "FRI",
+        "week6": "SAT",
+        "week7": "SUN",
+        "max": "Max",
+        "min": "Min",
+        "thisMonth": "this month",
+        "lastMonth": "last month"
+      }
+    },
+    "detailBase": {
+      "baseInfo": {
+        "title": "Base Info"
+      },
+      "sampleData": {
+        "contractName": "Office Supplies Procurement Project",
+        "status": "In Progress",
+        "company": "Tencent Technology (Shenzhen) Co., Ltd",
+        "employee": "Osun",
+        "fileName": "Office Supplies Procurement Contract.pdf"
+      },
+      "changelog": {
+        "title": "Changelog",
+        "step1": {
+          "title": "upload file",
+          "subtitle": "subtitle"
+        },
+        "step2": {
+          "title": "modify contract amount",
+          "subtitle": "subtitle"
+        },
+        "step3": {
+          "title": "create contract",
+          "desc": "administrator"
+        }
+      }
+    },
+    "detailCard": {
+      "baseInfo": {
+        "title": "Base Info"
+      },
+      "invoice": {
+        "title": "Invoice Progress",
+        "step1": {
+          "title": "Apply",
+          "content": "The electronic invoice has been submitted on December 21st"
+        },
+        "step2": {
+          "title": "Electronic invoice",
+          "content": "expected to be processed within 1-3 business days."
+        },
+        "step3": {
+          "title": "Invoice is send",
+          "content": "we will contact you within 7 business days."
+        },
+        "step4": {
+          "title": "Finish"
+        }
+      },
+      "product": {
+        "title": "Product Category",
+        "add": "add production",
+        "month": "month",
+        "quarter": "quarter"
+      },
+      "detail": {
+        "title": "Product Procurement Detail",
+        "budgetExceeded": "Budget Exceeded",
+        "form": {
+          "applyNo": "Apply no",
+          "product": "Name",
+          "productNo": "No.",
+          "department": "Department",
+          "num": "Num",
+          "createTime": "Create time",
+          "operation": "Operation",
+          "manage": "manage",
+          "delete": "delete"
+        }
+      },
+      "products": {
+        "product1": {
+          "name": "MacBook Pro 2021",
+          "company": "Apple Inc.",
+          "size": "13.3 inches",
+          "cpu": "Apple M1",
+          "memory": "RAM 16GB",
+          "info": "Up to 16GB memory · Up to 2TB storage · Battery life up to 18 hours"
+        },
+        "product2": {
+          "name": "Surface Laptop Go",
+          "company": "Microsoft Corporation",
+          "size": "12.4 inches",
+          "cpu": "Core i7",
+          "memory": "RAM 16GB",
+          "info": "Surface regular use, up to 13 hours of battery life, work anytime"
+        }
+      }
+    },
+    "detailDeploy": {
+      "deployTrend": {
+        "title": "Deploy Trend",
+        "warning": "Warning",
+        "thisMonth": "this month",
+        "thisWeek": "this week",
+        "lastMonth": "last month",
+        "thisYear": "this year",
+        "lastYear": "last year",
+        "week1": "MON",
+        "week2": "TUE",
+        "week3": "WED",
+        "week4": "THU",
+        "week5": "FRI",
+        "week6": "SAT",
+        "week7": "SUN"
+      },
+      "projectList": {
+        "title": "Project List",
+        "dialog": {
+          "title": "Base Info"
+        },
+        "table": {
+          "name": "Name",
+          "admin": "Admin",
+          "createTime": "Create time",
+          "operation": "Operation",
+          "manage": "manage",
+          "delete": "delete"
+        }
+      },
+      "baseInfo": {
+        "clusterName": "Cluster Name",
+        "clusterId": "Cluster ID",
+        "status": "Status",
+        "running": "Running",
+        "k8sVersion": "K8S Version",
+        "config": "Config",
+        "region": "Region",
+        "guangzhou": "Guangzhou",
+        "project": "Resource Project",
+        "defaultProject": "Default Project",
+        "nodeCount": "Node Count",
+        "nodeNetwork": "Node Network",
+        "containerNetwork": "Container Network",
+        "clusterCredential": "Cluster Credential",
+        "showCredential": "Show Credential",
+        "createUpdate": "Create/Update",
+        "description": "Description"
+      }
+    },
+    "detailSecondary": {
+      "read": "Read",
+      "unread": "Unread",
+      "all": "All",
+      "setRead": "set as read",
+      "setUnread": "set as unread",
+      "delete": "delete",
+      "deleteConfirm": "Delete notification",
+      "deleteTip": "Confirm delete notification: {content}?",
+      "empty": "Empty"
+    },
+    "notification": {
+      "contract": "Contract Updates",
+      "invoice": "Invoice Updates",
+      "meeting": "Meeting Notification",
+      "msg1": "Building First Floor Renovation Project has passed audit!",
+      "msg2": "Third Quarter Raw Material Procurement Project invoicing successful!",
+      "msg3": "Meeting 【State Grid Offline Signing】at 2021-01-01 10:00 is about to start, please arrive at Conference Room 1 10 minutes early for check-in!",
+      "msg4": "First Quarter Raw Material Procurement Project invoicing successful!"
+    },
+    "formBase": {
+      "title": "Contract Info",
+      "contractName": "Name",
+      "contractNamePlaceholder": "Please enter contract name",
+      "contractStatus": "Status",
+      "contractNum": "Number",
+      "contractType": "Type",
+      "contractTypePlaceholder": "Please enter type",
+      "contractPayType": "Pay Type",
+      "contractAmount": "Amount",
+      "contractAmountPlaceholder": "Please enter amount",
+      "contractSignDate": "Sign Date",
+      "contractEffectiveDate": "Effective Date",
+      "contractEndDate": "End Date",
+      "company": "Company",
+      "employee": "Employee",
+      "pay": "pay",
+      "receive": "received",
+      "upload": "upload file",
+      "uploadFile": "upload contract file",
+      "uploadTips": "Please upload a PDF file, with a size limit of 60MB.",
+      "otherInfo": "Other Info",
+      "remark": "Remark",
+      "remarkPlaceholder": "please enter remark",
+      "notaryPublic": "Notary Public",
+      "fileSizeExceed": "File size cannot exceed 60MB",
+      "uploadFail": "Upload failed",
+      "confirm": "confirm",
+      "cancel": "cancel",
+      "validation": {
+        "name": "Please enter contract name",
+        "type": "Please select contract type",
+        "payment": "Please select payment type",
+        "amount": "Please enter amount",
+        "partyA": "Please select Party A",
+        "partyB": "Please select Party B",
+        "signDate": "Please select date",
+        "startDate": "Please select date",
+        "endDate": "Please select date"
+      },
+      "typeOptions": {
+        "typeA": "Type A",
+        "typeB": "Type B",
+        "typeC": "Type C"
+      },
+      "partyOptions": {
+        "companyA": "Company A",
+        "companyB": "Company B",
+        "companyC": "Company C"
+      }
+    },
+    "formStep": {
+      "validation": {
+        "name": "Please select contract name",
+        "type": "Please select type",
+        "title": "Please enter invoice title",
+        "taxNum": "Please enter tax number",
+        "consignee": "Please enter consignee",
+        "mobileNum": "Please enter mobile number",
+        "deliveryAddress": "Please select delivery address",
+        "fullAddress": "Please enter full address"
+      },
+      "options": {
+        "nameA": "Contract A",
+        "nameB": "Contract B",
+        "nameC": "Contract C",
+        "typeA": "Type A",
+        "typeB": "Type B",
+        "typeC": "Type C",
+        "address1": "Nanshan District, Shenzhen, Guangdong",
+        "address2": "Haidian District, Beijing",
+        "address3": "Xuhui District, Shanghai",
+        "address4": "High-tech Zone, Chengdu, Sichuan",
+        "address5": "Tianhe District, Guangzhou, Guangdong",
+        "address6": "High-tech Zone, Xi'an, Shaanxi"
+      },
+      "step1": {
+        "title": "Submit Application",
+        "subtitle": "Submitted on December 21st",
+        "rules": "rules",
+        "rule1": "1. After applying for an invoice, the electronic invoice will be issued within 1-3 working days. If the qualification review is passed, the VAT special invoice (paper) will be mailed to you within 10 working days after the electronic invoice is issued;",
+        "rule2": "2. The invoiced amount will be the actual amount you paid;",
+        "rule3": "3. For any questions, please contact customer service.",
+        "contractName": "Name",
+        "contractTips": "Please select a contract name",
+        "invoiceType": "Invoice type",
+        "amount": "Amount",
+        "submit": "Submit Application"
+      },
+      "step2": {
+        "title": "Electronic Information",
+        "subtitle": "Contact Customer Service if you have any questions",
+        "invoiceTitle": "Invoice Title",
+        "taxNum": "Tax Num",
+        "address": "Address",
+        "bank": "Bank",
+        "bankAccount": "Bank Account",
+        "email": "Email",
+        "tel": "Tel",
+        "titlePlaceholder": "please enter electronic information",
+        "subtitlePlaceholder": "please enter contact customer service if you have any questions",
+        "invoiceTitlePlaceholder": "please enter invoice title",
+        "taxNumPlaceholder": "please enter tax num",
+        "addressPlaceholder": "please enter address",
+        "bankPlaceholder": "please enter bank",
+        "bankAccountPlaceholder": "please enter bank account",
+        "emailPlaceholder": "please enter email",
+        "telPlaceholder": "please enter tel"
+      },
+      "step3": {
+        "title": "Invoice Mailed",
+        "subtitle": "Contact us after the electronic invoice is issued",
+        "consignee": "Consignee",
+        "mobileNum": "Mobile Num",
+        "deliveryAddress": "Address",
+        "fullAddress": "Full Address"
+      },
+      "step4": {
+        "title": "Application Completed",
+        "subtitle": "Contact Customer Service if you have any questions",
+        "finishTitle": "Application is completed.",
+        "finishTips": "The electronic invoice is expected to be sent to your email within 1-3 working days. Please be patient for the delivery of the paper invoice.",
+        "reapply": "reapply",
+        "check": "check progress"
+      },
+      "preStep": "pre step",
+      "nextStep": "next step"
+    },
+    "listBase": {
+      "export": "export",
+      "create": "create",
+      "select": "select",
+      "items": "items",
+      "contractName": "Name",
+      "contractStatus": "Status",
+      "contractNum": "Number",
+      "contractType": "Type",
+      "contractPayType": "Pay Type",
+      "contractAmount": "Amount",
+      "operation": "Operation",
+      "detail": "detail",
+      "delete": "delete",
+      "pay": "pay",
+      "receive": "received",
+      "placeholder": "please enter to search",
+      "deleteConfirm": "Confirm delete selected contracts?",
+      "deleteTip": "After deletion, all contract information of {name} will be cleared and cannot be recovered",
+      "contractStatusEnum": {
+        "fail": "fail",
+        "audit": "audit",
+        "executing": "executing",
+        "pending": "pending",
+        "finish": "finish"
+      }
+    },
+    "listCard": {
+      "create": "Create Product",
+      "placeholder": "please enter to search",
+      "loading": "Loading data...",
+      "deleteConfirm": "Confirm delete selected products?",
+      "deleteSuccess": "Deleted successfully",
+      "deleteTip": "After confirmation, all product information of {name} will be cleared and cannot be recovered",
+      "productName": "Name",
+      "productStatus": "Status",
+      "productDescription": "Description",
+      "productType": "Type",
+      "productRemark": "Remark",
+      "productStatusEnum": {
+        "off": "off",
+        "on": "on"
+      },
+      "dialogForm": {
+        "productNamePlaceholder": "Please enter product name",
+        "cancel": "Cancel",
+        "confirm": "Confirm",
+        "typeGateway": "Gateway",
+        "typeAI": "Artificial Intelligence",
+        "typeCVM": "CVM",
+        "validation": {
+          "productName": "Please enter product name"
+        }
+      }
+    },
+    "listFilter": {},
+    "listTree": {
+      "placeholder": "please enter to search",
+      "treeData": {
+        "shenzhen": "Shenzhen HQ",
+        "beijing": "Beijing HQ",
+        "shanghai": "Shanghai HQ",
+        "hunan": "Hunan",
+        "hubei": "Hubei",
+        "generalOffice": "General Office",
+        "marketing": "Marketing",
+        "technology": "Technology",
+        "finance": "Finance",
+        "purchase1": "Purchasing Team 1",
+        "purchase2": "Purchasing Team 2",
+        "finance1": "Finance Team 1",
+        "finance2": "Finance Team 2"
+      }
+    },
+    "login": {
+      "loginTitle": "Login in",
+      "noAccount": "No Account?",
+      "createAccount": "Create Account",
+      "remember": "Remember Account",
+      "forget": "Forget Account",
+      "signIn": "Sign in",
+      "existAccount": "Exist Account?",
+      "register": "Register",
+      "refresh": "refresh",
+      "wechatLogin": "Login with WeChat",
+      "accountLogin": "Login with Account",
+      "phoneLogin": "Login with Mobile Phone",
+      "loginSuccess": "Login successful",
+      "demoTip": "Demo environment: try it out — data will not be saved",
+      "userNamePlaceholder": "Please enter username",
+      "passwordPlaceholder": "Please enter password",
+      "captcha": "Captcha",
+      "rememberUserName": "Remember username",
+      "rsaKeyMissing": "VITE_RSA_PUBLIC_KEY is not configured; password cannot be encrypted. Login has been blocked.",
+      "passwordEncryptFail": "Password encryption failed",
+      "passwordExpiredTip": "Your password has expired. Please change it as soon as possible.",
+      "rules": {
+        "userName": "Please enter username",
+        "password": "Please enter password"
+      },
+      "countdown": "Resend after {count} seconds",
+      "input": {
+        "account": "please enter account",
+        "password": "please enter password",
+        "phone": "please enter phone",
+        "verification": "please enter verification code"
+      },
+      "required": {
+        "account": "account is required",
+        "phone": "phone is required",
+        "password": "password is required",
+        "verification": "verification code is require"
+      },
+      "sendVerification": "send"
+    },
+    "result": {
+      "403": {
+        "tips": "sorry, you don not have permission to access this page. Please contact the creator through WeCom",
+        "back": "Back to homepage"
+      },
+      "404": {
+        "subtitle": "Sorry, the page is not found",
+        "back": "Back to homepage"
+      },
+      "500": {
+        "subtitle": "Sorry, the server is error",
+        "back": "Back to homepage"
+      },
+      "fail": {
+        "title": "Create fail",
+        "subtitle": "Sorry, your project creation has failed",
+        "back": "Back to homepage",
+        "modify": "Back to modify"
+      },
+      "success": {
+        "title": "Project is created",
+        "subtitle": "Contact the person in charge of distributing the application",
+        "back": "Back to homepage",
+        "progress": "Check Progress"
+      },
+      "maintenance": {
+        "title": "System maintenance",
+        "subtitle": "Please try again later",
+        "back": "Back to homepage"
+      },
+      "browserIncompatible": {
+        "title": "browser is incompatible",
+        "subtitle": "the browser version you are using is too outdated to open the current webpage.",
+        "back": "Back to homepage",
+        "recommend": "jffast recommends the following browser"
+      },
+      "networkError": {
+        "title": "Network Error",
+        "subtitle": "Network error, please try again later",
+        "back": "Back to homepage",
+        "reload": "Reload"
+      }
+    },
+    "system": {
+      "user": {
+        "field": {
+          "dept": "Department",
+          "deptBindings": "Department Bindings",
+          "role": "Role",
+          "password": "Password"
+        },
+        "placeholder": {
+          "userName": "Please enter username",
+          "realName": "Please enter name",
+          "nickName": "Please enter nickname",
+          "phone": "Please enter phone number",
+          "email": "Please enter email",
+          "password": "Please enter password",
+          "dept": "Please select department",
+          "role": "Please select role",
+          "state": "Please select status"
+        },
+        "action": {
+          "resetPassword": "Reset Password",
+          "unlock": "Unlock",
+          "downloadTemplate": "Download Template",
+          "exportAsync": "Async Export",
+          "importAsync": "Async Import"
+        },
+        "message": {
+          "confirmDelete": "Are you sure you want to delete this user?",
+          "resetPasswordConfirm": "Reset this user's password? A one-time random password will be generated and the user will be signed out.",
+          "resetPasswordSuccess": "Password has been reset",
+          "resetPasswordResultHeader": "One-time Password",
+          "resetPasswordResultTip": "Share this new password with the user now. It cannot be viewed again after closing this dialog:",
+          "unlockConfirm": "Are you sure you want to unlock the account of user \"{name}\"? Failed login attempts will be cleared.",
+          "unlockSuccess": "Account unlocked successfully",
+          "exportSuccess": "Exported successfully",
+          "templateDownloaded": "Template downloaded",
+          "importPartial": "Import finished: {success} succeeded, {failure} failed ({detail})",
+          "importSuccess": "Imported {count} records, please change the initial password after login",
+          "asyncExportCreated": "Async export task created, check progress in \"System - Async Tasks\"",
+          "asyncImportCreated": "Async import task created, check progress in \"System - Async Tasks\"",
+          "passwordEncryptFail": "Password encryption failed",
+          "deptListNotEmpty": "Department bindings cannot be empty",
+          "deptMustBeInBindings": "The primary department must be included in the bindings"
+        }
+      },
+      "dept": {
+        "deptName": "Department Name",
+        "parent": "Parent Department",
+        "levelTitle": "Level",
+        "level": {
+          "unit": "Unit",
+          "dept": "Department"
+        },
+        "placeholder": {
+          "deptName": "Please enter department name",
+          "parent": "Please select parent department"
+        },
+        "action": {
+          "addChild": "Add Sub-department"
+        },
+        "message": {
+          "confirmDelete": "Are you sure you want to delete this department?"
+        }
+      },
+      "role": {
+        "roleName": "Role Name",
+        "roleKey": "Role Key",
+        "dataScope": "Data Scope",
+        "menuPermission": "Menu Permission",
+        "deptPermission": "Data Permission (Department)",
+        "checkAll": "Check All",
+        "collapse": "Collapse",
+        "expand": "Expand",
+        "placeholder": {
+          "roleName": "Please enter role name",
+          "roleKey": "Please enter role key",
+          "dataScope": "Please select",
+          "remark": "Please enter remark"
+        },
+        "dataScopeMap": {
+          "all": "All Data",
+          "deptAndChildren": "Own Department and Sub-departments",
+          "dept": "Own Department",
+          "self": "Own Records Only",
+          "custom": "Custom"
+        },
+        "message": {
+          "confirmDelete": "Are you sure you want to delete this role?"
+        }
+      },
+      "menu": {
+        "name": "Menu Name",
+        "parent": "Parent Menu",
+        "activeMenu": "Active Menu",
+        "menuType": "Menu Type",
+        "icon": "Icon",
+        "path": "Route Name",
+        "url": "Component Path",
+        "perms": "Permission Key",
+        "visible": "Visible",
+        "iconPicker": "Select Icon",
+        "iconPlaceholder": "Click to select an icon",
+        "iconSearchPlaceholder": "Search icon name...",
+        "typeMap": {
+          "dir": "Directory",
+          "menu": "Menu",
+          "button": "Button"
+        },
+        "placeholder": {
+          "name": "Please enter menu name",
+          "parent": "Please select parent menu",
+          "path": "Please enter route name",
+          "url": "e.g. /system/user/index",
+          "perms": "e.g. system:user:add",
+          "remark": "Please enter remark"
+        },
+        "action": {
+          "addChild": "Add Sub-menu"
+        },
+        "message": {
+          "confirmDelete": "Are you sure you want to delete this menu?",
+          "selectMenuType": "Please select menu type"
+        }
+      },
+      "post": {
+        "add": "Add Post",
+        "postCode": "Post Code",
+        "postName": "Post Name",
+        "placeholder": {
+          "postCode": "Please enter post code",
+          "postCodeExample": "Please enter post code (e.g. DEVELOPER)",
+          "postName": "Please enter post name",
+          "remark": "Please enter remark"
+        }
+      },
+      "dict": {
+        "typeTitle": "Dict Type",
+        "itemTitle": "Dict Items",
+        "itemTitleWith": "Dict Items - {name}",
+        "addType": "Add Type",
+        "addItem": "Add Dict Item",
+        "dictName": "Dict Name",
+        "dictCode": "Dict Code",
+        "dictValue": "Dict Value",
+        "placeholder": {
+          "name": "Please enter dict name",
+          "code": "Please enter dict code",
+          "value": "Please enter dict value",
+          "remark": "Please enter remark"
+        }
+      },
+      "config": {
+        "configName": "Config Name",
+        "configKey": "Config Key",
+        "configValue": "Config Value",
+        "builtin": "Builtin",
+        "systemBuiltin": "System Builtin",
+        "add": "Add Config",
+        "builtinMap": {
+          "builtin": "Builtin",
+          "custom": "Custom"
+        },
+        "placeholder": {
+          "configName": "Please enter config name",
+          "configKey": "Please enter config key",
+          "configKeyExample": "Please enter config key (e.g. system.name)",
+          "configValue": "Please enter config value",
+          "remark": "Please enter remark"
+        }
+      },
+      "job": {
+        "jobName": "Job Name",
+        "jobGroup": "Job Group",
+        "invokeTarget": "Invoke Target",
+        "serviceName": "Service Name",
+        "cronExpression": "CRON Expression",
+        "misfirePolicy": "Misfire Policy",
+        "concurrent": "Concurrent",
+        "paused": "Paused",
+        "defaultScheduler": "Default Scheduler",
+        "add": "Add Job",
+        "pause": "Pause",
+        "resume": "Resume",
+        "trigger": "Run",
+        "viewLog": "Logs",
+        "misfireMap": {
+          "immediate": "Run Immediately",
+          "abandon": "Abandon",
+          "next": "Run Next Time"
+        },
+        "placeholder": {
+          "jobName": "Please enter job name",
+          "jobNameExample": "Please enter job name, e.g. Clean expired data",
+          "jobGroup": "Defaults to DEFAULT",
+          "status": "Please select status",
+          "targetSelect": "Please select target method",
+          "param": "Please enter {name}",
+          "invokeTarget": "Invoke target string (auto-generated or manual input)",
+          "invokeTargetRequired": "Please enter invoke target",
+          "serviceName": "Leave empty to belong to this service (recommended)",
+          "cron": "e.g. 0 0 2 * * ?",
+          "cronRequired": "Please enter CRON expression",
+          "remark": "Please enter remark"
+        },
+        "tips": {
+          "invokeTargetFormat": "Format: beanName.methodName (no args) or beanName.methodName(param1,param2) (with args), auto-generated after selecting a method",
+          "serviceName1": "Tasks are executed by whichever service (spring.application.name). The task method is a Bean invoked via reflection and only exists in its owning service; therefore the \"Invoke Target\" dropdown only lists the task methods declared by this service, ",
+          "serviceName2": "leave empty to belong to this service",
+          "serviceName3": " (applies to both create and update); if you fill in another service name, make sure that service really has this method, otherwise execution will fail with",
+          "serviceName4": ".",
+          "cronExamples": "Common examples: 0 0 2 * * ? (daily at 2 AM), 0 */5 * * * ? (every 5 minutes), 0 0 6 * * MON-FRI (weekdays at 6 AM)"
+        },
+        "message": {
+          "pauseConfirm": "Are you sure you want to pause job \"{name}\"?",
+          "pauseSuccess": "Paused successfully",
+          "pauseFail": "Failed to pause",
+          "resumeConfirm": "Are you sure you want to resume job \"{name}\"?",
+          "resumeSuccess": "Resumed successfully",
+          "resumeFail": "Failed to resume",
+          "triggerConfirm": "Are you sure you want to run job \"{name}\" now?",
+          "triggerSuccess": "Executed successfully",
+          "triggerFail": "Execution failed",
+          "deleteConfirm": "Are you sure you want to delete this job?",
+          "cronValidWithTime": "Expression valid, next execution time: {time}",
+          "cronValid": "Expression valid",
+          "cronInvalid": "Invalid CRON expression, please check",
+          "cronCheckFail": "CRON expression validation failed",
+          "cronCheckFirst": "Please validate the CRON expression first",
+          "serviceNamePattern": "Only lowercase letters, digits and hyphens are allowed, e.g. jffast-system-service"
+        }
+      },
+      "jobLog": {
+        "jobName": "Job Name",
+        "jobGroup": "Job Group",
+        "invokeTarget": "Invoke Target",
+        "execStatus": "Exec Status",
+        "duration": "Duration",
+        "errorMsg": "Error Message",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "clean": "Clear Logs",
+        "placeholder": {
+          "jobName": "Please enter job name",
+          "status": "Please select status"
+        },
+        "message": {
+          "cleanConfirm": "Clear all job execution logs? This cannot be undone!"
+        }
+      },
+      "log": {
+        "createBy": "Operator",
+        "title": "Operation Title",
+        "method": "Method",
+        "ip": "IP Address",
+        "level": "Log Level",
+        "operateTime": "Operation Time",
+        "levelMap": {
+          "info": "Info",
+          "warning": "Warning",
+          "error": "Error"
+        },
+        "placeholder": {
+          "createBy": "Please enter operator",
+          "title": "Please select title",
+          "state": "Please select status",
+          "level": "Please select level"
+        }
+      },
+      "task": {
+        "title": "Task Title",
+        "progress": "Progress",
+        "totalRows": "Total Rows",
+        "failDetail": "Failure Detail",
+        "viewDetail": "View Detail",
+        "defaultFileName": "task_result.xlsx",
+        "typeMap": {
+          "import": "Import",
+          "export": "Export"
+        },
+        "statusMap": {
+          "pending": "Pending",
+          "running": "Running",
+          "done": "Completed",
+          "fail": "Failed"
+        },
+        "placeholder": {
+          "title": "Please enter task title",
+          "taskType": "Please select type",
+          "status": "Please select status"
+        },
+        "message": {
+          "deleteConfirm": "Are you sure you want to delete this task?"
+        }
+      },
+      "file": {
+        "fileName": "File Name",
+        "size": "Size",
+        "mime": "MIME Type",
+        "bizType": "Business Type",
+        "storageType": "Storage Type",
+        "preview": "Preview",
+        "placeholder": {
+          "fileName": "Please enter file name",
+          "bizType": "Please enter business type",
+          "storageType": "Please select storage type"
+        },
+        "storageTypeMap": {
+          "local": "Local",
+          "minio": "MinIO",
+          "aliyunOss": "Aliyun OSS",
+          "tencentCos": "Tencent COS"
+        },
+        "message": {
+          "deleteConfirm": "Delete this file? The stored file will be removed as well.",
+          "batchDeleteConfirm": "Delete the selected files? The stored files will be removed as well."
+        }
+      },
+      "online": {
+        "refresh": "Refresh",
+        "onlineCountPrefix": "Currently online",
+        "onlineCountSuffix": "users",
+        "loginTime": "Login Time",
+        "tenantId": "Tenant ID",
+        "kick": "Force Offline",
+        "message": {
+          "kickConfirm": "Are you sure you want to force user \"{name}\" offline?",
+          "kickSuccess": "User has been forced offline"
+        }
+      },
+      "cache": {
+        "redisInfoTitle": "Redis Info",
+        "redisVersion": "Redis Version",
+        "mode": "Running Mode",
+        "port": "Port",
+        "connectedClients": "Connected Clients",
+        "uptime": "Uptime",
+        "dbKeys": "Key Count",
+        "usedMemory": "Memory Usage",
+        "inputKbps": "Network Input",
+        "outputKbps": "Network Output",
+        "cacheOpsTitle": "Cache Operations",
+        "clearAll": "Clear All Caches",
+        "refresh": "Refresh",
+        "cacheName": "Cache Name",
+        "clear": "Clear",
+        "empty": "No caches",
+        "detailTitle": "Cache Detail - {name}",
+        "keyName": "Key",
+        "message": {
+          "clearConfirmHeader": "Confirm Clear",
+          "deleteConfirmHeader": "Confirm Delete",
+          "clearAllConfirm": "Are you sure you want to clear all caches? This cannot be undone!",
+          "clearCacheConfirm": "Are you sure you want to clear cache \"{name}\"?",
+          "deleteKeyConfirm": "Are you sure you want to delete cache key \"{key}\"?"
+        }
+      },
+      "monitor": {
+        "serverInfoTitle": "Server Info",
+        "osName": "Operating System",
+        "osArch": "System Architecture",
+        "serverIp": "Server IP",
+        "cpuCores": "CPU Cores",
+        "cpuUsage": "CPU Usage",
+        "memoryUsage": "Memory Usage",
+        "jvmInfoTitle": "JVM Info",
+        "jvmName": "JVM Name",
+        "jvmVersion": "JVM Version",
+        "jvmVendor": "JVM Vendor",
+        "uptime": "Uptime",
+        "heapUsage": "Heap Usage",
+        "nonHeap": "Non-Heap Memory",
+        "threadCount": "Threads",
+        "daemon": "daemon",
+        "gcCount": "GC Count",
+        "gcTime": "GC Time",
+        "diskTitle": "Disk Info",
+        "dirName": "Drive",
+        "total": "Total (GB)",
+        "used": "Used (GB)",
+        "free": "Free (GB)",
+        "usage": "Usage"
+      },
+      "oauth2Client": {
+        "name": "Integration Name",
+        "provider": "Provider",
+        "grantTypes": "Grant Types",
+        "clientId": "Client ID",
+        "clientSecret": "Client Secret",
+        "authorizationUrl": "Authorization URL",
+        "tokenUrl": "Token URL",
+        "redirectUri": "Redirect URI",
+        "authMethod": "Auth Method",
+        "scopes": "Scopes",
+        "ttl": "Default TTL",
+        "extra": "Extra Config",
+        "add": "Add Integration",
+        "token": "Get Token",
+        "evict": "Clear Cache",
+        "tokenTitle": "Access Token",
+        "grantTypeMap": {
+          "clientCredentials": "client_credentials (Credential Mode)",
+          "authorizationCode": "authorization_code (Authorization Code Mode)"
+        },
+        "statusMap": {
+          "enabled": "Enabled",
+          "disabled": "Disabled"
+        },
+        "placeholder": {
+          "provider": "Unique third-party identifier, e.g. github/custom",
+          "name": "Please enter integration name",
+          "clientId": "Please enter client ID",
+          "clientSecret": "Stored on save only, never displayed",
+          "authorizationUrl": "authorization_code authorization URL",
+          "tokenUrl": "Token exchange URL",
+          "redirectUri": "authorization_code redirect URI",
+          "authMethod": "Please select token auth method",
+          "scopes": "Separated by spaces or commas, e.g. openid profile",
+          "ttl": "Seconds; leave blank to use expires_in",
+          "extra": "Extended JSON: URL template placeholders, token response key mapping, etc."
+        },
+        "rules": {
+          "provider": "Please enter provider",
+          "tokenUrl": "Please enter token URL",
+          "clientSecret": "Please enter client secret"
+        },
+        "message": {
+          "tokenFail": "Failed to get token",
+          "evictConfirm": "Clear the token cache of \"{name}\"?",
+          "evictSuccess": "Cache cleared",
+          "evictFail": "Failed to clear"
+        }
+      },
+      "notification": {
+        "listTab": "Notifications",
+        "templateTab": "Templates",
+        "title": "Title",
+        "type": "Type",
+        "level": "Level",
+        "recipientType": "Send Type",
+        "recipientTypeForm": "Recipient Type",
+        "recipient": "Recipients",
+        "sender": "Sender",
+        "sendTime": "Send Time",
+        "template": "Template",
+        "content": "Content",
+        "add": "Add Notification",
+        "sendTitle": "Send Notification",
+        "statsTitle": "Send Stats",
+        "statusMap": {
+          "sent": "Sent",
+          "unsent": "Unsent",
+          "enabled": "Enabled",
+          "disabled": "Disabled"
+        },
+        "recipientTypeMap": {
+          "all": "All Users",
+          "role": "Specific Roles",
+          "dept": "Specific Departments",
+          "user": "Specific Users"
+        },
+        "levelMap": {
+          "info": "Info",
+          "warning": "Warning",
+          "error": "Error"
+        },
+        "action": {
+          "send": "Send",
+          "stats": "Stats"
+        },
+        "placeholder": {
+          "title": "Please enter notification title",
+          "content": "Please enter notification content",
+          "type": "Please select notification type",
+          "level": "Please select notification level",
+          "recipientType": "Please select send type",
+          "recipientTypeForm": "Please select recipient type",
+          "status": "Please select status",
+          "templateCode": "Optional: select a template to auto-fill title, content and type",
+          "role": "Please select role",
+          "dept": "Please select department",
+          "user": "Please select user"
+        },
+        "stats": {
+          "user": "User",
+          "userNamePlaceholder": "Username/Name",
+          "read": "Read",
+          "unread": "Unread",
+          "realName": "Real Name",
+          "readTime": "Read Time",
+          "readCountLabel": "Read: ",
+          "unreadCountLabel": "Unread: ",
+          "totalLabel": "Total: "
+        },
+        "send": {
+          "titleLabel": "Title: ",
+          "contentLabel": "Content: ",
+          "channel": "Channels",
+          "channelMap": {
+            "email": "Email",
+            "sms": "SMS"
+          },
+          "channelTip": "In-app notifications are always sent; email/SMS require the corresponding channel to be enabled on the server (skipped automatically when disabled or when the recipient has no email/phone).",
+          "sendBtn": "Send"
+        },
+        "templatePage": {
+          "namePlaceholder": "Template name",
+          "codePlaceholder": "Template code",
+          "add": "Add Template",
+          "name": "Template Name",
+          "code": "Code",
+          "group": "Group",
+          "level": "Level"
+        },
+        "groupDialog": {
+          "editTitle": "Edit Group",
+          "addTitle": "Add Group",
+          "name": "Group Name",
+          "code": "Group Code",
+          "placeholder": {
+            "name": "e.g. Approval Notifications",
+            "code": "e.g. approval"
+          }
+        },
+        "groupPanel": {
+          "title": "Template Groups",
+          "empty": "No groups"
+        },
+        "templateDialog": {
+          "editTitle": "Edit Template",
+          "addTitle": "Add Template",
+          "group": "Group",
+          "name": "Template Name",
+          "code": "Template Code",
+          "titleTemplate": "Title Template",
+          "contentTemplate": "Content Template",
+          "defaultType": "Default Type",
+          "defaultLevel": "Default Level",
+          "defaultRecipient": "Default Recipient",
+          "placeholder": {
+            "group": "Please select group",
+            "name": "e.g. Leave Approval Notification",
+            "code": "Unique code, e.g. leave_approval",
+            "tpl": "Supports {v} placeholders"
+          }
+        },
+        "message": {
+          "copySuccess": "Copied",
+          "sendSuccess": "Sent successfully",
+          "groupNameCodeRequired": "Please enter group name and code",
+          "templateNameCodeRequired": "Please enter template name and code",
+          "codePattern": "Template code may only contain letters, digits and underscores, and must start with a letter",
+          "deleteGroupConfirm": "Are you sure you want to delete group \"{name}\"?",
+          "deleteTemplateConfirm": "Are you sure you want to delete template \"{name}\"?"
+        }
+      },
+      "codegen": {
+        "title": "Code Generator",
+        "projectTypeLabel": "Base Edition (jffast)",
+        "moduleName": "Module Name",
+        "packageName": "Package Name",
+        "author": "Author",
+        "includeDto": "Generate DTO",
+        "generate": "Generate Code",
+        "downloadZip": "Download ZIP",
+        "createModule": "New Module",
+        "tabs": {
+          "table": "Select Tables",
+          "preview": "Code Preview",
+          "previewWithCount": "Code Preview ({count})"
+        },
+        "placeholder": {
+          "module": "Select an existing module",
+          "packageName": "e.g. system, demo",
+          "search": "Search table name or comment"
+        },
+        "codeLabel": {
+          "entity": "Entity",
+          "mapper": "Mapper",
+          "service": "Service",
+          "controller": "Controller",
+          "frontendApi": "Frontend API",
+          "frontendIndexPage": "Frontend List Page",
+          "frontendSavePage": "Frontend Form Page",
+          "frontendRouter": "Route Config",
+          "menuSql": "Menu SQL",
+          "dtoRequest": "DTO Request",
+          "dtoQueryRequest": "DTO Query",
+          "treeFrontendIndexPage": "Frontend Tree Table Page",
+          "treeFrontendSavePage": "Frontend Tree Edit Page"
+        },
+        "tablePanel": {
+          "tableCount": "{count} tables",
+          "selected": "Selected: {name}",
+          "tableName": "Table Name",
+          "comment": "Comment",
+          "message": {
+            "loadFail": "Failed to load table list"
+          }
+        },
+        "preview": {
+          "treeMode": "Tree Table Mode",
+          "saveTo": "Save to: ",
+          "saveLocal": "Save to Local",
+          "copyCode": "Copy Code",
+          "downloadFile": "Download File",
+          "manualTab": "Manual Steps",
+          "manualTip": "The following items must be handled manually; the generator will not write them automatically",
+          "menuSqlTitle": "Menu Data (SQL)",
+          "hintSql1": "Run the following SQL in your database (",
+          "hintSql2": " and ",
+          "hintSql3": " are calculated automatically): ",
+          "empty": "Please select a table and click \"Generate Code\"",
+          "message": {
+            "copied": "Copied to clipboard",
+            "downloadSuccess": "Downloaded successfully"
+          }
+        },
+        "saveDialog": {
+          "title": "Save Code to Local",
+          "confirmBtn": "Confirm Save",
+          "noModuleTip": "No module selected; code will be saved to the default location. It is recommended to select or create a module first.",
+          "saveToModule": "Code will be saved to module: ",
+          "selectAll": "Select All / Deselect All",
+          "mark": {
+            "included": "(included, cannot be overwritten)",
+            "append": "(will be appended)",
+            "overwrite": "(will be overwritten)"
+          }
+        },
+        "createDialog": {
+          "title": "Create Business Module",
+          "confirmBtn": "Confirm Create",
+          "warnTip": "Creating a module will add directories and config files in the backend project. Please confirm the information is correct.",
+          "projectType": "Project Type",
+          "moduleName": "Module Name",
+          "fullModuleName": "Full Module Name",
+          "savePath": "Save Location",
+          "filesToCreate": "Files to Create",
+          "fileItem1": "Module directory with src/main/java and src/main/resources subdirectories",
+          "fileItem2": "pom.xml (with starter-mybatis, starter-web, starter-security, starter-log dependencies)",
+          "fileItem3": "Update the aggregator pom.xml (add module declaration)",
+          "placeholder": {
+            "moduleName": "e.g. order, cms"
+          }
+        },
+        "message": {
+          "selectTableFirst": "Please select a table first",
+          "generateSuccess": "Code generated successfully",
+          "generateFail": "Code generation failed",
+          "downloadZipSuccess": "ZIP downloaded successfully",
+          "treeDetected": "Tree fields detected (e.g. parent_id); switched to tree table mode automatically",
+          "moduleNameRequired": "Please enter module name",
+          "moduleExists": "Module already exists: {name}",
+          "moduleCreateSuccess": "Module created: {name}\nPath: {path}",
+          "moduleCreateFail": "Failed to create module: {msg}",
+          "selectFileFirst": "Please select at least one file",
+          "saveFail": "Failed to save: {msg}"
+        }
+      }
+    },
+    "user": {
+      "markDay": "Good afternoon, today marks your 100th day at the company",
+      "greeting": "Hi, Image",
+      "unit": "(times)",
+      "account": "My Account",
+      "organization": "Company / Business Group / Product Department / Operations Center / Merchant Services Group",
+      "personalInfo": {
+        "title": "Personal Info",
+        "position": "Employee of the Hong Kong and Macau Business Expansion team",
+        "desc": {
+          "phone": "Phone",
+          "mobile": "Mobile",
+          "seat": "Seat",
+          "email": "Email",
+          "position": "Position",
+          "leader": "Leader",
+          "entity": "Entity",
+          "joinDay": "Day of join",
+          "group": "Group"
+        },
+        "tencentGroup": "Group Headquarters",
+        "seniorDesigner": "Senior UI Designer"
+      },
+      "visitData": "Visit Data",
+      "contentList": "Content List",
+      "teamMember": "Team Member",
+      "serviceProduction": "Service Product",
+      "profile": {
+        "changeAvatar": "Change Avatar",
+        "normalUser": "Regular User",
+        "editProfile": "Edit Profile",
+        "passwordTitle": "Change Password",
+        "oldPassword": "Old Password",
+        "newPassword": "New Password",
+        "confirmUpdate": "Confirm Change",
+        "loginLogTitle": "Login Log",
+        "loginLog": {
+          "ip": "Login IP",
+          "info": "Info",
+          "loginTime": "Login Time"
+        },
+        "socialTitle": "Social Accounts",
+        "boundTo": "Bound: {name}",
+        "notBound": "Not Bound",
+        "bind": "Bind",
+        "unbind": "Unbind",
+        "placeholder": {
+          "oldPassword": "Please enter old password",
+          "newPassword": "Please enter new password",
+          "realName": "Please enter name",
+          "nickName": "Please enter nickname",
+          "phone": "Please enter phone number",
+          "email": "Please enter email"
+        },
+        "rules": {
+          "realName": "Please enter name",
+          "oldPassword": "Please enter old password",
+          "newPassword": "Please enter new password",
+          "minLen": "Password must be 8-20 characters and include upper/lowercase letters, digits and special characters"
+        },
+        "message": {
+          "avatarUpdated": "Avatar updated",
+          "profileUpdated": "Profile updated",
+          "updateFail": "Update failed",
+          "passwordUpdated": "Password changed successfully",
+          "passwordUpdateFail": "Failed to change password",
+          "passwordEncryptFail": "Password encryption failed, please refresh and retry",
+          "bindSuccess": "Bound successfully",
+          "bindFail": "Failed to bind",
+          "unbindConfirm": "Unbind the {name} account?",
+          "unbindSuccess": "Unbound successfully",
+          "unbindFail": "Failed to unbind"
+        }
+      },
+      "notification": {
+        "pageTitle": "My Notifications",
+        "markAllRead": "Mark All Read",
+        "title": "Title",
+        "level": "Level",
+        "sender": "Sender",
+        "sendTime": "Send Time",
+        "content": "Content",
+        "detailTitle": "Notification Detail",
+        "unread": "Unread",
+        "read": "Read",
+        "markRead": "Mark Read",
+        "placeholder": {
+          "title": "Please enter notification title"
+        },
+        "levelMap": {
+          "info": "Info",
+          "warning": "Warning",
+          "error": "Error"
+        },
+        "message": {
+          "markReadSuccess": "Marked as read",
+          "markAllReadSuccess": "All marked as read"
+        }
+      }
+    },
+    "flow": {
+      "common": {
+        "processName": "Process Name",
+        "processKey": "Process Key",
+        "category": "Category",
+        "version": "Version",
+        "deploy": "Deploy",
+        "deployName": "Deployment Name",
+        "resourceName": "Resource File",
+        "variables": "Variables",
+        "processInstanceId": "Process Instance ID",
+        "nodeName": "Node Name",
+        "assignee": "Assignee",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "duration": "Duration",
+        "result": "Result",
+        "historyTitle": "Approval History",
+        "statusMap": {
+          "enabled": "Enabled",
+          "disabled": "Disabled",
+          "suspended": "Suspended",
+          "running": "Running"
+        },
+        "placeholder": {
+          "categorySelect": "Select category",
+          "processKey": "e.g. leave",
+          "resourceName": "e.g. leave.bpmn20.xml",
+          "variables": "JSON format, e.g. {'{'}\"days\":3,\"reason\":\"leave\"{'}'}; to specify an assignee, include assigneeType/assigneeValue"
+        },
+        "message": {
+          "deploySuccess": "Deployed successfully",
+          "jsonInvalid": "Variables must be valid JSON"
+        }
+      },
+      "category": {
+        "categoryName": "Category Name",
+        "categoryCode": "Category Code",
+        "placeholder": {
+          "categoryName": "Please enter category name",
+          "categoryCode": "Please enter category code",
+          "code": "e.g. leave/expense/procurement",
+          "remark": "Optional"
+        },
+        "rules": {
+          "codePattern": "Code must start with a letter and contain only letters, digits, underscores or hyphens (1-50 characters)"
+        },
+        "message": {
+          "confirmDelete": "Delete category \"{name}\"? This cannot be undone."
+        }
+      },
+      "definition": {
+        "deploy": "Deploy Process",
+        "deployDialog": {
+          "title": "Deploy BPMN Process"
+        },
+        "deploymentTime": "Deployment Time",
+        "diagram": "Diagram",
+        "noDiagram": "No diagram available",
+        "selectFile": "Select File",
+        "placeholder": {
+          "bpmnXml": "Paste BPMN XML content, or use the button above to select a .bpmn/.xml file",
+          "deployName": "e.g. Leave Process v1",
+          "category": "Please select category"
+        },
+        "message": {
+          "needBpmnXml": "Please paste or select a BPMN XML file",
+          "suspendTitle": "Suspend Process Definition",
+          "suspendConfirm": "Suspending will pause all running instances. Suspend \"{name}\"?",
+          "suspendSuccess": "Suspended successfully",
+          "activateTitle": "Activate Process Definition",
+          "activateConfirm": "Activating allows all running instances to continue. Activate \"{name}\"?",
+          "activateSuccess": "Activated successfully",
+          "deleteTitle": "Delete Process Deployment",
+          "deleteConfirm": "Deleting will cascade-delete all process instances and history. Delete \"{name}\"?"
+        },
+        "action": {
+          "activate": "Activate",
+          "suspend": "Suspend"
+        }
+      },
+      "instance": {
+        "start": "Start Process",
+        "startBtn": "Start",
+        "processDefinition": "Process Definition",
+        "businessKey": "Business Key",
+        "instanceId": "Instance ID",
+        "initiator": "Initiator",
+        "initiatorId": "Initiator ID",
+        "startTime": "Start Time",
+        "placeholder": {
+          "processDefinition": "Please select process definition",
+          "businessKey": "e.g. leave request ID or expense claim ID (optional)",
+          "name": "Optional, defaults to the process definition name",
+          "initiatorId": "Exact match on initiator user ID"
+        },
+        "message": {
+          "startSuccess": "Process started, instance ID: {id}",
+          "cancelTitle": "Cancel Process Instance",
+          "cancelConfirm": "Are you sure you want to cancel this process instance? This cannot be undone.",
+          "cancelSuccess": "Cancelled successfully",
+          "defaultCancelReason": "Cancelled by user"
+        }
+      },
+      "task": {
+        "tabTodo": "My To-Do",
+        "tabCandidate": "Task Pool (Unclaimed)",
+        "completeTitle": "Approve Task",
+        "submitApproval": "Submit Approval",
+        "delegateTitle": "Delegate Task",
+        "delegateConfirmBtn": "Delegate",
+        "taskName": "Task Name",
+        "taskId": "Task ID",
+        "processInstance": "Process Instance",
+        "comment": "Comment",
+        "toUserId": "Target User ID",
+        "claim": "Claim",
+        "approve": "Approve",
+        "delegate": "Delegate",
+        "placeholder": {
+          "comment": "Please enter your comment",
+          "toUserId": "Please enter target user ID",
+          "variables": "Optional, JSON format, e.g. {'{'}\"approve\":true{'}'}; to specify the next assignee, include assigneeType/assigneeValue"
+        },
+        "message": {
+          "claimTitle": "Claim Task",
+          "claimConfirm": "Claim task \"{name}\"? Once claimed it will be assigned to you.",
+          "claimSuccess": "Claimed successfully",
+          "completeSuccess": "Approved successfully",
+          "delegateSuccess": "Delegated successfully"
+        }
+      },
+      "designer": {
+        "title": "Process Designer",
+        "newBlank": "New Blank Process",
+        "tabVisual": "Visual Designer",
+        "tabCode": "XML Code",
+        "zoomIn": "Zoom In",
+        "zoomOut": "Zoom Out",
+        "fitCanvas": "Fit Canvas",
+        "downloadXml": "Download XML",
+        "importBpmn": "Import BPMN File",
+        "propsEmpty": "Click a node on the canvas to view / edit its properties",
+        "propsTitle": "{type} Properties",
+        "elementId": "Element ID",
+        "element": "Element",
+        "assigneeType": "Assignee Type",
+        "assigneeValue": "Assignee Value",
+        "placeholder": {
+          "loadDefinition": "Load a deployed process (as a starting point for a new version)",
+          "deployName": "e.g. Leave Process v2",
+          "xmlCode": "The visual canvas and the XML here are two-way synced; you can also paste BPMN 2.0 XML and deploy."
+        },
+        "assigneeTypeMap": {
+          "user": "Specified user (user)",
+          "role": "Specified role (role)",
+          "dept": "Specified department (dept)",
+          "initiator": "Initiator (initiator)"
+        },
+        "assigneeValuePlaceholder": {
+          "user": "Comma-separated user ID list",
+          "role": "Role key",
+          "dept": "Comma-separated department ID list"
+        },
+        "typeMap": {
+          "userTask": "User Task",
+          "serviceTask": "Service Task",
+          "startEvent": "Start Event",
+          "endEvent": "End Event",
+          "exclusiveGateway": "Exclusive Gateway",
+          "parallelGateway": "Parallel Gateway",
+          "sequenceFlow": "Sequence Flow",
+          "process": "Process"
+        },
+        "tips": {
+          "title": "Assignee configuration guide: ",
+          "intro1": "In visual mode select a UserTask, choose ",
+          "intro2": " in the right panel and fill in ",
+          "intro3": ", saved as extension properties ",
+          "intro4": ":",
+          "user": "specified user; value is a comma-separated list of user IDs",
+          "role": "specified role; value is the role key, resolved by the engine to all users under that role",
+          "dept": "specified department; value is a comma-separated list of department IDs, resolved by the engine to all users under those departments",
+          "initiator": "the initiator themselves; value is ignored",
+          "engineP1": "At task creation the engine resolves assignees per task using the task-level extension properties above; the process-variable approach (pass ",
+          "engineP2": " when starting or approving) is kept as a compatibility fallback."
+        },
+        "message": {
+          "unknownError": "Unknown error",
+          "parseFail": "Failed to parse BPMN: {msg}",
+          "exportXmlFail": "Failed to export XML: {msg}",
+          "updateIdFail": "Failed to update ID: {msg}",
+          "updateNameFail": "Failed to update name: {msg}",
+          "updateAssigneeFail": "Failed to update assignee properties: {msg}",
+          "newBlankSuccess": "Blank process created",
+          "loadedTip": "Process loaded; after editing click \"Deploy\" to publish as a new version",
+          "needBpmnXml": "Please draw the process or paste BPMN XML content first",
+          "xmlRootRequired": "BPMN XML must contain a <definitions> or <bpmn> root element",
+          "initFail": "Failed to initialize the visual designer; please switch to XML code mode"
+        }
+      }
+    },
+    "ai": {
+      "common": {
+        "kb": "Knowledge Base",
+        "statusMap": {
+          "pending": "Pending",
+          "processed": "Processed",
+          "failed": "Failed",
+          "enabled": "Enabled",
+          "disabled": "Disabled"
+        }
+      },
+      "knowledgeBase": {
+        "name": "Knowledge Base Name",
+        "embeddingModel": "Embedding Model",
+        "chunkSize": "Chunk Size",
+        "chunkOverlap": "Chunk Overlap",
+        "placeholder": {
+          "name": "Please enter knowledge base name",
+          "code": "Unique code for API use, e.g. jffast_manual",
+          "embeddingModel": "e.g. text-embedding-3-small",
+          "description": "Please enter description"
+        },
+        "alert": {
+          "tips1": "This module only handles ",
+          "tipsStrong": "storage management",
+          "tips2": " of knowledge bases and documents; it does not include LLM calling capabilities."
+        },
+        "message": {
+          "confirmDelete": "Are you sure you want to delete this knowledge base?"
+        }
+      },
+      "document": {
+        "title": "Title",
+        "contentType": "Content Type",
+        "sourceType": "Source Type",
+        "source": "Source",
+        "sourceUrl": "Source URL",
+        "filePath": "File Path",
+        "chunkCount": "Chunks",
+        "chunkCountForm": "Chunk Count",
+        "tokenCount": "Token Count",
+        "content": "Content",
+        "contentTypeMap": {
+          "text": "Plain Text",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "pdf": "PDF"
+        },
+        "sourceTypeMap": {
+          "manual": "Manual Entry",
+          "file": "File Import",
+          "url": "URL Fetch",
+          "api": "API Sync"
+        },
+        "placeholder": {
+          "title": "Please enter document title",
+          "kb": "Please select knowledge base",
+          "sourceUrl": "Fill in when source is url",
+          "filePath": "Fill in when source is file",
+          "content": "Please enter document content"
+        },
+        "message": {
+          "confirmDelete": "Are you sure you want to delete this document?"
+        }
+      },
+      "conversation": {
+        "title": "Conversation Title",
+        "model": "Model",
+        "tips": "Conversation records are read-only data written automatically during Q&A; only querying and cleanup are provided here.",
+        "messageTitle": "Messages - {title}",
+        "emptyMessages": "No messages",
+        "viewMessages": "View Messages",
+        "roleMap": {
+          "user": "User",
+          "assistant": "Assistant",
+          "system": "System"
+        },
+        "placeholder": {
+          "title": "Please enter conversation title"
+        },
+        "message": {
+          "loadFail": "Failed to load messages",
+          "confirmDelete": "Are you sure you want to delete this conversation and its messages?"
+        }
+      }
+    },
+    "demo": {
+      "common": {
+        "recommend": "Recommend",
+        "isRecommend": "Recommended",
+        "price": "Price",
+        "score": "Score",
+        "quantity": "Quantity",
+        "priority": "Priority",
+        "tags": "Tags",
+        "content": "Content",
+        "icon": "Icon",
+        "image": "Image",
+        "url": "URL",
+        "publishTime": "Publish Time",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "statusMap": {
+          "enabled": "Enabled",
+          "disabled": "Disabled"
+        },
+        "typeMap": {
+          "a": "Type A",
+          "b": "Type B",
+          "c": "Type C"
+        },
+        "placeholder": {
+          "title": "Please enter title",
+          "type": "Please select type",
+          "tags": "Multiple tags separated by commas",
+          "email": "Please enter email",
+          "phone": "Please enter phone number",
+          "icon": "Please enter icon URL",
+          "url": "Please enter URL",
+          "description": "Please enter description",
+          "content": "Please enter content",
+          "remark": "Please enter remark"
+        },
+        "message": {
+          "enabled": "Enabled",
+          "disabled": "Disabled"
+        }
+      },
+      "demoTenantExample": {
+        "tenantId": "Tenant ID",
+        "tips": "Tenant isolation demo: tenant interception is only reserved in the Base edition; this page behaves like plain CRUD."
+      },
+      "leaveApplication": {
+        "applicant": "Applicant",
+        "leaveType": "Leave Type",
+        "duration": "Duration (days)",
+        "durationLabel": "Leave Duration",
+        "reason": "Leave Reason",
+        "startTime": "Start Time",
+        "endTime": "End Time",
+        "approver": "Approver",
+        "approveTime": "Approval Time",
+        "unknown": "Unknown",
+        "leaveTypeMap": {
+          "annual": "Annual Leave",
+          "sick": "Personal Leave",
+          "personal": "Sick Leave",
+          "maternity": "Maternity Leave",
+          "other": "Other"
+        },
+        "statusMap": {
+          "pending": "Pending Approval",
+          "approved": "Approved",
+          "rejected": "Rejected",
+          "canceled": "Withdrawn"
+        },
+        "placeholder": {
+          "applicant": "Please enter applicant",
+          "leaveType": "Please select leave type",
+          "startTime": "Please select start time",
+          "endTime": "Please select end time",
+          "duration": "Please enter leave days",
+          "reason": "Please enter leave reason"
+        },
+        "rules": {
+          "duration": "Please enter leave duration"
+        }
+      },
+      "showcase": {
+        "title": "Component Showcase",
+        "desc": "This page demonstrates all TDesign components and shared business components actually used in the jffast admin template, each with a runnable live example + a one-click copyable code snippet to learn from.",
+        "navTitle": "Component Categories",
+        "viewCode": "View Code",
+        "copied": "✓ Copied",
+        "menu": {
+          "layout": "Layout",
+          "form": "Form",
+          "data": "Data",
+          "feedback": "Feedback",
+          "nav": "Navigation",
+          "shared": "Shared"
+        },
+        "section": {
+          "layout": "Layout",
+          "form": "Form",
+          "data": "Data Display",
+          "feedback": "Feedback",
+          "nav": "Navigation",
+          "shared": "Shared Components"
+        },
+        "word": {
+          "default": "Default",
+          "success": "Success",
+          "warning": "Warning",
+          "danger": "Danger",
+          "primary": "Primary",
+          "error": "Error"
+        },
+        "layout": {
+          "cardGridTitle": "t-row / t-col Grid",
+          "cardGridTag": "24 Grid",
+          "cardCardTitle": "t-card Card",
+          "cardSpaceTitle": "t-space Space",
+          "cardDividerTitle": "t-divider Divider",
+          "basicCard": "Basic Card",
+          "cardDesc": "Cards hold related information and are the most commonly used content container in admin UIs.",
+          "cardDescShort": "Cards hold related information.",
+          "button1": "Button 1",
+          "button2": "Button 2",
+          "button3": "Button 3",
+          "dividerCenter": "Centered Text Divider",
+          "dividerLeft": "Left Aligned"
+        },
+        "form": {
+          "cardInputTitle": "t-input Input",
+          "cardTextareaTitle": "t-textarea Textarea",
+          "cardSelectTitle": "t-select Select",
+          "cardRadioTitle": "t-radio-group Radio",
+          "cardCheckboxTitle": "t-checkbox-group Checkbox",
+          "cardSwitchTitle": "t-switch Switch",
+          "cardNumberTitle": "t-input-number Number Input",
+          "cardDateTitle": "t-date-picker Date Picker",
+          "cardRangeTitle": "t-date-range-picker Date Range",
+          "cardTreeTitle": "t-tree-select Tree Select",
+          "cardUploadTitle": "t-upload Upload",
+          "cardFormTitle": "t-form Form (with validation)",
+          "placeholderDesc": "Please enter description",
+          "option1": "Option 1",
+          "option2": "Option 2",
+          "radioButton": "Button Style",
+          "fruitApple": "Apple",
+          "fruitBanana": "Banana",
+          "fruitOrange": "Orange",
+          "currentValue": "Current value: {v}",
+          "datePlaceholder": "Select date",
+          "uploadBtn": "Select File",
+          "selected": "Selected: {name}",
+          "selectedFile": "File selected",
+          "age": "Age",
+          "userNameRequired": "Username is required",
+          "ageRequired": "Age is required",
+          "validatePass": "Validation passed, ready to submit!",
+          "validateFail": "Validation failed",
+          "submitSuccessSample": "Submitted successfully (sample)",
+          "selectOptionA": "Option A",
+          "selectOptionB": "Option B",
+          "selectOptionC": "Option C",
+          "cityShanghai": "Shanghai",
+          "districtHuangpu": "Huangpu",
+          "districtXuhui": "Xuhui",
+          "cityBeijing": "Beijing",
+          "districtChaoyang": "Chaoyang",
+          "districtHaidian": "Haidian"
+        },
+        "data": {
+          "cardTableTitle": "t-table Table",
+          "cardEnhancedTitle": "t-enhanced-table Enhanced Table (with pagination)",
+          "cardDescTitle": "t-descriptions Descriptions",
+          "cardTagTitle": "t-tag Tag",
+          "cardAlertTitle": "t-alert Alert",
+          "cardEmptyTitle": "t-empty Empty",
+          "cardResultTitle": "t-result Result",
+          "cardThumbnailTitle": "thumbnail Image Thumbnail (shared)",
+          "cardColorTitle": "color Color Display (shared, display-only)",
+          "descTitle": "User Info",
+          "alertInfo": "This is an info message",
+          "alertWarning": "This is a warning message",
+          "alertWarningShort": "This is a warning",
+          "alertSuccess": "Operation succeeded",
+          "empty": "No data",
+          "resultTitle": "Submitted successfully",
+          "resultSubtitle": "Your request has been received",
+          "currentColor": "Current color: {v}",
+          "role": "Role",
+          "dept": "Department",
+          "deptRd": "R&D Center",
+          "user1": "Zhang San",
+          "user2": "Li Si",
+          "user3": "Wang Wu",
+          "roleAdmin": "Admin",
+          "roleEditor": "Editor",
+          "roleVisitor": "Visitor",
+          "stateDisabled": "Disabled",
+          "sampleImage": "Sample Image"
+        },
+        "feedback": {
+          "cardDialogTitle": "t-dialog Dialog",
+          "cardLoadingTitle": "t-loading Loading",
+          "cardMessageTitle": "MessagePlugin Message",
+          "cardNotifyTitle": "NotifyPlugin Notification",
+          "openDialog": "Open Dialog",
+          "dialogHeader": "Sample Dialog",
+          "dialogBody": "This is the dialog body; it can be used for confirmations, form entry, and similar scenarios.",
+          "dialogBodySample": "Dialog body content.",
+          "start": "Start",
+          "stop": "Stop",
+          "loadSuffix": " Loading",
+          "msgSuccess": "Operation succeeded",
+          "msgWarning": "Attention",
+          "msgError": "Something went wrong",
+          "notifyInfoTitle": "Notification",
+          "notifyInfoContent": "This is a notification message",
+          "notifyInfoContentSample": "This is a notification",
+          "notifyInfoBtn": "Info Notification",
+          "notifySuccessBtn": "Success Notification"
+        },
+        "navigation": {
+          "cardTabsTitle": "t-tabs Tabs",
+          "cardLinkTitle": "t-link Link",
+          "cardPaginationTitle": "t-pagination Pagination",
+          "tab1": "Tab 1",
+          "tab2": "Tab 2",
+          "tab3": "Tab 3",
+          "content1": "Content 1",
+          "content2": "Content 2",
+          "content3": "Content 3",
+          "linkPrimary": "Primary Link",
+          "linkSuccess": "Success Link",
+          "linkUnderline": "Underlined",
+          "switchTo": "Switched to: {val}"
+        },
+        "shared": {
+          "sectionDesc": "The following are shared business components built into the jffast framework (in @/components), ready to use.",
+          "treeSelectTitle": "DeptUserTreeSelect Department/User Tree Select",
+          "langTitle": "LanguageSwitcher Language Switch",
+          "personPlaceholder": "Please select a person",
+          "selectedValue": "Selected value: {v}",
+          "langTip": "Use the dropdown to switch between Chinese / English (powered by i18n)",
+          "treeSelectComment": "Supports modelValue / multiple / onlyLeaf / placeholder / lazy"
+        }
+      }
+    }
+  }
+}

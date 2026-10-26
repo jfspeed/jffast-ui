@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [ master, main ]
+  pull_request:
+    branches: [ master, main ]
+
+concurrency:
+  group: ci-ui-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  frontend:
+    name: Frontend Lint & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'npm'
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+
+      - name: Unit tests (Vitest)
+        run: npm test
+
+      # 类型门禁：类型债已清零（vue-tsc --noEmit 0 错），CI 硬失败不豁免。
+      - name: Type check
+        run: npm run build:type
+
+      # 构建门禁：vite.config.ts 对 VITE_RSA_PUBLIC_KEY 做 fail-fast（为空或=仓库示例公钥即失败）。
+      # CI 优先用仓库 secret 注入真实公钥；未配置时生成一次性密钥对，仅保证产物可编译校验，
+      # 该 artifact 不可用于部署（私钥不在任何人手中，登录必然失败）。
+      - name: Provide RSA public key for build
+        env:
+          RSA_PUB: ${{ secrets.VITE_RSA_PUBLIC_KEY }}
+        run: |
+          if [ -n "$RSA_PUB" ]; then
+            echo "VITE_RSA_PUBLIC_KEY=$RSA_PUB" >> "$GITHUB_ENV"
+          else
+            openssl genrsa -out "$RUNNER_TEMP/ci-rsa.pem" 2048
+            echo "VITE_RSA_PUBLIC_KEY=$(openssl rsa -in "$RUNNER_TEMP/ci-rsa.pem" -pubout -outform DER 2>/dev/null | base64 -w0)" >> "$GITHUB_ENV"
+            echo "VITE_RSA_PUBLIC_KEY secret 未配置，已生成一次性密钥对（仅用于通过构建校验，产物不可部署）"
+            rm -f "$RUNNER_TEMP/ci-rsa.pem"
+          fi
+
+      - name: Build
+        run: npm run build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: frontend-dist
+          path: dist/
+          retention-days: 7

@@ -1,0 +1,7 @@
+npx lint-staged || exit 1
+
+# Local-only safety hook (untracked): leak-keyword scan + mirror-drift check.
+# Delegated here so husky users still get the local commit gate.
+if [ -f .git/hooks/pre-commit ]; then
+  sh .git/hooks/pre-commit || exit 1
+fi

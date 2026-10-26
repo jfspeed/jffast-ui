@@ -1,0 +1,48 @@
+.DS_Store
+node_modules
+/dist
+
+# 环境变量：入库的 .env*（.env / .env.development / .env.production / .env.test /
+# .env.example）只含基础值或占位——RSA 公钥一律留空，不写内部后端地址；
+# 个人 / 环境专属覆盖写 .env*.local（不入库，见下）。
+# local env files
+.env.local
+.env.*.local
+# .env.release 同样不入库：release 构建用它承载 RSA 公钥等构建期变量，
+# README 的「快速开始」也这么写。此前只忽略 .env.local / .env.*.local
+# （后者要求以 .local 结尾，匹配不到 .env.release），照 README 建文件后一 commit 就入库。
+.env.release
+.env.release.*
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# E2E / 冒烟脚本的 dev server 运行日志目录
+_e2e-logs/
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Local private values (AGENTS.md companion)
+LOCAL.md
+e2e/.artifacts/
+
+# 部署栈的本地配置：由 deploy/.env.example 复制而来，含密钥与本机端口覆盖，不入库
+deploy/.env
+
+# 密钥 / 证书文件（前端只需公钥，但私钥/证书一律不入库）
+*.pem
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore

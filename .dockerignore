@@ -1,0 +1,34 @@
+# 控制「前端镜像」的构建上下文体积
+# 注意：shared/ 必须保留（@jfspeed/shared 是 workspace 子包，构建期依赖它）
+
+.git
+.gitignore
+.github
+.idea
+.vscode
+.husky
+
+node_modules
+**/node_modules
+dist
+**/dist
+
+# 测试与本地产物，构建镜像用不到
+coverage
+playwright-report
+test-results
+*.log
+.DS_Store
+
+# 本机私有 env（可能含密钥，如第三方 API key）：入库的 .env / .env.* 都是无密钥的，
+# 但 .env.local / .env.*.local 是本地覆盖文件、被 gitignore 忽略——COPY . . 会把它们
+# 烤进镜像层，镜像一导出密钥就泄露。必须排除。
+.env.local
+.env.*.local
+.env.release
+.env.release.*
+
+# 本机运行时产物：_e2e-logs/ 按 .gitignore 自述「含本机路径与临时端口」，
+# e2e/.artifacts/ 是本地调试产物——都不该进构建上下文。
+_e2e-logs/
+e2e/.artifacts/

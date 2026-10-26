@@ -1,0 +1,2114 @@
+{
+  "lang": "简体中文",
+  "common": {
+    "appName": "疾风管理系统",
+    "copyright": "Copyright @ 2021-2026 JP Fast Admin. All Rights Reserved",
+    "conjunction": "和",
+    "admin": "admin",
+    "add": "新增",
+    "create": "新建",
+    "edit": "编辑",
+    "delete": "删除",
+    "remove": "移除",
+    "search": "搜索",
+    "reset": "重置",
+    "query": "查询",
+    "export": "导出",
+    "import": "导入",
+    "download": "下载",
+    "upload": "上传",
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确定",
+    "submit": "提交",
+    "success": "成功",
+    "fail": "失败",
+    "remark": "备注",
+    "status": "状态",
+    "operation": "操作",
+    "detail": "详情",
+    "view": "查看",
+    "loading": "加载中...",
+    "pleaseSelect": "请选择",
+    "pleaseInput": "请输入",
+    "tips": "提示",
+    "openNavMenu": "打开导航菜单",
+    "confirmDelete": "确定删除吗？",
+    "deleteSuccess": "删除成功",
+    "deleteFail": "删除失败",
+    "addSuccess": "新增成功",
+    "updateSuccess": "修改成功",
+    "saveSuccess": "保存成功",
+    "saveFail": "保存失败",
+    "clear": "清空",
+    "clearSuccess": "清空成功",
+    "clearFail": "清空失败",
+    "copy": "复制",
+    "copySuccess": "复制成功",
+    "copyFail": "复制失败",
+    "enable": "启用",
+    "disable": "停用",
+    "disabled": "停用",
+    "normal": "正常",
+    "yes": "是",
+    "no": "否",
+    "all": "全部",
+    "root": "根目录",
+    "name": "名称",
+    "code": "编码",
+    "type": "类型",
+    "description": "描述",
+    "sort": "排序",
+    "userName": "用户名",
+    "realName": "姓名",
+    "nickName": "昵称",
+    "phone": "手机号",
+    "email": "邮箱",
+    "createTime": "创建时间",
+    "updateTime": "更新时间",
+    "operateFail": "操作失败",
+    "dialogCancel": "取 消",
+    "dialogSave": "保 存",
+    "title": "标题",
+    "batchDelete": "批量删除",
+    "downloadTemplate": "下载模板",
+    "exportSuccess": "导出成功",
+    "templateDownloaded": "模板已下载",
+    "importSuccess": "导入成功",
+    "uploadFail": "上传失败"
+  },
+  "components": {
+    "isSetup": {
+      "on": "已启用",
+      "off": "已停用"
+    },
+    "manage": "管理",
+    "delete": "删除",
+    "deleteSuccess": "删除成功",
+    "copySuccess": "复制成功",
+    "copyFail": "复制失败",
+    "submitSuccess": "提交成功",
+    "commonTable": {
+      "contractName": "合同名称",
+      "contractNamePlaceholder": "请输入合同名称",
+      "contractStatus": "合同状态",
+      "contractStatusPlaceholder": "请输入合同状态",
+      "contractNum": "合同编号",
+      "contractNumPlaceholder": "请输入合同编号",
+      "contractType": "合同类型",
+      "contractTypePlaceholder": "请选择合同类型",
+      "contractPayType": "合同支付类型",
+      "contractAmount": "合同金额",
+      "operation": "操作",
+      "detail": "详情",
+      "delete": "删除",
+      "placeholder": "请输入内容搜索",
+      "contractStatusEnum": {
+        "fail": "审核失败",
+        "audit": "待审核",
+        "executing": "履行中",
+        "pending": "待履行",
+        "finish": "已完成"
+      },
+      "contractTypeEnum": {
+        "main": "主合同",
+        "sub": "子合同",
+        "supplement": "补充合同"
+      },
+      "reset": "重置",
+      "query": "查询"
+    }
+  },
+  "layout": {
+    "header": {
+      "code": "代码仓库",
+      "help": "帮助文档",
+      "user": "个人中心",
+      "signOut": "退出登录",
+      "setting": "系统设置"
+    },
+    "notice": {
+      "title": "通知中心",
+      "clear": "清空",
+      "setRead": "设为已读",
+      "empty": "空",
+      "emptyNotice": "暂无通知",
+      "viewAll": "查看全部",
+      "tabAll": "全部",
+      "tabUnread": "未读",
+      "emptyUnread": "暂无未读通知",
+      "emptyByType": "暂无{type}",
+      "connected": "实时推送已连接",
+      "disconnected": "实时推送未连接",
+      "from": "来自 {sender}",
+      "justNow": "刚刚",
+      "minutesAgo": "{n}分钟前",
+      "hoursAgo": "{n}小时前",
+      "daysAgo": "{n}天前",
+      "type": {
+        "system": "系统通知",
+        "biz": "业务通知",
+        "flow": "流程通知"
+      }
+    },
+    "searchPlaceholder": "请输入搜索内容",
+    "search": {
+      "placeholder": "输入要搜索内容"
+    },
+    "tagTabs": {
+      "closeOther": "关闭其他",
+      "closeLeft": "关闭左侧",
+      "closeRight": "关闭右侧",
+      "refresh": "刷新"
+    },
+    "setting": {
+      "title": "页面配置",
+      "theme": {
+        "mode": "主题模式",
+        "color": "主题色",
+        "options": {
+          "light": "明亮",
+          "dark": "深色",
+          "auto": "跟随系统"
+        }
+      },
+      "navigationLayout": "导航布局",
+      "sideMode": "侧边栏模式",
+      "splitMenu": "分割菜单（混合模式下有效）",
+      "fixedSidebar": "固定侧边栏",
+      "element": {
+        "title": "元素开关",
+        "showHeader": "显示顶栏",
+        "showBreadcrumb": "显示面包屑",
+        "showFooter": "显示页脚",
+        "useTagTabs": "展示多标签Tab页",
+        "menuAutoCollapsed": "菜单自动折叠"
+      },
+      "tips": "请复制后手动修改配置文件: /src/config/style.ts",
+      "copy": {
+        "title": "复制配置项",
+        "success": "复制成功",
+        "fail": "复制失败"
+      }
+    }
+  },
+  "constants": {
+    "contract": {
+      "name": "合同名称",
+      "status": "合同状态",
+      "num": "合同编号",
+      "type": "合同类型",
+      "typePlaceholder": "请输入类型",
+      "payType": "合同收支类型",
+      "amount": "合同金额",
+      "amountPlaceholder": "请输入金额",
+      "signDate": "合同签订日期",
+      "effectiveDate": "合同生效日期",
+      "endDate": "合同结束日期",
+      "createDate": "合同创建时间",
+      "company": "甲方",
+      "employee": "乙方",
+      "pay": "付款",
+      "receive": "收款",
+      "remark": "备注",
+      "attachment": "附件",
+      "statusOptions": {
+        "fail": "审核失败",
+        "auditPending": "待审核",
+        "execPending": "待履行",
+        "executing": "审核成功",
+        "finish": "已完成"
+      },
+      "typeOptions": {
+        "main": "主合同",
+        "sub": "子合同",
+        "supplement": "补充合同"
+      }
+    }
+  },
+  "pages": {
+    "dashboardBase": {
+      "title": "概览仪表盘",
+      "stats": {
+        "userCount": "用户总数",
+        "todayLogCount": "今日操作",
+        "successLogCount": "操作成功",
+        "failLogCount": "操作失败"
+      },
+      "chart": {
+        "trendTitle": "操作趋势（近7天）",
+        "totalCount": "操作总数",
+        "successCount": "成功数"
+      },
+      "quickEntry": {
+        "title": "快捷入口",
+        "user": "用户管理",
+        "role": "角色管理",
+        "menu": "菜单管理",
+        "dept": "部门管理",
+        "dict": "字典管理",
+        "log": "日志管理"
+      },
+      "recentLogs": {
+        "title": "最近操作",
+        "colUser": "操作人",
+        "colTitle": "操作标题",
+        "colIp": "IP地址",
+        "colState": "状态",
+        "colTime": "操作时间"
+      },
+      "error": {
+        "loadStats": "加载统计数据失败",
+        "loadLogs": "加载最近日志失败",
+        "loadTrend": "加载日志趋势失败"
+      },
+      "outputOverview": {
+        "title": "出入库概览",
+        "subtitle": "(件)",
+        "export": "导出数据",
+        "month": {
+          "input": "本月入库总计（件）",
+          "output": "本月出库总计（件）"
+        },
+        "since": "自从上周以来"
+      },
+      "rankList": {
+        "title": "销售订单排名",
+        "week": "本周",
+        "month": "近三月",
+        "info": "详情"
+      },
+      "topPanel": {
+        "card1": "总收入",
+        "card2": "总退款",
+        "card3": "活跃用户（个）",
+        "card4": "产生订单（个）",
+        "cardTips": "自从上周以来",
+        "analysis": {
+          "title": "统计数据",
+          "unit": "万元",
+          "series1": "本月",
+          "series2": "上月",
+          "channels": "销售渠道",
+          "channel1": "线上",
+          "channel2": "门店",
+          "channelTips": "销售占比"
+        }
+      },
+      "saleColumns": {
+        "index": "排名",
+        "productName": "客户名称",
+        "growUp": "较上周",
+        "count": "订单量",
+        "operation": "操作"
+      },
+      "buyColumns": {
+        "index": "排名",
+        "productName": "供应商名称",
+        "growUp": "较上周",
+        "count": "订单量",
+        "operation": "操作"
+      },
+      "saleTend": {
+        "item1": "国家电网有限公司",
+        "item2": "深圳燃气集团股份有限公司",
+        "item3": "国家烟草专卖局",
+        "item4": "中国电信集团有限公司",
+        "item5": "中国移动通信集团有限公司",
+        "item6": "新余市办公用户采购项目"
+      },
+      "buyTend": {
+        "item1": "华为技术有限公司",
+        "item2": "大润发有限公司",
+        "item3": "四川海底捞股份有限公司",
+        "item4": "索尼（中国）有限公司",
+        "item5": "松下电器（中国）有限公司",
+        "item6": "新余市办公用户采购项目"
+      }
+    },
+    "dashboardDetail": {
+      "topPanel": {
+        "title": "本月采购申请情况",
+        "quarter": "环比",
+        "paneList": {
+          "totalRequest": "总申请数（次）",
+          "suppliers": "供应商数量（个）",
+          "productCategory": "采购商品品类（类）",
+          "applicant": "申请人数量（人）",
+          "completionRate": "申请完成率（%）",
+          "arrivalRate": "到货及时率（%）"
+        }
+      },
+      "procurement": {
+        "title": "采购商品申请趋势",
+        "goods": {
+          "cup": "杯子",
+          "tea": "茶叶",
+          "honey": "蜂蜜",
+          "flour": "面粉",
+          "coffeeMachine": "咖啡机",
+          "massageMachine": "按摩仪"
+        }
+      },
+      "ssl": "SSL证书",
+      "sslDescription": "SSL证书又叫服务器证书，是一种数字证书，用于验证网站身份并使用SSL技术加密发送到服务器的信息",
+      "satisfaction": {
+        "title": "采购商品满意度分布",
+        "export": "导出数据"
+      },
+      "chart": {
+        "week1": "周一",
+        "week2": "周二",
+        "week3": "周三",
+        "week4": "周四",
+        "week5": "周五",
+        "week6": "周六",
+        "week7": "周日",
+        "max": "最大值",
+        "min": "最小值",
+        "thisMonth": "本月",
+        "lastMonth": "上月"
+      }
+    },
+    "detailBase": {
+      "baseInfo": {
+        "title": "基本信息"
+      },
+      "sampleData": {
+        "contractName": "总部办公用品采购项目",
+        "status": "履行中",
+        "company": "腾讯科技（深圳）有限公司",
+        "employee": "欧尚",
+        "fileName": "总部办公用品采购项目合同.pdf"
+      },
+      "changelog": {
+        "title": "变更记录",
+        "step1": {
+          "title": "上传合同附件",
+          "subtitle": "这里是提示文字"
+        },
+        "step2": {
+          "title": "修改合同金额",
+          "subtitle": "这里是提示文字"
+        },
+        "step3": {
+          "title": "新建合同",
+          "desc": "管理员-李川操作"
+        }
+      }
+    },
+    "detailCard": {
+      "baseInfo": {
+        "title": "基本信息"
+      },
+      "invoice": {
+        "title": "发票进度",
+        "step1": {
+          "title": "申请提交",
+          "content": "已于12月21日提交"
+        },
+        "step2": {
+          "title": "电子发票",
+          "content": "预计1～3个工作日"
+        },
+        "step3": {
+          "title": "发票已邮寄",
+          "content": "电子发票开出后7个工作日联系"
+        },
+        "step4": {
+          "title": "完成"
+        }
+      },
+      "product": {
+        "title": "产品目录",
+        "add": "新增产品",
+        "month": "月份",
+        "quarter": "季度"
+      },
+      "detail": {
+        "title": "产品采购明细",
+        "budgetExceeded": "超预算",
+        "form": {
+          "applyNo": "申请号",
+          "product": "产品名称",
+          "productNo": "产品编号",
+          "operation": "操作",
+          "department": "申请部门",
+          "num": "采购数量",
+          "createTime": "创建时间",
+          "manage": "管理",
+          "delete": "删除"
+        }
+      },
+      "products": {
+        "product1": {
+          "name": "MacBook Pro 2021",
+          "company": "苹果公司（Apple Inc. ）",
+          "size": "13.3 英寸",
+          "cpu": "Apple M1",
+          "memory": "RAM 16GB",
+          "info": "最高可选配 16GB 内存 · 最高可选配 2TB 存储设备 电池续航最长达 18 小时"
+        },
+        "product2": {
+          "name": "Surface Laptop Go",
+          "company": "微软（Microsoft Corporation）",
+          "size": "12.4 英寸",
+          "cpu": "Core i7",
+          "memory": "RAM 16GB",
+          "info": "常规使用 Surface，续航时间最长可达13小时 随时伴您工作"
+        }
+      }
+    },
+    "detailDeploy": {
+      "deployTrend": {
+        "title": "部署趋势",
+        "warning": "告警情况",
+        "thisMonth": "本月",
+        "thisWeek": "本周",
+        "lastMonth": "上月",
+        "thisYear": "今年",
+        "lastYear": "去年",
+        "week1": "周一",
+        "week2": "周二",
+        "week3": "周三",
+        "week4": "周四",
+        "week5": "周五",
+        "week6": "周六",
+        "week7": "周日"
+      },
+      "projectList": {
+        "title": "项目列表",
+        "dialog": {
+          "title": "基本信息"
+        },
+        "table": {
+          "name": "名称",
+          "admin": "管理员",
+          "createTime": "创建时间",
+          "operation": "操作",
+          "manage": "管理",
+          "delete": "删除"
+        }
+      },
+      "baseInfo": {
+        "clusterName": "集群名",
+        "clusterId": "集群ID",
+        "status": "状态",
+        "running": "运行中",
+        "k8sVersion": "K8S版本",
+        "config": "配置",
+        "region": "所在地域",
+        "guangzhou": "广州",
+        "project": "新增资源所属项目",
+        "defaultProject": "默认项目",
+        "nodeCount": "节点数量",
+        "nodeNetwork": "节点网络",
+        "containerNetwork": "容器网络",
+        "clusterCredential": "集群凭证",
+        "showCredential": "显示凭证",
+        "createUpdate": "创建/更新",
+        "description": "描述"
+      }
+    },
+    "detailSecondary": {
+      "read": "已读通知",
+      "unread": "未读通知",
+      "all": "全部通知",
+      "setRead": "设为已读",
+      "setUnread": "设为未读",
+      "delete": "删除通知",
+      "deleteConfirm": "删除通知",
+      "deleteTip": "确认删除通知：{content}吗？",
+      "empty": "暂无通知"
+    },
+    "notification": {
+      "contract": "合同动态",
+      "invoice": "票务动态",
+      "meeting": "会议通知",
+      "msg1": "大厦一楼改造施工项目 已通过审核！",
+      "msg2": "三季度生产原材料采购项目 开票成功！",
+      "msg3": "2021-01-01 10:00的【国家电网线下签约】会议即将开始，请提前10分钟前往 会议室1 进行签到！",
+      "msg4": "一季度生产原材料采购项目 开票成功！"
+    },
+    "formBase": {
+      "title": "合同信息",
+      "contractName": "合同名称",
+      "contractNamePlaceholder": "请输入合同名称",
+      "contractStatus": "合同状态",
+      "contractNum": "合同编号",
+      "contractType": "合同类型",
+      "contractTypePlaceholder": "请输入类型",
+      "contractPayType": "合同收支类型",
+      "contractAmount": "合同金额",
+      "contractAmountPlaceholder": "请输入金额",
+      "contractSignDate": "合同签订日期",
+      "contractEffectiveDate": "合同生效日期",
+      "contractEndDate": "合同结束日期",
+      "company": "甲方",
+      "employee": "乙方",
+      "pay": "付款",
+      "receive": "收款",
+      "upload": "上传文件",
+      "uploadFile": "上传合同",
+      "uploadTips": "请上传pdf文件，大小在60M以内",
+      "otherInfo": "其他信息",
+      "remark": "备注",
+      "remarkPlaceholder": "请输入备注",
+      "notaryPublic": "公证人",
+      "fileSizeExceed": "上传文件不能大于60M",
+      "uploadFail": "上传失败",
+      "confirm": "确认提交",
+      "cancel": "取消",
+      "validation": {
+        "name": "请输入合同名称",
+        "type": "请选择合同类型",
+        "payment": "请选择合同收付类型",
+        "amount": "请输入合同金额",
+        "partyA": "请选择甲方",
+        "partyB": "请选择乙方",
+        "signDate": "请选择日期",
+        "startDate": "请选择日期",
+        "endDate": "请选择日期"
+      },
+      "typeOptions": {
+        "typeA": "类型A",
+        "typeB": "类型B",
+        "typeC": "类型C"
+      },
+      "partyOptions": {
+        "companyA": "甲方公司",
+        "companyB": "乙方公司",
+        "companyC": "丙方公司"
+      }
+    },
+    "formStep": {
+      "validation": {
+        "name": "请选择合同名称",
+        "type": "请选择类型",
+        "title": "请输入发票抬头",
+        "taxNum": "请输入纳税人识别号",
+        "consignee": "请输入收货人",
+        "mobileNum": "请输入手机号码",
+        "deliveryAddress": "请选择收货地址",
+        "fullAddress": "请输入详细地址"
+      },
+      "options": {
+        "nameA": "合同A",
+        "nameB": "合同B",
+        "nameC": "合同C",
+        "typeA": "类型A",
+        "typeB": "类型B",
+        "typeC": "类型C",
+        "address1": "广东省深圳市南山区",
+        "address2": "北京市海淀区",
+        "address3": "上海市徐汇区",
+        "address4": "四川省成都市高新区",
+        "address5": "广东省广州市天河区",
+        "address6": "陕西省西安市高新区"
+      },
+      "step1": {
+        "title": "提交申请",
+        "subtitle": "已于12月21日提交",
+        "rules": "发票开具规则",
+        "rule1": "1、申请开票后，电子发票在1～3个工作日内开具；增值税专用发票（纸质）如资质审核通过，将在电子发票开具后10个工作日内为您寄出；",
+        "rule2": "2、开票金额为您实际支付金额；",
+        "rule3": "3、如有疑问请联系客服。",
+        "contractName": "合同名称",
+        "contractTips": "请选择合同名称",
+        "invoiceType": "发票类型",
+        "amount": "开票金额",
+        "submit": "提交申请"
+      },
+      "step2": {
+        "title": "电子信息",
+        "subtitle": "如有疑问联系客服",
+        "invoiceTitle": "发票抬头",
+        "taxNum": "纳税人识别号",
+        "address": "地址",
+        "bank": "开户行",
+        "bankAccount": "银行账号",
+        "email": "邮箱",
+        "tel": "手机号",
+        "titlePlaceholder": "请输入电子信息",
+        "subtitlePlaceholder": "请输入如有疑问联系客服",
+        "invoiceTitlePlaceholder": "请输入发票抬头",
+        "taxNumPlaceholder": "请输入纳税人识别号",
+        "addressPlaceholder": "请输入地址",
+        "bankPlaceholder": "请输入开户行",
+        "bankAccountPlaceholder": "请输入银行账号",
+        "emailPlaceholder": "请输入邮箱",
+        "telPlaceholder": "请输入手机号"
+      },
+      "step3": {
+        "title": "发票已邮寄",
+        "subtitle": "电子发票开出后联系",
+        "consignee": "收货人",
+        "mobileNum": "手机号码",
+        "deliveryAddress": "收货地址",
+        "fullAddress": "详细地址"
+      },
+      "step4": {
+        "title": "完成申请",
+        "subtitle": "如有疑问联系客服",
+        "finishTitle": "完成开票申请",
+        "finishTips": "预计1～3个工作日会将电子发票发至邮箱，发票邮寄请耐心等待",
+        "reapply": "再次申请",
+        "check": "查看进度"
+      },
+      "preStep": "上一步",
+      "nextStep": "下一步"
+    },
+    "listBase": {
+      "export": "导出合同",
+      "create": "新建合同",
+      "select": "已选",
+      "items": "项",
+      "contractName": "合同名称",
+      "contractStatus": "合同状态",
+      "contractNum": "合同编号",
+      "contractType": "合同类型",
+      "contractPayType": "合同收支类型",
+      "contractAmount": "合同金额",
+      "operation": "操作",
+      "detail": "详情",
+      "delete": "删除",
+      "pay": "付款",
+      "receive": "收款",
+      "placeholder": "请输入内容搜索",
+      "deleteConfirm": "确认删除当前所选合同？",
+      "deleteTip": "删除后，{name}的所有合同信息将被清空，且无法恢复",
+      "contractStatusEnum": {
+        "fail": "审核失败",
+        "audit": "待审核",
+        "executing": "履行中",
+        "pending": "待履行",
+        "finish": "已完成"
+      }
+    },
+    "listCard": {
+      "create": "新建产品",
+      "placeholder": "请输入内容搜索",
+      "loading": "加载数据中...",
+      "deleteConfirm": "确认删除所选产品？",
+      "deleteSuccess": "删除成功",
+      "deleteTip": "确认删除后{name}的所有产品信息将被清空, 且无法恢复",
+      "productName": "产品名称",
+      "productStatus": "产品状态",
+      "productDescription": "产品描述",
+      "productType": "产品类型",
+      "productRemark": "备注",
+      "productStatusEnum": {
+        "off": "停用",
+        "on": "启用"
+      },
+      "dialogForm": {
+        "productNamePlaceholder": "请输入产品名称",
+        "cancel": "取消",
+        "confirm": "确定",
+        "typeGateway": "网关",
+        "typeAI": "人工智能",
+        "typeCVM": "CVM",
+        "validation": {
+          "productName": "请输入产品名称"
+        }
+      }
+    },
+    "listFilter": {},
+    "listTree": {
+      "placeholder": "请输入内容进行搜索",
+      "treeData": {
+        "shenzhen": "深圳总部",
+        "beijing": "北京总部",
+        "shanghai": "上海总部",
+        "hunan": "湖南",
+        "hubei": "湖北",
+        "generalOffice": "总办",
+        "marketing": "市场部",
+        "technology": "技术部",
+        "finance": "财务部",
+        "purchase1": "采购1组",
+        "purchase2": "采购2组",
+        "finance1": "财务1组",
+        "finance2": "财务2组"
+      }
+    },
+    "login": {
+      "loginTitle": "登录到",
+      "noAccount": "没有账号吗?",
+      "existAccount": "已有账号?",
+      "createAccount": "注册新账号",
+      "remember": "记住账号",
+      "forget": "忘记账号",
+      "signIn": "登录",
+      "register": "注册",
+      "refresh": "刷新",
+      "wechatLogin": "使用微信扫一扫登录",
+      "accountLogin": "使用账号登录",
+      "phoneLogin": "使用手机号登录",
+      "loginSuccess": "登录成功",
+      "demoTip": "演示环境：可操作体验，数据不会保存",
+      "userNamePlaceholder": "请输入用户名",
+      "passwordPlaceholder": "请输入密码",
+      "captcha": "验证码",
+      "rememberUserName": "记住用户名",
+      "rsaKeyMissing": "未配置 VITE_RSA_PUBLIC_KEY，密码无法加密，已阻止登录提交",
+      "passwordEncryptFail": "密码加密失败",
+      "passwordExpiredTip": "密码已过期，请尽快修改密码",
+      "rules": {
+        "userName": "请输入用户名",
+        "password": "请输入密码"
+      },
+      "countdown": "{count}秒后可重发",
+      "input": {
+        "account": "请输入账号",
+        "password": "请输入登录密码",
+        "phone": "请输入手机号",
+        "verification": "请输入验证码"
+      },
+      "required": {
+        "account": "账号必填",
+        "phone": "手机号必填",
+        "password": "密码必填",
+        "verification": "验证码必填"
+      },
+      "sendVerification": "发送验证码"
+    },
+    "result": {
+      "403": {
+        "tips": "抱歉，您无权限访问此页面，企业微信联系创建者",
+        "back": "返回首页"
+      },
+      "404": {
+        "subtitle": "抱歉，您访问的页面不存在",
+        "back": "返回首页"
+      },
+      "500": {
+        "subtitle": "抱歉，服务器出错啦",
+        "back": "返回首页"
+      },
+      "fail": {
+        "title": "创建失败",
+        "subtitle": "抱歉，您的项目创建失败，企业微信联系检查创建者权限，或返回修改。",
+        "back": "回到首页",
+        "modify": "返回修改"
+      },
+      "success": {
+        "title": "项目已创建成功",
+        "subtitle": "可以联系负责人分发应用",
+        "back": "回到首页",
+        "progress": "查看进度"
+      },
+      "maintenance": {
+        "title": "系统维护中",
+        "subtitle": "系统维护中，请稍后再试",
+        "back": "回到首页"
+      },
+      "browserIncompatible": {
+        "title": "浏览器不兼容",
+        "subtitle": "抱歉，您正在使用的浏览器版本过低，无法打开当前网页。",
+        "back": "回到首页",
+        "recommend": "疾风管理系统推荐以下主流浏览器"
+      },
+      "networkError": {
+        "title": "网络异常",
+        "subtitle": "网络异常, 请稍后重试",
+        "back": "回到首页",
+        "reload": "重新加载"
+      }
+    },
+    "system": {
+      "user": {
+        "field": {
+          "dept": "部门",
+          "deptBindings": "部门绑定",
+          "role": "角色",
+          "password": "密码"
+        },
+        "placeholder": {
+          "userName": "请输入用户名",
+          "realName": "请输入姓名",
+          "nickName": "请输入昵称",
+          "phone": "请输入手机号",
+          "email": "请输入邮箱",
+          "password": "请输入密码",
+          "dept": "请选择部门",
+          "role": "请选择角色",
+          "state": "请选择状态"
+        },
+        "action": {
+          "resetPassword": "重置密码",
+          "unlock": "解锁",
+          "downloadTemplate": "下载模板",
+          "exportAsync": "异步导出",
+          "importAsync": "异步导入"
+        },
+        "message": {
+          "confirmDelete": "确定删除该用户吗？",
+          "resetPasswordConfirm": "确定重置该用户密码吗？重置后将生成一次性随机密码，该用户会被强制下线。",
+          "resetPasswordSuccess": "密码已重置",
+          "resetPasswordResultHeader": "一次性密码",
+          "resetPasswordResultTip": "请立即将以下新密码告知用户，关闭弹窗后将无法再次查看：",
+          "unlockConfirm": "确定解锁用户 \"{name}\" 的账号吗？解锁后将清除登录失败计数。",
+          "unlockSuccess": "账号解锁成功",
+          "exportSuccess": "导出成功",
+          "templateDownloaded": "模板已下载",
+          "importPartial": "导入完成：成功 {success} 条，失败 {failure} 条（{detail}）",
+          "importSuccess": "导入成功 {count} 条，初始密码登录后请修改",
+          "asyncExportCreated": "异步导出任务已创建，可在「系统管理-异步任务」查看进度",
+          "asyncImportCreated": "异步导入任务已创建，可在「系统管理-异步任务」查看进度",
+          "passwordEncryptFail": "密码加密失败",
+          "deptListNotEmpty": "部门绑定不能为空",
+          "deptMustBeInBindings": "归属部门须包含在部门绑定中"
+        }
+      },
+      "dept": {
+        "deptName": "部门名称",
+        "parent": "上级部门",
+        "levelTitle": "层级",
+        "level": {
+          "unit": "单位",
+          "dept": "部门"
+        },
+        "placeholder": {
+          "deptName": "请输入部门名称",
+          "parent": "请选择上级部门"
+        },
+        "action": {
+          "addChild": "新增子部门"
+        },
+        "message": {
+          "confirmDelete": "确定删除该部门吗？"
+        }
+      },
+      "role": {
+        "roleName": "角色名称",
+        "roleKey": "角色代码",
+        "dataScope": "数据范围",
+        "menuPermission": "菜单权限",
+        "deptPermission": "数据权限（部门）",
+        "checkAll": "全选",
+        "collapse": "折叠",
+        "expand": "展开",
+        "placeholder": {
+          "roleName": "请输入角色名称",
+          "roleKey": "请输入角色代码",
+          "dataScope": "请选择",
+          "remark": "请输入备注"
+        },
+        "dataScopeMap": {
+          "all": "所有数据",
+          "deptAndChildren": "所在部门及子部门",
+          "dept": "所在部门",
+          "self": "仅本人",
+          "custom": "自定义"
+        },
+        "message": {
+          "confirmDelete": "确定删除该角色吗？"
+        }
+      },
+      "menu": {
+        "name": "菜单名称",
+        "parent": "上级菜单",
+        "activeMenu": "高亮菜单",
+        "menuType": "菜单类型",
+        "icon": "图标",
+        "path": "路由名称",
+        "url": "组件路径",
+        "perms": "权限标识",
+        "visible": "是否显示",
+        "iconPicker": "选择图标",
+        "iconPlaceholder": "点击选择图标",
+        "iconSearchPlaceholder": "搜索图标名称...",
+        "typeMap": {
+          "dir": "目录",
+          "menu": "菜单",
+          "button": "按钮"
+        },
+        "placeholder": {
+          "name": "请输入菜单名称",
+          "parent": "请选择上级菜单",
+          "path": "请输入路由名称",
+          "url": "如 /system/user/index",
+          "perms": "如 system:user:add",
+          "remark": "请输入备注"
+        },
+        "action": {
+          "addChild": "新增子菜单"
+        },
+        "message": {
+          "confirmDelete": "确定删除该菜单吗？",
+          "selectMenuType": "请选择菜单类型"
+        }
+      },
+      "post": {
+        "add": "新增岗位",
+        "postCode": "岗位编码",
+        "postName": "岗位名称",
+        "placeholder": {
+          "postCode": "请输入岗位编码",
+          "postCodeExample": "请输入岗位编码（如 DEVELOPER）",
+          "postName": "请输入岗位名称",
+          "remark": "请输入备注"
+        }
+      },
+      "dict": {
+        "typeTitle": "字典类型",
+        "itemTitle": "字典项",
+        "itemTitleWith": "字典项 - {name}",
+        "addType": "新增类型",
+        "addItem": "新增字典项",
+        "dictName": "字典名称",
+        "dictCode": "字典代码",
+        "dictValue": "字典值",
+        "placeholder": {
+          "name": "请输入字典名称",
+          "code": "请输入字典代码",
+          "value": "请输入字典值",
+          "remark": "请输入备注"
+        }
+      },
+      "config": {
+        "configName": "参数名称",
+        "configKey": "参数键名",
+        "configValue": "参数键值",
+        "builtin": "内置",
+        "systemBuiltin": "系统内置",
+        "add": "新增参数",
+        "builtinMap": {
+          "builtin": "内置",
+          "custom": "自定义"
+        },
+        "placeholder": {
+          "configName": "请输入参数名称",
+          "configKey": "请输入参数键名",
+          "configKeyExample": "请输入参数键名（如 system.name）",
+          "configValue": "请输入参数键值",
+          "remark": "请输入备注"
+        }
+      },
+      "job": {
+        "jobName": "任务名称",
+        "jobGroup": "任务组名",
+        "invokeTarget": "调用目标",
+        "serviceName": "执行服务",
+        "cronExpression": "CRON表达式",
+        "misfirePolicy": "执行策略",
+        "concurrent": "是否并发",
+        "paused": "暂停",
+        "defaultScheduler": "默认调度者",
+        "add": "新增任务",
+        "pause": "暂停",
+        "resume": "恢复",
+        "trigger": "执行",
+        "viewLog": "日志",
+        "misfireMap": {
+          "immediate": "立即执行",
+          "abandon": "放弃执行",
+          "next": "下次执行"
+        },
+        "placeholder": {
+          "jobName": "请输入任务名称",
+          "jobNameExample": "请输入任务名称，如：清理过期数据",
+          "jobGroup": "默认为 DEFAULT",
+          "status": "请选择状态",
+          "targetSelect": "请选择调用目标方法",
+          "param": "请输入 {name}",
+          "invokeTarget": "调用目标字符串（自动生成或手动输入）",
+          "invokeTargetRequired": "请输入调用目标",
+          "serviceName": "留空 = 归属本服务（推荐）",
+          "cron": "如：0 0 2 * * ?",
+          "cronRequired": "请输入CRON表达式",
+          "remark": "请输入备注"
+        },
+        "tips": {
+          "invokeTargetFormat": "格式：beanName.methodName（无参）或 beanName.methodName(param1,param2)（带参），选择方法后自动生成",
+          "serviceName1": "任务由哪个服务执行（spring.application.name）。任务方法是被反射调用的 Bean，只有归属服务里有它；因此页面上的\"调用目标\"下拉列出的只是本服务声明的任务方法，",
+          "serviceName2": "留空即归属本服务",
+          "serviceName3": "（新增与修改都按此处理）；填写其它服务名时，请确认该服务确实有这个方法，否则执行时会报",
+          "serviceName4": "。",
+          "cronExamples": "常用示例：0 0 2 * * ?（每天凌晨2点）、0 */5 * * * ?（每5分钟）、0 0 6 * * MON-FRI（工作日早上6点）"
+        },
+        "message": {
+          "pauseConfirm": "确定暂停任务「{name}」吗？",
+          "pauseSuccess": "暂停成功",
+          "pauseFail": "暂停失败",
+          "resumeConfirm": "确定恢复任务「{name}」吗？",
+          "resumeSuccess": "恢复成功",
+          "resumeFail": "恢复失败",
+          "triggerConfirm": "确定立即执行任务「{name}」吗？",
+          "triggerSuccess": "执行成功",
+          "triggerFail": "执行失败",
+          "deleteConfirm": "确定删除该任务吗？",
+          "cronValidWithTime": "表达式合法，下次执行时间：{time}",
+          "cronValid": "表达式合法",
+          "cronInvalid": "CRON表达式不合法，请检查",
+          "cronCheckFail": "CRON表达式校验失败",
+          "cronCheckFirst": "请先校验CRON表达式",
+          "serviceNamePattern": "只能是小写字母、数字与连字符，例如 jffast-system-service"
+        }
+      },
+      "jobLog": {
+        "jobName": "任务名称",
+        "jobGroup": "任务组名",
+        "invokeTarget": "调用目标",
+        "execStatus": "执行状态",
+        "duration": "耗时",
+        "errorMsg": "错误信息",
+        "startTime": "开始时间",
+        "endTime": "结束时间",
+        "clean": "清空日志",
+        "placeholder": {
+          "jobName": "请输入任务名称",
+          "status": "请选择状态"
+        },
+        "message": {
+          "cleanConfirm": "确定清空所有任务执行日志吗？此操作不可恢复！"
+        }
+      },
+      "log": {
+        "createBy": "操作人",
+        "title": "操作标题",
+        "method": "操作方法",
+        "ip": "IP地址",
+        "level": "日志级别",
+        "operateTime": "操作时间",
+        "levelMap": {
+          "info": "信息",
+          "warning": "警告",
+          "error": "错误"
+        },
+        "placeholder": {
+          "createBy": "请输入操作人",
+          "title": "请选择标题",
+          "state": "请选择状态",
+          "level": "请选择级别"
+        }
+      },
+      "task": {
+        "title": "任务标题",
+        "progress": "进度",
+        "totalRows": "总行数",
+        "failDetail": "失败明细",
+        "viewDetail": "查看明细",
+        "defaultFileName": "任务结果.xlsx",
+        "typeMap": {
+          "import": "导入",
+          "export": "导出"
+        },
+        "statusMap": {
+          "pending": "待处理",
+          "running": "进行中",
+          "done": "已完成",
+          "fail": "失败"
+        },
+        "placeholder": {
+          "title": "请输入任务标题",
+          "taskType": "请选择类型",
+          "status": "请选择状态"
+        },
+        "message": {
+          "deleteConfirm": "确定删除该任务吗？"
+        }
+      },
+      "file": {
+        "fileName": "文件名称",
+        "size": "文件大小",
+        "mime": "文件类型",
+        "bizType": "业务类型",
+        "storageType": "存储类型",
+        "preview": "预览",
+        "placeholder": {
+          "fileName": "请输入文件名称",
+          "bizType": "请输入业务类型",
+          "storageType": "请选择存储类型"
+        },
+        "storageTypeMap": {
+          "local": "本地",
+          "minio": "MinIO",
+          "aliyunOss": "阿里云OSS",
+          "tencentCos": "腾讯云COS"
+        },
+        "message": {
+          "deleteConfirm": "确定删除该文件吗？删除后存储中的文件将一并移除。",
+          "batchDeleteConfirm": "确定删除选中的文件吗？删除后存储中的文件将一并移除。"
+        }
+      },
+      "online": {
+        "refresh": "刷新",
+        "onlineCountPrefix": "当前在线",
+        "onlineCountSuffix": "人",
+        "loginTime": "登录时间",
+        "tenantId": "租户ID",
+        "kick": "强制下线",
+        "message": {
+          "kickConfirm": "确定强制下线用户「{name}」吗？",
+          "kickSuccess": "已强制下线"
+        }
+      },
+      "cache": {
+        "redisInfoTitle": "Redis 信息",
+        "redisVersion": "Redis 版本",
+        "mode": "运行模式",
+        "port": "端口",
+        "connectedClients": "客户端数",
+        "uptime": "运行时间",
+        "dbKeys": "Key 数量",
+        "usedMemory": "内存使用",
+        "inputKbps": "网络输入",
+        "outputKbps": "网络输出",
+        "cacheOpsTitle": "缓存操作",
+        "clearAll": "清空全部缓存",
+        "refresh": "刷新",
+        "cacheName": "缓存名称",
+        "clear": "清空",
+        "empty": "暂无缓存",
+        "detailTitle": "缓存详情 - {name}",
+        "keyName": "键名",
+        "message": {
+          "clearConfirmHeader": "确认清空",
+          "deleteConfirmHeader": "确认删除",
+          "clearAllConfirm": "确定要清空全部缓存吗？此操作不可恢复。",
+          "clearCacheConfirm": "确定要清空缓存「{name}」吗？",
+          "deleteKeyConfirm": "确定要删除缓存键「{key}」吗？"
+        }
+      },
+      "monitor": {
+        "serverInfoTitle": "服务器信息",
+        "osName": "操作系统",
+        "osArch": "系统架构",
+        "serverIp": "服务器 IP",
+        "cpuCores": "CPU 核心数",
+        "cpuUsage": "CPU 使用率",
+        "memoryUsage": "内存使用率",
+        "jvmInfoTitle": "JVM 信息",
+        "jvmName": "JVM 名称",
+        "jvmVersion": "JVM 版本",
+        "jvmVendor": "JVM 供应商",
+        "uptime": "运行时间",
+        "heapUsage": "堆内存使用率",
+        "nonHeap": "非堆内存",
+        "threadCount": "线程数",
+        "daemon": "守护",
+        "gcCount": "GC 次数",
+        "gcTime": "GC 耗时",
+        "diskTitle": "磁盘信息",
+        "dirName": "盘符",
+        "total": "总大小 (GB)",
+        "used": "已用 (GB)",
+        "free": "可用 (GB)",
+        "usage": "使用率"
+      },
+      "oauth2Client": {
+        "name": "接入名称",
+        "provider": "接入标识",
+        "grantTypes": "授权类型",
+        "clientId": "客户端ID",
+        "clientSecret": "客户端密钥",
+        "authorizationUrl": "授权地址",
+        "tokenUrl": "令牌地址",
+        "redirectUri": "回调地址",
+        "authMethod": "认证方式",
+        "scopes": "授权范围",
+        "ttl": "默认有效期",
+        "extra": "扩展配置",
+        "add": "新增接入",
+        "token": "获取令牌",
+        "evict": "清缓存",
+        "tokenTitle": "访问令牌",
+        "grantTypeMap": {
+          "clientCredentials": "client_credentials（凭证模式）",
+          "authorizationCode": "authorization_code（授权码模式）"
+        },
+        "statusMap": {
+          "enabled": "启用",
+          "disabled": "禁用"
+        },
+        "placeholder": {
+          "provider": "第三方唯一标识，如 github/custom",
+          "name": "请输入接入名称",
+          "clientId": "请输入客户端ID",
+          "clientSecret": "仅保存，不回显",
+          "authorizationUrl": "authorization_code 授权地址",
+          "tokenUrl": "换取令牌地址",
+          "redirectUri": "authorization_code 回调地址",
+          "authMethod": "请选择令牌认证方式",
+          "scopes": "空格或逗号分隔，如 openid profile",
+          "ttl": "秒，空则按 expires_in",
+          "extra": "扩展 JSON：URL 模板占位、token 响应键名映射等"
+        },
+        "rules": {
+          "provider": "请输入接入标识",
+          "tokenUrl": "请输入令牌地址",
+          "clientSecret": "请输入客户端密钥"
+        },
+        "message": {
+          "tokenFail": "获取令牌失败",
+          "evictConfirm": "确定清除「{name}」的令牌缓存吗？",
+          "evictSuccess": "缓存已清除",
+          "evictFail": "清除失败"
+        }
+      },
+      "notification": {
+        "listTab": "通知管理",
+        "templateTab": "模板管理",
+        "title": "通知标题",
+        "type": "通知类型",
+        "level": "通知级别",
+        "recipientType": "发送类型",
+        "recipientTypeForm": "接收人类型",
+        "recipient": "接收人",
+        "sender": "发送人",
+        "sendTime": "发送时间",
+        "template": "通知模板",
+        "content": "通知内容",
+        "add": "新增通知",
+        "sendTitle": "发送通知",
+        "statsTitle": "发送统计",
+        "statusMap": {
+          "sent": "已发送",
+          "unsent": "未发送",
+          "enabled": "启用",
+          "disabled": "禁用"
+        },
+        "recipientTypeMap": {
+          "all": "全体用户",
+          "role": "指定角色",
+          "dept": "指定部门",
+          "user": "指定用户"
+        },
+        "levelMap": {
+          "info": "信息",
+          "warning": "警告",
+          "error": "错误"
+        },
+        "action": {
+          "send": "发送",
+          "stats": "统计"
+        },
+        "placeholder": {
+          "title": "请输入通知标题",
+          "content": "请输入通知内容",
+          "type": "请选择通知类型",
+          "level": "请选择通知级别",
+          "recipientType": "请选择发送类型",
+          "recipientTypeForm": "请选择接收人类型",
+          "status": "请选择状态",
+          "templateCode": "可选：选择模板自动填充标题、内容与类型",
+          "role": "请选择角色",
+          "dept": "请选择部门",
+          "user": "请选择用户"
+        },
+        "stats": {
+          "user": "用户",
+          "userNamePlaceholder": "用户名/姓名",
+          "read": "已读",
+          "unread": "未读",
+          "realName": "真实姓名",
+          "readTime": "阅读时间",
+          "readCountLabel": "已读：",
+          "unreadCountLabel": "未读：",
+          "totalLabel": "总计："
+        },
+        "send": {
+          "titleLabel": "标题：",
+          "contentLabel": "内容：",
+          "channel": "发送通道",
+          "channelMap": {
+            "email": "邮件",
+            "sms": "短信"
+          },
+          "channelTip": "站内信始终发送；邮件/短信需服务端启用对应通道（未启用或收件人未留邮箱/手机号时自动跳过）。",
+          "sendBtn": "发 送"
+        },
+        "templatePage": {
+          "namePlaceholder": "模板名称",
+          "codePlaceholder": "模板编码",
+          "add": "新增模板",
+          "name": "模板名称",
+          "code": "编码",
+          "group": "分组",
+          "level": "级别"
+        },
+        "groupDialog": {
+          "editTitle": "编辑分组",
+          "addTitle": "新增分组",
+          "name": "分组名称",
+          "code": "分组编码",
+          "placeholder": {
+            "name": "如：审批通知",
+            "code": "如：approval"
+          }
+        },
+        "groupPanel": {
+          "title": "模板分组",
+          "empty": "暂无分组"
+        },
+        "templateDialog": {
+          "editTitle": "编辑模板",
+          "addTitle": "新增模板",
+          "group": "所属分组",
+          "name": "模板名称",
+          "code": "模板编码",
+          "titleTemplate": "标题模板",
+          "contentTemplate": "内容模板",
+          "defaultType": "默认类型",
+          "defaultLevel": "默认级别",
+          "defaultRecipient": "默认接收人",
+          "placeholder": {
+            "group": "请选择分组",
+            "name": "如：请假审批通知",
+            "code": "唯一编码，如：leave_approval",
+            "tpl": "支持 {v} 占位符"
+          }
+        },
+        "message": {
+          "copySuccess": "复制成功",
+          "sendSuccess": "发送成功",
+          "groupNameCodeRequired": "请填写分组名称与编码",
+          "templateNameCodeRequired": "请填写模板名称与编码",
+          "codePattern": "模板编码只能用字母/数字/下划线，且以字母开头",
+          "deleteGroupConfirm": "确定删除分组「{name}」吗？",
+          "deleteTemplateConfirm": "确定删除模板「{name}」吗？"
+        }
+      },
+      "codegen": {
+        "title": "代码生成器",
+        "projectTypeLabel": "Base 版（jffast）",
+        "moduleName": "模块名",
+        "packageName": "包名",
+        "author": "作者",
+        "includeDto": "生成DTO",
+        "generate": "生成代码",
+        "downloadZip": "打包下载",
+        "createModule": "新建模块",
+        "tabs": {
+          "table": "选择数据表",
+          "preview": "代码预览",
+          "previewWithCount": "代码预览（{count}）"
+        },
+        "placeholder": {
+          "module": "选择已有模块",
+          "packageName": "如 system、demo",
+          "search": "搜索表名或备注"
+        },
+        "codeLabel": {
+          "entity": "Entity",
+          "mapper": "Mapper",
+          "service": "Service",
+          "controller": "Controller",
+          "frontendApi": "前端 API",
+          "frontendIndexPage": "前端列表页",
+          "frontendSavePage": "前端表单页",
+          "frontendRouter": "路由配置",
+          "menuSql": "菜单 SQL",
+          "dtoRequest": "DTO Request",
+          "dtoQueryRequest": "DTO Query",
+          "treeFrontendIndexPage": "前端树表页",
+          "treeFrontendSavePage": "前端树表编辑页"
+        },
+        "tablePanel": {
+          "tableCount": "共 {count} 张表",
+          "selected": "已选：{name}",
+          "tableName": "表名",
+          "comment": "备注",
+          "message": {
+            "loadFail": "加载表列表失败"
+          }
+        },
+        "preview": {
+          "treeMode": "树表模式",
+          "saveTo": "保存到: ",
+          "saveLocal": "保存到本地",
+          "copyCode": "复制代码",
+          "downloadFile": "下载文件",
+          "manualTab": "手动处理",
+          "manualTip": "以下内容需要手动处理，代码生成器不会自动写入",
+          "menuSqlTitle": "菜单数据（SQL）",
+          "hintSql1": "在数据库中执行以下 SQL（",
+          "hintSql2": " 和 ",
+          "hintSql3": " 已自动计算）：",
+          "empty": "请先选择数据表并点击「生成代码」",
+          "message": {
+            "copied": "已复制到剪贴板",
+            "downloadSuccess": "下载成功"
+          }
+        },
+        "saveDialog": {
+          "title": "保存代码到本地",
+          "confirmBtn": "确认保存",
+          "noModuleTip": "未选择模块，代码将保存到默认位置。建议先选择或新建模块。",
+          "saveToModule": "代码将保存到模块: ",
+          "selectAll": "全选 / 取消全选",
+          "mark": {
+            "included": "（已包含，不可覆盖）",
+            "append": "（将追加）",
+            "overwrite": "（将覆盖）"
+          }
+        },
+        "createDialog": {
+          "title": "新建业务模块",
+          "confirmBtn": "确认创建",
+          "warnTip": "新建模块将在后端项目中创建目录和配置文件，请确认信息无误",
+          "projectType": "项目类型",
+          "moduleName": "模块名",
+          "fullModuleName": "完整模块名",
+          "savePath": "保存位置",
+          "filesToCreate": "将创建文件",
+          "fileItem1": "模块目录及 src/main/java、src/main/resources 子目录",
+          "fileItem2": "pom.xml（含 starter-mybatis、starter-web、starter-security、starter-log 依赖）",
+          "fileItem3": "更新聚合 pom.xml（添加 module 声明）",
+          "placeholder": {
+            "moduleName": "如 order、cms"
+          }
+        },
+        "message": {
+          "selectTableFirst": "请先选择数据表",
+          "generateSuccess": "代码生成成功",
+          "generateFail": "代码生成失败",
+          "downloadZipSuccess": "打包下载成功",
+          "treeDetected": "检测到树形字段（如 parent_id），已自动切换为树表模式",
+          "moduleNameRequired": "请输入模块名",
+          "moduleExists": "模块已存在: {name}",
+          "moduleCreateSuccess": "模块创建成功: {name}\n路径: {path}",
+          "moduleCreateFail": "创建模块失败: {msg}",
+          "selectFileFirst": "请至少选择一个文件",
+          "saveFail": "保存失败: {msg}"
+        }
+      }
+    },
+    "user": {
+      "markDay": "下午好，今天是你加入公司的第 100 天",
+      "greeting": "Hi，Image",
+      "unit": "（次）",
+      "account": "My Account",
+      "organization": "公司/某事业群/某产品部/某运营中心/商户服务组",
+      "personalInfo": {
+        "title": "个人信息",
+        "position": "港澳业务拓展组员工 直客销售 ",
+        "desc": {
+          "phone": "座机",
+          "mobile": "手机",
+          "seat": "座位",
+          "email": "邮箱",
+          "position": "职位",
+          "leader": "上级",
+          "entity": "主体",
+          "joinDay": "入职时间",
+          "group": "所属团队"
+        },
+        "tencentGroup": "集团总部",
+        "seniorDesigner": "高级 UI 设计师"
+      },
+      "visitData": "首页访问数据",
+      "contentList": "内容列表",
+      "teamMember": "团队成员",
+      "serviceProduction": "服务产品",
+      "profile": {
+        "changeAvatar": "更换头像",
+        "normalUser": "普通用户",
+        "editProfile": "编辑资料",
+        "passwordTitle": "修改密码",
+        "oldPassword": "原密码",
+        "newPassword": "新密码",
+        "confirmUpdate": "确认修改",
+        "loginLogTitle": "登录日志",
+        "loginLog": {
+          "ip": "登录IP",
+          "info": "信息",
+          "loginTime": "登录时间"
+        },
+        "socialTitle": "社交账号绑定",
+        "boundTo": "已绑定：{name}",
+        "notBound": "未绑定",
+        "bind": "绑定",
+        "unbind": "解绑",
+        "placeholder": {
+          "oldPassword": "请输入原密码",
+          "newPassword": "请输入新密码",
+          "realName": "请输入姓名",
+          "nickName": "请输入昵称",
+          "phone": "请输入手机号",
+          "email": "请输入邮箱"
+        },
+        "rules": {
+          "realName": "请输入姓名",
+          "oldPassword": "请输入原密码",
+          "newPassword": "请输入新密码",
+          "minLen": "密码需8-20位，且包含大小写字母、数字和特殊字符"
+        },
+        "message": {
+          "avatarUpdated": "头像已更新",
+          "profileUpdated": "资料已更新",
+          "updateFail": "更新失败",
+          "passwordUpdated": "密码修改成功",
+          "passwordUpdateFail": "密码修改失败",
+          "passwordEncryptFail": "密码加密失败，请刷新页面重试",
+          "bindSuccess": "绑定成功",
+          "bindFail": "绑定失败",
+          "unbindConfirm": "确定解绑 {name} 账号吗？",
+          "unbindSuccess": "解绑成功",
+          "unbindFail": "解绑失败"
+        }
+      },
+      "notification": {
+        "pageTitle": "我的通知",
+        "markAllRead": "全部已读",
+        "title": "标题",
+        "level": "级别",
+        "sender": "发送人",
+        "sendTime": "发送时间",
+        "content": "内容",
+        "detailTitle": "通知详情",
+        "unread": "未读",
+        "read": "已读",
+        "markRead": "标记已读",
+        "placeholder": {
+          "title": "请输入通知标题"
+        },
+        "levelMap": {
+          "info": "信息",
+          "warning": "警告",
+          "error": "错误"
+        },
+        "message": {
+          "markReadSuccess": "已标记为已读",
+          "markAllReadSuccess": "全部标记为已读"
+        }
+      }
+    },
+    "flow": {
+      "common": {
+        "processName": "流程名称",
+        "processKey": "流程标识",
+        "category": "分类",
+        "version": "版本",
+        "deploy": "部署",
+        "deployName": "部署名称",
+        "resourceName": "资源文件名",
+        "variables": "流程变量",
+        "processInstanceId": "流程实例ID",
+        "nodeName": "节点名称",
+        "assignee": "办理人",
+        "startTime": "开始时间",
+        "endTime": "结束时间",
+        "duration": "耗时",
+        "result": "处理结果",
+        "historyTitle": "审批历史",
+        "statusMap": {
+          "enabled": "启用",
+          "disabled": "禁用",
+          "suspended": "挂起",
+          "running": "运行中"
+        },
+        "placeholder": {
+          "categorySelect": "选择分类",
+          "processKey": "如 leave",
+          "resourceName": "如 leave.bpmn20.xml",
+          "variables": "JSON 格式，如 {'{'}\"days\":3,\"reason\":\"事假\"{'}'}；如需指定审批人可包含 assigneeType/assigneeValue"
+        },
+        "message": {
+          "deploySuccess": "部署成功",
+          "jsonInvalid": "流程变量必须是合法的 JSON 格式"
+        }
+      },
+      "category": {
+        "categoryName": "分类名称",
+        "categoryCode": "分类编码",
+        "placeholder": {
+          "categoryName": "请输入分类名称",
+          "categoryCode": "请输入分类编码",
+          "code": "如 leave/expense/procurement",
+          "remark": "可选"
+        },
+        "rules": {
+          "codePattern": "编码须以字母开头，仅允许字母数字/下划线/中横线，长度 1-50"
+        },
+        "message": {
+          "confirmDelete": "确定删除分类「{name}」吗？删除后不可恢复。"
+        }
+      },
+      "definition": {
+        "deploy": "部署流程",
+        "deployDialog": {
+          "title": "部署 BPMN 流程"
+        },
+        "deploymentTime": "部署时间",
+        "diagram": "流程图",
+        "noDiagram": "暂无流程图",
+        "selectFile": "选择文件",
+        "placeholder": {
+          "bpmnXml": "粘贴 BPMN XML 内容，或使用上方按钮选择 .bpmn/.xml 文件",
+          "deployName": "如 请假流程 v1",
+          "category": "请选择分类"
+        },
+        "message": {
+          "needBpmnXml": "请粘贴或选择 BPMN XML 文件",
+          "suspendTitle": "挂起流程定义",
+          "suspendConfirm": "挂起后所有运行中的实例将暂停办理，确定挂起「{name}」吗？",
+          "suspendSuccess": "挂起成功",
+          "activateTitle": "激活流程定义",
+          "activateConfirm": "激活后所有运行中的实例可继续办理，确定激活「{name}」吗？",
+          "activateSuccess": "激活成功",
+          "deleteTitle": "删除流程部署",
+          "deleteConfirm": "删除将级联删除所有流程实例和历史，确定删除「{name}」吗？"
+        },
+        "action": {
+          "activate": "激活",
+          "suspend": "挂起"
+        }
+      },
+      "instance": {
+        "start": "发起流程",
+        "startBtn": "发起",
+        "processDefinition": "流程定义",
+        "businessKey": "业务主键",
+        "instanceId": "实例ID",
+        "initiator": "发起人",
+        "initiatorId": "发起人ID",
+        "startTime": "发起时间",
+        "placeholder": {
+          "processDefinition": "请选择流程定义",
+          "businessKey": "如请假单ID、报销单ID（可选）",
+          "name": "可选，默认使用流程定义名称",
+          "initiatorId": "精确匹配发起人用户ID"
+        },
+        "message": {
+          "startSuccess": "流程已发起，实例 ID：{id}",
+          "cancelTitle": "取消流程实例",
+          "cancelConfirm": "确定取消该流程实例吗？取消后不可恢复。",
+          "cancelSuccess": "取消成功",
+          "defaultCancelReason": "用户主动取消"
+        }
+      },
+      "task": {
+        "tabTodo": "我的待办",
+        "tabCandidate": "任务池（未签收）",
+        "completeTitle": "审批任务",
+        "submitApproval": "提交审批",
+        "delegateTitle": "转办任务",
+        "delegateConfirmBtn": "确定转办",
+        "taskName": "任务名称",
+        "taskId": "任务ID",
+        "processInstance": "流程实例",
+        "comment": "审批意见",
+        "toUserId": "转给用户ID",
+        "claim": "签收",
+        "approve": "审批",
+        "delegate": "转办",
+        "placeholder": {
+          "comment": "请输入审批意见",
+          "toUserId": "请输入目标用户ID",
+          "variables": "可选，JSON 格式，如 {'{'}\"approve\":true{'}'}；如需指定下一节点审批人可包含 assigneeType/assigneeValue"
+        },
+        "message": {
+          "claimTitle": "签收任务",
+          "claimConfirm": "确定签收任务「{name}」吗？签收后该任务将指派给您办理。",
+          "claimSuccess": "签收成功",
+          "completeSuccess": "审批完成",
+          "delegateSuccess": "转办成功"
+        }
+      },
+      "designer": {
+        "title": "流程设计器",
+        "newBlank": "新建空白流程",
+        "tabVisual": "可视化设计",
+        "tabCode": "XML 代码",
+        "zoomIn": "放大",
+        "zoomOut": "缩小",
+        "fitCanvas": "适应画布",
+        "downloadXml": "下载 XML",
+        "importBpmn": "导入 BPMN 文件",
+        "propsEmpty": "点击画布中的节点查看 / 编辑属性",
+        "propsTitle": "{type} 属性",
+        "elementId": "元素 ID",
+        "element": "元素",
+        "assigneeType": "审批人类型",
+        "assigneeValue": "审批人取值",
+        "placeholder": {
+          "loadDefinition": "加载已部署流程（作为新版起点）",
+          "deployName": "如 请假流程 v2",
+          "xmlCode": "可视化画布与此处 XML 双向同步；也可直接粘贴 BPMN 2.0 XML 后部署。"
+        },
+        "assigneeTypeMap": {
+          "user": "指定用户（user）",
+          "role": "指定角色（role）",
+          "dept": "指定部门（dept）",
+          "initiator": "发起人（initiator）"
+        },
+        "assigneeValuePlaceholder": {
+          "user": "用户 ID 列表，逗号分隔",
+          "role": "角色 key",
+          "dept": "部门 ID 列表，逗号分隔"
+        },
+        "typeMap": {
+          "userTask": "用户任务",
+          "serviceTask": "服务任务",
+          "startEvent": "开始事件",
+          "endEvent": "结束事件",
+          "exclusiveGateway": "排他网关",
+          "parallelGateway": "并行网关",
+          "sequenceFlow": "连线",
+          "process": "流程"
+        },
+        "tips": {
+          "title": "审批人配置说明：",
+          "intro1": "可视化模式下选中 UserTask，在右侧面板选择 ",
+          "intro2": " 并填写 ",
+          "intro3": "，保存为扩展属性 ",
+          "intro4": "：",
+          "user": "指定用户，取值为用户 ID 列表（逗号分隔）",
+          "role": "指定角色，取值为角色 key，引擎解析为该角色下所有用户",
+          "dept": "指定部门，取值为部门 ID 列表，引擎解析为部门下所有用户",
+          "initiator": "发起人自己，取值忽略",
+          "engineP1": "引擎在任务创建时优先按上述任务级扩展属性逐任务解析审批人；流程变量方式（发起或审批时传 ",
+          "engineP2": "）作为兼容兜底。"
+        },
+        "message": {
+          "unknownError": "未知错误",
+          "parseFail": "BPMN 解析失败：{msg}",
+          "exportXmlFail": "导出 XML 失败：{msg}",
+          "updateIdFail": "ID 更新失败：{msg}",
+          "updateNameFail": "名称更新失败：{msg}",
+          "updateAssigneeFail": "审批人属性更新失败：{msg}",
+          "newBlankSuccess": "已新建空白流程",
+          "loadedTip": "已加载流程，编辑后点击「部署」可发布为新版本",
+          "needBpmnXml": "请先绘制流程或粘贴 BPMN XML 内容",
+          "xmlRootRequired": "BPMN XML 必须包含 <definitions> 或 <bpmn> 根元素",
+          "initFail": "可视化设计器初始化失败，请切换到 XML 代码模式"
+        }
+      }
+    },
+    "ai": {
+      "common": {
+        "kb": "所属知识库",
+        "statusMap": {
+          "pending": "待处理",
+          "processed": "已处理",
+          "failed": "处理失败",
+          "enabled": "启用",
+          "disabled": "禁用"
+        }
+      },
+      "knowledgeBase": {
+        "name": "知识库名称",
+        "embeddingModel": "向量模型",
+        "chunkSize": "分块大小",
+        "chunkOverlap": "分块重叠",
+        "placeholder": {
+          "name": "请输入知识库名称",
+          "code": "唯一编码，用于接口识别，如 jffast_manual",
+          "embeddingModel": "如 text-embedding-3-small",
+          "description": "请输入描述"
+        },
+        "alert": {
+          "tips1": "本模块只负责知识库与文档的",
+          "tipsStrong": "存储管理",
+          "tips2": "，不包含大模型调用能力。"
+        },
+        "message": {
+          "confirmDelete": "确定删除该知识库吗？"
+        }
+      },
+      "document": {
+        "title": "文档标题",
+        "contentType": "内容类型",
+        "sourceType": "来源类型",
+        "source": "来源",
+        "sourceUrl": "来源URL",
+        "filePath": "文件路径",
+        "chunkCount": "分块数",
+        "chunkCountForm": "分块数量",
+        "tokenCount": "Token 数",
+        "content": "文档内容",
+        "contentTypeMap": {
+          "text": "纯文本",
+          "markdown": "Markdown",
+          "html": "HTML",
+          "pdf": "PDF"
+        },
+        "sourceTypeMap": {
+          "manual": "手动录入",
+          "file": "文件导入",
+          "url": "URL 抓取",
+          "api": "接口同步"
+        },
+        "placeholder": {
+          "title": "请输入文档标题",
+          "kb": "请选择知识库",
+          "sourceUrl": "来源为 url 时填写",
+          "filePath": "来源为 file 时填写",
+          "content": "请输入文档内容"
+        },
+        "message": {
+          "confirmDelete": "确定删除该文档吗？"
+        }
+      },
+      "conversation": {
+        "title": "对话标题",
+        "model": "模型",
+        "tips": "对话记录为只读数据，由问答过程自动写入；此处仅提供查询与清理。",
+        "messageTitle": "对话消息 - {title}",
+        "emptyMessages": "暂无消息",
+        "viewMessages": "查看消息",
+        "roleMap": {
+          "user": "用户",
+          "assistant": "助手",
+          "system": "系统"
+        },
+        "placeholder": {
+          "title": "请输入对话标题"
+        },
+        "message": {
+          "loadFail": "消息加载失败",
+          "confirmDelete": "确定删除该对话及其消息吗？"
+        }
+      }
+    },
+    "demo": {
+      "common": {
+        "recommend": "推荐",
+        "isRecommend": "是否推荐",
+        "price": "价格",
+        "score": "评分",
+        "quantity": "数量",
+        "priority": "优先级",
+        "tags": "标签",
+        "content": "内容",
+        "icon": "图标",
+        "image": "图片",
+        "url": "链接地址",
+        "publishTime": "发布时间",
+        "startDate": "开始日期",
+        "endDate": "结束日期",
+        "statusMap": {
+          "enabled": "启用",
+          "disabled": "禁用"
+        },
+        "typeMap": {
+          "a": "类型A",
+          "b": "类型B",
+          "c": "类型C"
+        },
+        "placeholder": {
+          "title": "请输入标题",
+          "type": "请选择类型",
+          "tags": "多个标签用逗号分隔",
+          "email": "请输入邮箱",
+          "phone": "请输入手机号",
+          "icon": "请输入图标地址",
+          "url": "请输入链接地址",
+          "description": "请输入描述",
+          "content": "请输入内容",
+          "remark": "请输入备注"
+        },
+        "message": {
+          "enabled": "已启用",
+          "disabled": "已禁用"
+        }
+      },
+      "demoTenantExample": {
+        "tenantId": "租户 ID",
+        "tips": "租户隔离示例：Base 版租户拦截仅预留，本页表现为普通 CRUD。"
+      },
+      "leaveApplication": {
+        "applicant": "申请人",
+        "leaveType": "请假类型",
+        "duration": "时长(天)",
+        "durationLabel": "请假时长",
+        "reason": "请假原因",
+        "startTime": "开始时间",
+        "endTime": "结束时间",
+        "approver": "审批人",
+        "approveTime": "审批时间",
+        "unknown": "未知",
+        "leaveTypeMap": {
+          "annual": "年假",
+          "sick": "事假",
+          "personal": "病假",
+          "maternity": "产假",
+          "other": "其他"
+        },
+        "statusMap": {
+          "pending": "待审批",
+          "approved": "已通过",
+          "rejected": "已拒绝",
+          "canceled": "已撤回"
+        },
+        "placeholder": {
+          "applicant": "请输入申请人",
+          "leaveType": "请选择请假类型",
+          "startTime": "请选择开始时间",
+          "endTime": "请选择结束时间",
+          "duration": "请输入请假天数",
+          "reason": "请输入请假原因"
+        },
+        "rules": {
+          "duration": "请输入请假时长"
+        }
+      },
+      "showcase": {
+        "title": "组件示例 Component Showcase",
+        "desc": "本页集中演示 jffast 后台模板实际使用的全部 TDesign 组件及共享业务组件，每个组件均提供「可运行的实时示例」+「可一键复制的代码片段」，方便照着做。",
+        "navTitle": "组件分类",
+        "viewCode": "查看代码",
+        "copied": "✓ 已复制",
+        "menu": {
+          "layout": "布局 Layout",
+          "form": "表单 Form",
+          "data": "数据展示 Data",
+          "feedback": "反馈 Feedback",
+          "nav": "导航 Navigation",
+          "shared": "共享组件 Shared"
+        },
+        "section": {
+          "layout": "布局 Layout",
+          "form": "表单 Form",
+          "data": "数据展示 Data Display",
+          "feedback": "反馈 Feedback",
+          "nav": "导航 Navigation",
+          "shared": "共享自定义组件 Shared"
+        },
+        "word": {
+          "default": "默认",
+          "success": "成功",
+          "warning": "警告",
+          "danger": "危险",
+          "primary": "主要",
+          "error": "错误"
+        },
+        "layout": {
+          "cardGridTitle": "t-row / t-col 栅格",
+          "cardGridTag": "24 栅格",
+          "cardCardTitle": "t-card 卡片",
+          "cardSpaceTitle": "t-space 间距",
+          "cardDividerTitle": "t-divider 分割线",
+          "basicCard": "基础卡片",
+          "cardDesc": "卡片用于承载一组相关信息，是后台最常用的内容容器。",
+          "cardDescShort": "卡片用于承载一组相关信息。",
+          "button1": "按钮一",
+          "button2": "按钮二",
+          "button3": "按钮三",
+          "dividerCenter": "居中文字分割线",
+          "dividerLeft": "左对齐"
+        },
+        "form": {
+          "cardInputTitle": "t-input 输入框",
+          "cardTextareaTitle": "t-textarea 多行文本",
+          "cardSelectTitle": "t-select 下拉选择",
+          "cardRadioTitle": "t-radio-group 单选",
+          "cardCheckboxTitle": "t-checkbox-group 多选",
+          "cardSwitchTitle": "t-switch 开关",
+          "cardNumberTitle": "t-input-number 数字输入",
+          "cardDateTitle": "t-date-picker 日期选择",
+          "cardRangeTitle": "t-date-range-picker 日期范围",
+          "cardTreeTitle": "t-tree-select 树选择",
+          "cardUploadTitle": "t-upload 上传",
+          "cardFormTitle": "t-form 表单容器（含校验）",
+          "placeholderDesc": "请输入描述",
+          "option1": "选项一",
+          "option2": "选项二",
+          "radioButton": "按钮样式",
+          "fruitApple": "苹果",
+          "fruitBanana": "香蕉",
+          "fruitOrange": "橙子",
+          "currentValue": "当前值：{v}",
+          "datePlaceholder": "选择日期",
+          "uploadBtn": "选择文件",
+          "selected": "已选：{name}",
+          "selectedFile": "已选择文件",
+          "age": "年龄",
+          "userNameRequired": "用户名必填",
+          "ageRequired": "年龄必填",
+          "validatePass": "校验通过，可提交！",
+          "validateFail": "校验未通过",
+          "submitSuccessSample": "提交成功（示例）",
+          "selectOptionA": "选项 A",
+          "selectOptionB": "选项 B",
+          "selectOptionC": "选项 C",
+          "cityShanghai": "上海",
+          "districtHuangpu": "黄浦区",
+          "districtXuhui": "徐汇区",
+          "cityBeijing": "北京",
+          "districtChaoyang": "朝阳区",
+          "districtHaidian": "海淀区"
+        },
+        "data": {
+          "cardTableTitle": "t-table 表格",
+          "cardEnhancedTitle": "t-enhanced-table 增强表格（含分页）",
+          "cardDescTitle": "t-descriptions 描述列表",
+          "cardTagTitle": "t-tag 标签",
+          "cardAlertTitle": "t-alert 警告提示",
+          "cardEmptyTitle": "t-empty 空状态",
+          "cardResultTitle": "t-result 结果页",
+          "cardThumbnailTitle": "thumbnail 图片缩略图（共享组件）",
+          "cardColorTitle": "color 颜色展示（共享组件，展示型）",
+          "descTitle": "用户信息",
+          "alertInfo": "这是一条信息提示",
+          "alertWarning": "这是一条警告提示",
+          "alertWarningShort": "这是一条警告",
+          "alertSuccess": "操作已成功",
+          "empty": "暂无数据",
+          "resultTitle": "提交成功",
+          "resultSubtitle": "您的申请已受理",
+          "currentColor": "当前颜色：{v}",
+          "role": "角色",
+          "dept": "部门",
+          "deptRd": "研发中心",
+          "user1": "张三",
+          "user2": "李四",
+          "user3": "王五",
+          "roleAdmin": "管理员",
+          "roleEditor": "编辑",
+          "roleVisitor": "访客",
+          "stateDisabled": "禁用",
+          "sampleImage": "示例图片"
+        },
+        "feedback": {
+          "cardDialogTitle": "t-dialog 对话框",
+          "cardLoadingTitle": "t-loading 加载",
+          "cardMessageTitle": "MessagePlugin 消息",
+          "cardNotifyTitle": "NotifyPlugin 通知",
+          "openDialog": "打开对话框",
+          "dialogHeader": "示例对话框",
+          "dialogBody": "这是对话框的正文内容，可用于确认操作、表单录入等场景。",
+          "dialogBodySample": "对话框正文内容。",
+          "start": "开始",
+          "stop": "停止",
+          "loadSuffix": "加载",
+          "msgSuccess": "操作成功",
+          "msgWarning": "请注意",
+          "msgError": "出错了",
+          "notifyInfoTitle": "通知",
+          "notifyInfoContent": "这是一条通知消息",
+          "notifyInfoContentSample": "这是一条通知",
+          "notifyInfoBtn": "信息通知",
+          "notifySuccessBtn": "成功通知"
+        },
+        "navigation": {
+          "cardTabsTitle": "t-tabs 选项卡",
+          "cardLinkTitle": "t-link 链接",
+          "cardPaginationTitle": "t-pagination 分页",
+          "tab1": "选项卡一",
+          "tab2": "选项卡二",
+          "tab3": "选项卡三",
+          "content1": "内容一",
+          "content2": "内容二",
+          "content3": "内容三",
+          "linkPrimary": "主要链接",
+          "linkSuccess": "成功链接",
+          "linkUnderline": "带下划线",
+          "switchTo": "切换到：{val}"
+        },
+        "shared": {
+          "sectionDesc": "以下为 jffast 框架内置的共享业务组件（位于 @/components），开箱即用。",
+          "treeSelectTitle": "DeptUserTreeSelect 部门人员树选择",
+          "langTitle": "LanguageSwitcher 语言切换",
+          "personPlaceholder": "请选择人员",
+          "selectedValue": "选中值：{v}",
+          "langTip": "点击下拉可切换中 / 英文（基于 i18n）",
+          "treeSelectComment": "支持 modelValue / multiple / onlyLeaf / placeholder / lazy"
+        }
+      }
+    }
+  }
+}

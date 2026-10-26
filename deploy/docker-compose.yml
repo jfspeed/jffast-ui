@@ -1,0 +1,51 @@
+# jffast 前端栈：nginx 托管 dist + 反代后端
+#
+# 与后端的关系：**两个仓各自独立编排，不互相引用**。
+#   - 本文件只管前端（jffast-ui 仓库内自足）
+#   - 后端见 jffast/deploy/docker-compose.yml
+#   - 两者通过外部网络 jffast-net 互通，本服务用服务名 backend 反代
+# 因此首次启动前先建一次网络（后端栈也复用它，只需建一次）：
+#   docker network create jffast-net
+#
+# 用法：
+#   cp deploy/.env.example deploy/.env     # 填 VITE_RSA_PUBLIC_KEY
+#   docker compose -f deploy/docker-compose.yml --env-file deploy/.env up -d --build
+#
+# image + build 同时存在是有意的：本地编译或直接用预构建镜像共用同一份编排。
+#
+# ⚠ name 必须显式设置：compose 的默认项目名 = 编排文件所在目录名，本文件与后端
+#   jffast/deploy/docker-compose.yml 都在 `deploy/` ⇒ 项目名同为 `deploy`，
+#   前端这边 `down --remove-orphans` 会把后端栈的容器当孤儿删掉。名字需全机唯一：
+#   Docker 的容器名 / `container_name` 本就是全局的，各项目请各自取名，勿复用本值。
+name: jffast-ui
+
+services:
+  web:
+    image: ${WEB_IMAGE:-jffast-web:latest}
+    build:
+      context: ..
+      dockerfile: Dockerfile
+      args:
+        # 构建期变量（烘焙进 dist，运行时改无效）
+        VITE_RSA_PUBLIC_KEY: ${VITE_RSA_PUBLIC_KEY:?VITE_RSA_PUBLIC_KEY is required, generate with jffast/deploy/gen-rsa.sh}
+        VITE_API_URL: ${VITE_API_URL:-/jffast-api}
+        VITE_BASE_URL: ${VITE_BASE_URL:-/}
+        VITE_ENABLE_MULTI_TENANT: ${VITE_ENABLE_MULTI_TENANT:-false}
+    container_name: jffast-web
+    restart: unless-stopped
+    environment:
+      # 运行时变量（容器启动时渲染进 nginx.conf）
+      BACKEND_UPSTREAM: ${BACKEND_UPSTREAM:-http://backend:7200}
+      API_PREFIX: ${API_PREFIX:-/jffast-api}
+      # Docker 内嵌 DNS：宿主机为 127.0.0.11（自定义网络下可用，jffast-net 满足）。
+      # 单独部署到 K8s 时改成集群 DNS（例如 10.96.0.10）
+      RESOLVER: ${RESOLVER:-127.0.0.11}
+    ports:
+      - "${WEB_HOST_PORT:-7201}:80"
+    networks:
+      - jffast-net
+
+networks:
+  jffast-net:
+    external: true
+    name: ${JFFAST_NETWORK:-jffast-net}
