@@ -58,6 +58,9 @@ limitations under the License.
           <t-button v-permission="'system:log:view'" theme="success" :loading="exporting" @click="handleExport">{{
             t('common.export')
           }}</t-button>
+          <t-button v-permission="'system:log:delete'" theme="danger" variant="outline" @click="openCleanDialog">
+            {{ t('pages.system.log.clean') }}
+          </t-button>
         </t-form-item>
       </t-form>
     </t-card>
@@ -77,11 +80,25 @@ limitations under the License.
         />
       </div>
     </t-card>
+
+    <!-- 清理历史日志：后端 SysLogController#clean（DELETE /sys/log/clean?days=），
+         权限 system:log:delete；此前后端与菜单种子都有，前端没有入口，能力等于半残 -->
+    <t-dialog
+      v-model:visible="cleanDialogVisible"
+      :header="t('pages.system.log.message.cleanConfirmHeader')"
+      :confirm-btn="{ content: t('common.confirm'), loading: cleaning, onClick: handleClean }"
+      @close="cleanDialogVisible = false"
+    >
+      <p>{{ t('pages.system.log.message.cleanConfirmTip') }}</p>
+      <t-form-item :label="t('pages.system.log.message.daysLabel')">
+        <t-input-number v-model="cleanDays" :min="1" :max="3650" :step="30" style="width: 200px" />
+      </t-form-item>
+    </t-dialog>
   </div>
 </template>
 <script lang="ts" setup>
 import type { PrimaryTableCol } from 'tdesign-vue-next';
-import { Tag } from 'tdesign-vue-next';
+import { MessagePlugin, Tag } from 'tdesign-vue-next';
 import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -93,6 +110,34 @@ const { t } = useI18n();
 const dateRange = ref([]);
 const titleOptions = ref([]);
 const exporting = ref(false);
+
+// 清理历史日志（后端 SysLogController#clean，权限 system:log:delete）
+const cleanDialogVisible = ref(false);
+const cleanDays = ref(90);
+const cleaning = ref(false);
+
+const openCleanDialog = () => {
+  cleanDialogVisible.value = true;
+};
+
+const handleClean = async () => {
+  cleaning.value = true;
+  try {
+    const res = await api.log.cleanLog(cleanDays.value);
+    if (res?.code === 200) {
+      MessagePlugin.success(t('pages.system.log.message.cleanSuccess'));
+      cleanDialogVisible.value = false;
+      fetchData();
+    } else {
+      MessagePlugin.error(res?.message || t('pages.system.log.message.cleanFail'));
+    }
+  } catch (e) {
+    const msg = e instanceof Error ? e.message : t('pages.system.log.message.cleanFail');
+    MessagePlugin.error(msg);
+  } finally {
+    cleaning.value = false;
+  }
+};
 
 const handleExport = async () => {
   exporting.value = true;

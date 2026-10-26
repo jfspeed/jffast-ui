@@ -70,7 +70,7 @@ limitations under the License.
       <t-col :span="12">
         <t-card :title="t('pages.system.cache.cacheOpsTitle')" class="cache-card">
           <div class="cache-actions">
-            <t-button theme="primary" @click="handleClearAll">
+            <t-button v-permission="'system:cache:delete'" theme="primary" @click="handleClearAll">
               {{ t('pages.system.cache.clearAll') }}
             </t-button>
             <t-button theme="default" @click="fetchData">
@@ -85,7 +85,13 @@ limitations under the License.
             </div>
             <div v-for="name in cacheNames" :key="name" class="cache-item" @click="handleSelectCache(name)">
               <span class="cache-name">{{ name }}</span>
-              <t-button theme="danger" variant="text" size="small" @click.stop="handleClearCache(name)">
+              <t-button
+                v-permission="'system:cache:delete'"
+                theme="danger"
+                variant="text"
+                size="small"
+                @click.stop="handleClearCache(name)"
+              >
                 {{ t('pages.system.cache.clear') }}
               </t-button>
             </div>
@@ -104,7 +110,13 @@ limitations under the License.
     >
       <t-table :data="cacheKeys" :columns="keyColumns" bordered size="small">
         <template #operation="{ row }">
-          <t-button theme="danger" variant="text" size="small" @click="handleDeleteKey(row)">
+          <t-button
+            v-permission="'system:cache:delete'"
+            theme="danger"
+            variant="text"
+            size="small"
+            @click="handleDeleteKey(row)"
+          >
             {{ t('common.delete') }}
           </t-button>
         </template>

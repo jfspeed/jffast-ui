@@ -97,10 +97,12 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
   const env = loadEnv(mode, CWD);
   const { VITE_BASE_URL, VITE_API_URL = '/jffast-api', VITE_PROXY_TARGET = 'http://localhost:7200' } = env;
 
-  // 仅 release 构建强制校验 RSA 公钥：build:test / build:prod 属于内部环境打包，
-  // 走 .env 里的配置即可，不应被 release 专属的「必须注入自有公钥」要求挡住
-  // （此前条件是 command === 'build'，导致 npm run build:test 必然失败）。
-  if (command === 'build' && mode === 'release') {
+  // 除 test 外的**所有**构建都要强制校验 RSA 公钥。
+  // 此前条件是 `mode === 'release'`，于是 `vite build --mode production` 完全绕过检查 ⇒
+  // 产物里没有公钥 ⇒ 登录只能走明文密码分支。仓里还留着一份无人读取的 .env.production
+  // 死配置，更容易让人以为"生产就该用 production 模式"。该死配置已删除，这里同时堵上口子。
+  // test 档（npm run build:test）属于内部环境打包，走 .env 里的配置即可，不被挡住。
+  if (command === 'build' && mode !== 'test') {
     assertRsaPublicKeyForBuild(mode, env.VITE_RSA_PUBLIC_KEY);
   }
 

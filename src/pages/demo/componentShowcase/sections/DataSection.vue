@@ -53,12 +53,17 @@ limitations under the License.
     </demo-card>
 
     <demo-card :title="t('pages.demo.showcase.data.cardResultTitle')" :code="resultCode">
-      <t-result
-        theme="success"
-        :title="t('pages.demo.showcase.data.resultTitle')"
-        :subtitle="t('pages.demo.showcase.data.resultSubtitle')"
-        style="padding: 16px 0"
-      />
+      <!--
+        ⚠️ 这里**不能**用 <t-result>：本仓锁定的 tdesign-vue-next 1.20.9 根本没有 Result 组件
+        （node_modules/tdesign-vue-next/es/components.mjs 的导出里没有它），
+        写了只会解析失败、渲染成一个空的未知元素——页面看着"少了一块"，却没有任何报错。
+        这里用确实存在的 t-icon + 文本组合出同样的"结果态"展示。
+      -->
+      <div class="result-block">
+        <t-icon name="check-circle" size="48px" style="color: var(--td-success-color)" />
+        <div class="result-block__title">{{ t('pages.demo.showcase.data.resultTitle') }}</div>
+        <div class="result-block__subtitle">{{ t('pages.demo.showcase.data.resultSubtitle') }}</div>
+      </div>
     </demo-card>
 
     <demo-card :title="t('pages.demo.showcase.data.cardThumbnailTitle')" tag="shared" :code="thumbnailCode">
@@ -112,7 +117,11 @@ const emptyCode = computed(() => `<t-empty description="${t('pages.demo.showcase
 
 const resultCode = computed(
   () =>
-    `<t-result theme="success" title="${t('pages.demo.showcase.data.resultTitle')}" subtitle="${t('pages.demo.showcase.data.resultSubtitle')}" />`,
+    `<div class="result-block">
+  <t-icon name="check-circle" size="48px" style="color: var(--td-success-color)" />
+  <div class="result-block__title">${t('pages.demo.showcase.data.resultTitle')}</div>
+  <div class="result-block__subtitle">${t('pages.demo.showcase.data.resultSubtitle')}</div>
+</div>`,
 );
 
 const thumbnailCode = `<thumbnail :src="imgUrl" />`;
@@ -165,5 +174,24 @@ const pickColor = ref('#0052d9');
 .section-title {
   margin: 8px 0 16px;
   font-size: 20px;
+}
+
+.result-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 0;
+  text-align: center;
+
+  &__title {
+    font: var(--td-font-title-large);
+    color: var(--td-text-color-primary);
+  }
+
+  &__subtitle {
+    font: var(--td-font-body-medium);
+    color: var(--td-text-color-secondary);
+  }
 }
 </style>

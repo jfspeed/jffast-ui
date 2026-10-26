@@ -82,6 +82,7 @@ import { useI18n } from 'vue-i18n';
 
 import api from '@/api/ai';
 import { useTable } from '@/hooks/useTable';
+import { hasPermission } from '@/utils/permission';
 
 const { t } = useI18n();
 
@@ -153,27 +154,34 @@ const columns = computed<any[]>(() => [
     width: 180,
     align: 'center',
     fixed: 'right',
-    cell: (h: any, { row }: any) =>
-      h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, [
-        h('a', { onClick: () => openMessages(row) }, t('pages.ai.conversation.viewMessages')),
-        h(
-          'a',
-          {
-            style: 'color:var(--td-error-color)',
-            onClick: () => {
-              const confirmDia = DialogPlugin.confirm({
-                header: t('common.tips'),
-                body: t('pages.ai.conversation.message.confirmDelete'),
-                onConfirm: () => {
-                  confirmDia.destroy();
-                  handleDelete(row);
-                },
-              });
+    cell: (h: any, { row }: any) => {
+      const btns = [];
+      // 权限码与后端 @SaCheckPermission 逐条对齐：删除=ai:conversation:delete
+      // （新增 ai:conversation:add 由 AI 对话链路调用，本页没有「新建会话」入口）
+      btns.push(h('a', { onClick: () => openMessages(row) }, t('pages.ai.conversation.viewMessages')));
+      if (hasPermission('ai:conversation:delete')) {
+        btns.push(
+          h(
+            'a',
+            {
+              style: 'color:var(--td-error-color)',
+              onClick: () => {
+                const confirmDia = DialogPlugin.confirm({
+                  header: t('common.tips'),
+                  body: t('pages.ai.conversation.message.confirmDelete'),
+                  onConfirm: () => {
+                    confirmDia.destroy();
+                    handleDelete(row);
+                  },
+                });
+              },
             },
-          },
-          t('common.delete'),
-        ),
-      ]),
+            t('common.delete'),
+          ),
+        );
+      }
+      return h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, btns);
+    },
   },
 ]);
 
@@ -227,7 +235,9 @@ onMounted(async () => {
     padding: 10px 12px;
     border-radius: 6px;
     white-space: pre-wrap;
-    word-break: break-word;
+    // `word-break: break-word` 是已废弃的别名（等价于 word-break: normal + overflow-wrap: break-word），
+    // stylelint 的 declaration-property-value-keyword-no-deprecated 会拦它
+    overflow-wrap: break-word;
     line-height: 1.6;
   }
 }

@@ -31,6 +31,11 @@
 
 ### 修复
 
+- **按钮级权限码没有前端入口（19 个）**：种子 `sys_menu.perms` 有、后端 `@SaCheckPermission` 有，**前端却没有任何门控** —— 按钮对所有人显示，点下去被服务端 403，用户只看到一句"接口失败"。本次补齐：`demo:example:update|delete`（含批量删除与状态开关）、`demo:tenant-example:edit|delete`、`demo:leave:view|edit|delete`、`ai:document:edit|delete`、`ai:conversation:delete`、`system:config:update|delete`、`system:cache:delete`（清空全部 / 清空单个 / 删除键三处）、`system:oauth2client:update|delete|token`、`system:notification:template:view`；权限码与后端注解**逐条对齐**（oauth2 的「清除令牌缓存」复用后端的 `update` 权限）
+- **系统日志「清理历史日志」没有入口**：后端 `DELETE /sys/log/clean`（`SysLogController#clean`，权限 `system:log:delete`）与种子权限行都已就位，前端**既无 API 也无按钮** ⇒ 能力等于半残。补 `api.log.cleanLog(days)` 与「清理历史日志」对话框（可填保留天数，默认 90 天），按钮带 `v-permission="'system:log:delete'"`
+- **`<t-result>` 解析不到组件**：组件展示页用了 `<t-result>`，但本仓锁定的 `tdesign-vue-next 1.20.9` **没有 Result 组件**（其 `es/components.mjs` 导出表里没有）⇒ Vue 解析失败、只 `console.warn`，页面**少一块却没有任何报错**，编译 / 类型检查 / 单测全绿。改用确实存在的 `t-icon` + 文本组合出同样的结果态展示
+- **`--mode production` 绕过 RSA 公钥 fail-fast**：`vite.config.ts` 原先只在 `command === 'build' && mode === 'release'` 时校验公钥，于是 `vite build --mode production` 完全跳过 ⇒ 产物里没有公钥 ⇒ 登录只能走**明文密码**分支。而仓里还留着一份**无人读取**的 `.env.production`（只在 `--mode production` 生效，仓内没有任何脚本用这个 mode），更容易让人以为"生产就该用 production 模式"。删除该死配置，并把校验改为「除 test 外所有 build 都校验」
+- **i18n 死键清理**：中英两份语言包各 1581 个叶子键，其中 **534 个无人引用**（两个方向都不会坏，但中英副本会各自漂移、评审也看不出哪些还在用）。按「**全消费方并集**」清理——本包的语言文件被所有同源前端共用，只按本仓统计会把别的入口正在用的键当成死键删掉（实测就有一枚 Pro 登录页在用的键会被误删）；清理后两份各 1047 个叶子键、**零未使用**，且所有保留键的取值**一字未改**
 - 定时任务「查看日志」按钮零反应：`(window as any).$router?.push(...)` —— 本仓**从未给 `window.$router` 赋值**（应用走 `app.use(router)` → `globalProperties.$router` 与 `requireRouter()` 注入），可选链短路 ⇒ 点击无跳转、无报错；任务日志页读 query 的同一写法导致从任务页跳过来时 `jobName`/`jobGroup` 预筛选永远不生效。两处改用 `useRouter()` / `useRoute()`
 - 示例管理「导入」按钮不发请求：TDesign Upload 的 `onChange` 首参是**数组**（`onChange?: (value: Array<T>, context) => void`），原写法从首参解构 `{ file }` 恒为 `undefined` ⇒ 直接 return、永远不发请求且无任何提示。改为取数组首项的 `.raw`（与用户导入页同写法）
 - BPMN 选文件完全失效：TDesign Upload **没有 `select` 事件**（emits 只有 `onChange` / `onSelectChange`），`@select` 被当作原生 DOM 事件落到根 `<div>`，选文件时永不触发；且形参期望 `{ files }` 而 `onChange` 给的是数组。流程定义部署弹窗与流程设计器的「导入BPMN」两处改为 `@change` + 取 `files[0].raw` —— **流程设计器此前无法导入任何 BPMN**

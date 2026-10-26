@@ -69,6 +69,7 @@ import { useI18n } from 'vue-i18n';
 
 import api from '@/api/system';
 import { useTable } from '@/hooks/useTable';
+import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
@@ -98,27 +99,35 @@ const columns = computed<PrimaryTableCol[]>(() => [
     width: 120,
     align: 'center',
     fixed: 'right',
-    cell: (h, { row }) =>
-      h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, [
-        h('a', { onClick: () => edit(row) }, t('common.edit')),
-        h(
-          'a',
-          {
-            style: 'color:var(--td-error-color)',
-            onClick: () => {
-              const confirmDia = DialogPlugin.confirm({
-                header: t('common.tips'),
-                body: t('common.confirmDelete'),
-                onConfirm: () => {
-                  confirmDia.destroy();
-                  handleDelete(row);
-                },
-              });
+    cell: (h, { row }) => {
+      const btns = [];
+      // 权限码与后端 @SaCheckPermission 逐条对齐：修改=system:config:update / 删除=system:config:delete
+      if (hasPermission('system:config:update')) {
+        btns.push(h('a', { onClick: () => edit(row) }, t('common.edit')));
+      }
+      if (hasPermission('system:config:delete')) {
+        btns.push(
+          h(
+            'a',
+            {
+              style: 'color:var(--td-error-color)',
+              onClick: () => {
+                const confirmDia = DialogPlugin.confirm({
+                  header: t('common.tips'),
+                  body: t('common.confirmDelete'),
+                  onConfirm: () => {
+                    confirmDia.destroy();
+                    handleDelete(row);
+                  },
+                });
+              },
             },
-          },
-          t('common.delete'),
-        ),
-      ]),
+            t('common.delete'),
+          ),
+        );
+      }
+      return h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, btns);
+    },
   },
 ]);
 

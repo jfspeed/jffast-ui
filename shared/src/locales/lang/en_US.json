@@ -1,23 +1,15 @@
 {
-  "lang": "English",
   "common": {
     "appName": "jffast Admin",
-    "copyright": "Copyright @ 2021-2026 JP Fast Admin. All Rights Reserved",
-    "conjunction": "and",
     "admin": "admin",
     "add": "Add",
-    "create": "Create",
     "edit": "Edit",
     "delete": "Delete",
-    "remove": "Remove",
-    "search": "Search",
     "reset": "Reset",
     "query": "Query",
     "export": "Export",
     "import": "Import",
     "download": "Download",
-    "upload": "Upload",
-    "save": "Save",
     "cancel": "Cancel",
     "confirm": "Confirm",
     "submit": "Submit",
@@ -39,14 +31,10 @@
     "addSuccess": "Added successfully",
     "updateSuccess": "Updated successfully",
     "saveSuccess": "Saved successfully",
-    "saveFail": "Save failed",
-    "clear": "Clear",
     "clearSuccess": "Cleared successfully",
     "clearFail": "Clear failed",
     "copy": "Copy",
     "copySuccess": "Copied successfully",
-    "copyFail": "Copy failed",
-    "enable": "Enable",
     "disable": "Disable",
     "disabled": "Disabled",
     "normal": "Normal",
@@ -65,7 +53,6 @@
     "phone": "Phone",
     "email": "Email",
     "createTime": "Create Time",
-    "updateTime": "Update Time",
     "operateFail": "Operation failed",
     "dialogCancel": "Cancel",
     "dialogSave": "Save",
@@ -78,46 +65,8 @@
     "uploadFail": "Upload failed"
   },
   "components": {
-    "isSetup": {
-      "on": "Enabled",
-      "off": "Disabled"
-    },
-    "manage": "Manage",
-    "delete": "Delete",
-    "deleteSuccess": "Deleted successfully",
     "copySuccess": "Copied successfully",
-    "copyFail": "Copy failed",
-    "submitSuccess": "Submitted successfully",
-    "commonTable": {
-      "contractName": "Name",
-      "contractStatus": "Status",
-      "contractNum": "Number",
-      "contractType": "Type",
-      "contractPayType": "Pay Type",
-      "contractAmount": "Amount",
-      "contractNamePlaceholder": "enter contract name",
-      "contractStatusPlaceholder": "enter contract status",
-      "contractNumPlaceholder": "enter contract number",
-      "contractTypePlaceholder": "enter contract type",
-      "operation": "Operation",
-      "detail": "detail",
-      "delete": "delete",
-      "placeholder": "please enter to search",
-      "contractStatusEnum": {
-        "fail": "fail",
-        "audit": "audit",
-        "executing": "executing",
-        "pending": "pending",
-        "finish": "finish"
-      },
-      "contractTypeEnum": {
-        "main": "main",
-        "sub": "sub",
-        "supplement": "supplement"
-      },
-      "reset": "reset",
-      "query": "query"
-    }
+    "copyFail": "Copy failed"
   },
   "layout": {
     "header": {
@@ -130,26 +79,15 @@
     "notice": {
       "title": "Notification Center",
       "clear": "Clear",
-      "setRead": "Set Read",
       "empty": "Empty",
       "emptyNotice": "No Notice",
       "viewAll": "View All",
       "tabAll": "All",
       "tabUnread": "Unread",
       "emptyUnread": "No unread notifications",
-      "emptyByType": "No {type}",
       "connected": "Realtime push connected",
       "disconnected": "Realtime push disconnected",
-      "from": "From {sender}",
-      "justNow": "Just now",
-      "minutesAgo": "{n} min ago",
-      "hoursAgo": "{n} h ago",
-      "daysAgo": "{n} d ago",
-      "type": {
-        "system": "System",
-        "biz": "Business",
-        "flow": "Workflow"
-      }
+      "justNow": "Just now"
     },
     "tagTabs": {
       "closeOther": "close other",
@@ -158,9 +96,6 @@
       "refresh": "refresh"
     },
     "searchPlaceholder": "Enter search content",
-    "search": {
-      "placeholder": "Enter search content"
-    },
     "setting": {
       "title": "Setting",
       "theme": {
@@ -186,49 +121,12 @@
       },
       "tips": "Please copy and manually modify the configuration file: /src/config/style.ts",
       "copy": {
-        "title": "Copy",
-        "success": "copied",
-        "fail": "fail to copy"
-      }
-    }
-  },
-  "constants": {
-    "contract": {
-      "name": "Name",
-      "status": "Status",
-      "num": "Number",
-      "type": "Type",
-      "typePlaceholder": "Please enter type",
-      "payType": "Pay Type",
-      "amount": "Amount",
-      "amountPlaceholder": "Please enter amount",
-      "signDate": "Sign Date",
-      "effectiveDate": "Effective Date",
-      "endDate": "End Date",
-      "createDate": "Create Date",
-      "attachment": "Attachment",
-      "company": "Company",
-      "employee": "Employee",
-      "pay": "pay",
-      "receive": "received",
-      "remark": "remark",
-      "statusOptions": {
-        "fail": "Failure",
-        "auditPending": "Pending audit",
-        "execPending": "Pending performance",
-        "executing": "Successful",
-        "finish": "Finish"
-      },
-      "typeOptions": {
-        "main": "Master contract",
-        "sub": "Subcontract",
-        "supplement": "Supplementary contract"
+        "title": "Copy"
       }
     }
   },
   "pages": {
     "dashboardBase": {
-      "title": "Overview Dashboard",
       "stats": {
         "userCount": "Total Users",
         "todayLogCount": "Today Ops",
@@ -261,490 +159,10 @@
         "loadStats": "Failed to load stats",
         "loadLogs": "Failed to load recent logs",
         "loadTrend": "Failed to load trend"
-      },
-      "outputOverview": {
-        "title": "In/Out Overview",
-        "subtitle": "(pieces)",
-        "export": "Export data",
-        "month": {
-          "input": "Total in store this month",
-          "output": "Total out store this month"
-        },
-        "since": "Since last week"
-      },
-      "rankList": {
-        "title": "Sales order ranking",
-        "week": "This week",
-        "month": "Latest 3 months",
-        "info": "Detail"
-      },
-      "topPanel": {
-        "card1": "Total Revenue",
-        "card2": "Total Refund",
-        "card3": "Active User(s)",
-        "card4": "Generate Order(s)",
-        "cardTips": "since last week",
-        "analysis": {
-          "title": "Analysis Data",
-          "unit": "ten thousand yuan",
-          "series1": "this month",
-          "series2": "last month",
-          "channels": "Sales Channels",
-          "channel1": "online",
-          "channel2": "shop",
-          "channelTips": " sales ratio"
-        }
-      },
-      "saleColumns": {
-        "index": "Ranking",
-        "productName": "Customer",
-        "growUp": "Grow up",
-        "count": "Count",
-        "operation": "Operation"
-      },
-      "buyColumns": {
-        "index": "Ranking",
-        "productName": "Supplier",
-        "growUp": "Grow up",
-        "count": "Count",
-        "operation": "Operation"
-      },
-      "saleTend": {
-        "item1": "State Grid Corporation of China",
-        "item2": "Shenzhen Gas Group Co., Ltd",
-        "item3": "State Administration of Tobacco Monopoly",
-        "item4": "China Telecom Group Co., Ltd",
-        "item5": "China Mobile Communications Group Co., Ltd",
-        "item6": "Xinyu City Office Supplies Procurement Project"
-      },
-      "buyTend": {
-        "item1": "Huawei Technologies Co., Ltd",
-        "item2": "Darunfa Co., Ltd",
-        "item3": "Sichuan Haidilao Co., Ltd",
-        "item4": "Sony (China) Co., Ltd",
-        "item5": "Panasonic Electronics (China) Co., Ltd",
-        "item6": "Xinyu City Office Supplies Procurement Project"
-      }
-    },
-    "dashboardDetail": {
-      "topPanel": {
-        "title": "Purchase applications for this month",
-        "quarter": "Quarter on quarter",
-        "paneList": {
-          "totalRequest": "Apply count",
-          "suppliers": "Number of Suppliers",
-          "productCategory": "Product Category",
-          "applicant": "Number of Application",
-          "completionRate": "Completion Rate(%)",
-          "arrivalRate": "Arrival Rate(%)"
-        }
-      },
-      "procurement": {
-        "title": "Trends in purchase requisitions for goods",
-        "goods": {
-          "cup": "cup",
-          "tea": "tea",
-          "honey": "honey",
-          "flour": "flour",
-          "coffeeMachine": "coffee machine",
-          "massageMachine": "massage machine"
-        }
-      },
-      "ssl": "SSL certificate",
-      "sslDescription": "SSL certificate, also known as a server certificate, is a digital certificate that authenticates the identity of a website and encrypts information sent to the server using SSL technology.",
-      "satisfaction": {
-        "title": "distribution of satisfaction levels for purchased goods",
-        "export": "export data"
-      },
-      "chart": {
-        "week1": "MON",
-        "week2": "TUE",
-        "week3": "WED",
-        "week4": "THU",
-        "week5": "FRI",
-        "week6": "SAT",
-        "week7": "SUN",
-        "max": "Max",
-        "min": "Min",
-        "thisMonth": "this month",
-        "lastMonth": "last month"
-      }
-    },
-    "detailBase": {
-      "baseInfo": {
-        "title": "Base Info"
-      },
-      "sampleData": {
-        "contractName": "Office Supplies Procurement Project",
-        "status": "In Progress",
-        "company": "Tencent Technology (Shenzhen) Co., Ltd",
-        "employee": "Osun",
-        "fileName": "Office Supplies Procurement Contract.pdf"
-      },
-      "changelog": {
-        "title": "Changelog",
-        "step1": {
-          "title": "upload file",
-          "subtitle": "subtitle"
-        },
-        "step2": {
-          "title": "modify contract amount",
-          "subtitle": "subtitle"
-        },
-        "step3": {
-          "title": "create contract",
-          "desc": "administrator"
-        }
-      }
-    },
-    "detailCard": {
-      "baseInfo": {
-        "title": "Base Info"
-      },
-      "invoice": {
-        "title": "Invoice Progress",
-        "step1": {
-          "title": "Apply",
-          "content": "The electronic invoice has been submitted on December 21st"
-        },
-        "step2": {
-          "title": "Electronic invoice",
-          "content": "expected to be processed within 1-3 business days."
-        },
-        "step3": {
-          "title": "Invoice is send",
-          "content": "we will contact you within 7 business days."
-        },
-        "step4": {
-          "title": "Finish"
-        }
-      },
-      "product": {
-        "title": "Product Category",
-        "add": "add production",
-        "month": "month",
-        "quarter": "quarter"
-      },
-      "detail": {
-        "title": "Product Procurement Detail",
-        "budgetExceeded": "Budget Exceeded",
-        "form": {
-          "applyNo": "Apply no",
-          "product": "Name",
-          "productNo": "No.",
-          "department": "Department",
-          "num": "Num",
-          "createTime": "Create time",
-          "operation": "Operation",
-          "manage": "manage",
-          "delete": "delete"
-        }
-      },
-      "products": {
-        "product1": {
-          "name": "MacBook Pro 2021",
-          "company": "Apple Inc.",
-          "size": "13.3 inches",
-          "cpu": "Apple M1",
-          "memory": "RAM 16GB",
-          "info": "Up to 16GB memory · Up to 2TB storage · Battery life up to 18 hours"
-        },
-        "product2": {
-          "name": "Surface Laptop Go",
-          "company": "Microsoft Corporation",
-          "size": "12.4 inches",
-          "cpu": "Core i7",
-          "memory": "RAM 16GB",
-          "info": "Surface regular use, up to 13 hours of battery life, work anytime"
-        }
-      }
-    },
-    "detailDeploy": {
-      "deployTrend": {
-        "title": "Deploy Trend",
-        "warning": "Warning",
-        "thisMonth": "this month",
-        "thisWeek": "this week",
-        "lastMonth": "last month",
-        "thisYear": "this year",
-        "lastYear": "last year",
-        "week1": "MON",
-        "week2": "TUE",
-        "week3": "WED",
-        "week4": "THU",
-        "week5": "FRI",
-        "week6": "SAT",
-        "week7": "SUN"
-      },
-      "projectList": {
-        "title": "Project List",
-        "dialog": {
-          "title": "Base Info"
-        },
-        "table": {
-          "name": "Name",
-          "admin": "Admin",
-          "createTime": "Create time",
-          "operation": "Operation",
-          "manage": "manage",
-          "delete": "delete"
-        }
-      },
-      "baseInfo": {
-        "clusterName": "Cluster Name",
-        "clusterId": "Cluster ID",
-        "status": "Status",
-        "running": "Running",
-        "k8sVersion": "K8S Version",
-        "config": "Config",
-        "region": "Region",
-        "guangzhou": "Guangzhou",
-        "project": "Resource Project",
-        "defaultProject": "Default Project",
-        "nodeCount": "Node Count",
-        "nodeNetwork": "Node Network",
-        "containerNetwork": "Container Network",
-        "clusterCredential": "Cluster Credential",
-        "showCredential": "Show Credential",
-        "createUpdate": "Create/Update",
-        "description": "Description"
-      }
-    },
-    "detailSecondary": {
-      "read": "Read",
-      "unread": "Unread",
-      "all": "All",
-      "setRead": "set as read",
-      "setUnread": "set as unread",
-      "delete": "delete",
-      "deleteConfirm": "Delete notification",
-      "deleteTip": "Confirm delete notification: {content}?",
-      "empty": "Empty"
-    },
-    "notification": {
-      "contract": "Contract Updates",
-      "invoice": "Invoice Updates",
-      "meeting": "Meeting Notification",
-      "msg1": "Building First Floor Renovation Project has passed audit!",
-      "msg2": "Third Quarter Raw Material Procurement Project invoicing successful!",
-      "msg3": "Meeting 【State Grid Offline Signing】at 2021-01-01 10:00 is about to start, please arrive at Conference Room 1 10 minutes early for check-in!",
-      "msg4": "First Quarter Raw Material Procurement Project invoicing successful!"
-    },
-    "formBase": {
-      "title": "Contract Info",
-      "contractName": "Name",
-      "contractNamePlaceholder": "Please enter contract name",
-      "contractStatus": "Status",
-      "contractNum": "Number",
-      "contractType": "Type",
-      "contractTypePlaceholder": "Please enter type",
-      "contractPayType": "Pay Type",
-      "contractAmount": "Amount",
-      "contractAmountPlaceholder": "Please enter amount",
-      "contractSignDate": "Sign Date",
-      "contractEffectiveDate": "Effective Date",
-      "contractEndDate": "End Date",
-      "company": "Company",
-      "employee": "Employee",
-      "pay": "pay",
-      "receive": "received",
-      "upload": "upload file",
-      "uploadFile": "upload contract file",
-      "uploadTips": "Please upload a PDF file, with a size limit of 60MB.",
-      "otherInfo": "Other Info",
-      "remark": "Remark",
-      "remarkPlaceholder": "please enter remark",
-      "notaryPublic": "Notary Public",
-      "fileSizeExceed": "File size cannot exceed 60MB",
-      "uploadFail": "Upload failed",
-      "confirm": "confirm",
-      "cancel": "cancel",
-      "validation": {
-        "name": "Please enter contract name",
-        "type": "Please select contract type",
-        "payment": "Please select payment type",
-        "amount": "Please enter amount",
-        "partyA": "Please select Party A",
-        "partyB": "Please select Party B",
-        "signDate": "Please select date",
-        "startDate": "Please select date",
-        "endDate": "Please select date"
-      },
-      "typeOptions": {
-        "typeA": "Type A",
-        "typeB": "Type B",
-        "typeC": "Type C"
-      },
-      "partyOptions": {
-        "companyA": "Company A",
-        "companyB": "Company B",
-        "companyC": "Company C"
-      }
-    },
-    "formStep": {
-      "validation": {
-        "name": "Please select contract name",
-        "type": "Please select type",
-        "title": "Please enter invoice title",
-        "taxNum": "Please enter tax number",
-        "consignee": "Please enter consignee",
-        "mobileNum": "Please enter mobile number",
-        "deliveryAddress": "Please select delivery address",
-        "fullAddress": "Please enter full address"
-      },
-      "options": {
-        "nameA": "Contract A",
-        "nameB": "Contract B",
-        "nameC": "Contract C",
-        "typeA": "Type A",
-        "typeB": "Type B",
-        "typeC": "Type C",
-        "address1": "Nanshan District, Shenzhen, Guangdong",
-        "address2": "Haidian District, Beijing",
-        "address3": "Xuhui District, Shanghai",
-        "address4": "High-tech Zone, Chengdu, Sichuan",
-        "address5": "Tianhe District, Guangzhou, Guangdong",
-        "address6": "High-tech Zone, Xi'an, Shaanxi"
-      },
-      "step1": {
-        "title": "Submit Application",
-        "subtitle": "Submitted on December 21st",
-        "rules": "rules",
-        "rule1": "1. After applying for an invoice, the electronic invoice will be issued within 1-3 working days. If the qualification review is passed, the VAT special invoice (paper) will be mailed to you within 10 working days after the electronic invoice is issued;",
-        "rule2": "2. The invoiced amount will be the actual amount you paid;",
-        "rule3": "3. For any questions, please contact customer service.",
-        "contractName": "Name",
-        "contractTips": "Please select a contract name",
-        "invoiceType": "Invoice type",
-        "amount": "Amount",
-        "submit": "Submit Application"
-      },
-      "step2": {
-        "title": "Electronic Information",
-        "subtitle": "Contact Customer Service if you have any questions",
-        "invoiceTitle": "Invoice Title",
-        "taxNum": "Tax Num",
-        "address": "Address",
-        "bank": "Bank",
-        "bankAccount": "Bank Account",
-        "email": "Email",
-        "tel": "Tel",
-        "titlePlaceholder": "please enter electronic information",
-        "subtitlePlaceholder": "please enter contact customer service if you have any questions",
-        "invoiceTitlePlaceholder": "please enter invoice title",
-        "taxNumPlaceholder": "please enter tax num",
-        "addressPlaceholder": "please enter address",
-        "bankPlaceholder": "please enter bank",
-        "bankAccountPlaceholder": "please enter bank account",
-        "emailPlaceholder": "please enter email",
-        "telPlaceholder": "please enter tel"
-      },
-      "step3": {
-        "title": "Invoice Mailed",
-        "subtitle": "Contact us after the electronic invoice is issued",
-        "consignee": "Consignee",
-        "mobileNum": "Mobile Num",
-        "deliveryAddress": "Address",
-        "fullAddress": "Full Address"
-      },
-      "step4": {
-        "title": "Application Completed",
-        "subtitle": "Contact Customer Service if you have any questions",
-        "finishTitle": "Application is completed.",
-        "finishTips": "The electronic invoice is expected to be sent to your email within 1-3 working days. Please be patient for the delivery of the paper invoice.",
-        "reapply": "reapply",
-        "check": "check progress"
-      },
-      "preStep": "pre step",
-      "nextStep": "next step"
-    },
-    "listBase": {
-      "export": "export",
-      "create": "create",
-      "select": "select",
-      "items": "items",
-      "contractName": "Name",
-      "contractStatus": "Status",
-      "contractNum": "Number",
-      "contractType": "Type",
-      "contractPayType": "Pay Type",
-      "contractAmount": "Amount",
-      "operation": "Operation",
-      "detail": "detail",
-      "delete": "delete",
-      "pay": "pay",
-      "receive": "received",
-      "placeholder": "please enter to search",
-      "deleteConfirm": "Confirm delete selected contracts?",
-      "deleteTip": "After deletion, all contract information of {name} will be cleared and cannot be recovered",
-      "contractStatusEnum": {
-        "fail": "fail",
-        "audit": "audit",
-        "executing": "executing",
-        "pending": "pending",
-        "finish": "finish"
-      }
-    },
-    "listCard": {
-      "create": "Create Product",
-      "placeholder": "please enter to search",
-      "loading": "Loading data...",
-      "deleteConfirm": "Confirm delete selected products?",
-      "deleteSuccess": "Deleted successfully",
-      "deleteTip": "After confirmation, all product information of {name} will be cleared and cannot be recovered",
-      "productName": "Name",
-      "productStatus": "Status",
-      "productDescription": "Description",
-      "productType": "Type",
-      "productRemark": "Remark",
-      "productStatusEnum": {
-        "off": "off",
-        "on": "on"
-      },
-      "dialogForm": {
-        "productNamePlaceholder": "Please enter product name",
-        "cancel": "Cancel",
-        "confirm": "Confirm",
-        "typeGateway": "Gateway",
-        "typeAI": "Artificial Intelligence",
-        "typeCVM": "CVM",
-        "validation": {
-          "productName": "Please enter product name"
-        }
-      }
-    },
-    "listFilter": {},
-    "listTree": {
-      "placeholder": "please enter to search",
-      "treeData": {
-        "shenzhen": "Shenzhen HQ",
-        "beijing": "Beijing HQ",
-        "shanghai": "Shanghai HQ",
-        "hunan": "Hunan",
-        "hubei": "Hubei",
-        "generalOffice": "General Office",
-        "marketing": "Marketing",
-        "technology": "Technology",
-        "finance": "Finance",
-        "purchase1": "Purchasing Team 1",
-        "purchase2": "Purchasing Team 2",
-        "finance1": "Finance Team 1",
-        "finance2": "Finance Team 2"
       }
     },
     "login": {
-      "loginTitle": "Login in",
-      "noAccount": "No Account?",
-      "createAccount": "Create Account",
-      "remember": "Remember Account",
-      "forget": "Forget Account",
       "signIn": "Sign in",
-      "existAccount": "Exist Account?",
-      "register": "Register",
-      "refresh": "refresh",
-      "wechatLogin": "Login with WeChat",
-      "accountLogin": "Login with Account",
-      "phoneLogin": "Login with Mobile Phone",
       "loginSuccess": "Login successful",
       "demoTip": "Demo environment: try it out — data will not be saved",
       "userNamePlaceholder": "Please enter username",
@@ -758,20 +176,9 @@
         "userName": "Please enter username",
         "password": "Please enter password"
       },
-      "countdown": "Resend after {count} seconds",
       "input": {
-        "account": "please enter account",
-        "password": "please enter password",
-        "phone": "please enter phone",
         "verification": "please enter verification code"
-      },
-      "required": {
-        "account": "account is required",
-        "phone": "phone is required",
-        "password": "password is required",
-        "verification": "verification code is require"
-      },
-      "sendVerification": "send"
+      }
     },
     "result": {
       "403": {
@@ -785,35 +192,6 @@
       "500": {
         "subtitle": "Sorry, the server is error",
         "back": "Back to homepage"
-      },
-      "fail": {
-        "title": "Create fail",
-        "subtitle": "Sorry, your project creation has failed",
-        "back": "Back to homepage",
-        "modify": "Back to modify"
-      },
-      "success": {
-        "title": "Project is created",
-        "subtitle": "Contact the person in charge of distributing the application",
-        "back": "Back to homepage",
-        "progress": "Check Progress"
-      },
-      "maintenance": {
-        "title": "System maintenance",
-        "subtitle": "Please try again later",
-        "back": "Back to homepage"
-      },
-      "browserIncompatible": {
-        "title": "browser is incompatible",
-        "subtitle": "the browser version you are using is too outdated to open the current webpage.",
-        "back": "Back to homepage",
-        "recommend": "jffast recommends the following browser"
-      },
-      "networkError": {
-        "title": "Network Error",
-        "subtitle": "Network error, please try again later",
-        "back": "Back to homepage",
-        "reload": "Reload"
       }
     },
     "system": {
@@ -845,20 +223,14 @@
         "message": {
           "confirmDelete": "Are you sure you want to delete this user?",
           "resetPasswordConfirm": "Reset this user's password? A one-time random password will be generated and the user will be signed out.",
-          "resetPasswordSuccess": "Password has been reset",
           "resetPasswordResultHeader": "One-time Password",
           "resetPasswordResultTip": "Share this new password with the user now. It cannot be viewed again after closing this dialog:",
-          "unlockConfirm": "Are you sure you want to unlock the account of user \"{name}\"? Failed login attempts will be cleared.",
           "unlockSuccess": "Account unlocked successfully",
           "exportSuccess": "Exported successfully",
           "templateDownloaded": "Template downloaded",
-          "importPartial": "Import finished: {success} succeeded, {failure} failed ({detail})",
-          "importSuccess": "Imported {count} records, please change the initial password after login",
           "asyncExportCreated": "Async export task created, check progress in \"System - Async Tasks\"",
           "asyncImportCreated": "Async import task created, check progress in \"System - Async Tasks\"",
-          "passwordEncryptFail": "Password encryption failed",
-          "deptListNotEmpty": "Department bindings cannot be empty",
-          "deptMustBeInBindings": "The primary department must be included in the bindings"
+          "passwordEncryptFail": "Password encryption failed"
         }
       },
       "dept": {
@@ -954,7 +326,6 @@
       "dict": {
         "typeTitle": "Dict Type",
         "itemTitle": "Dict Items",
-        "itemTitleWith": "Dict Items - {name}",
         "addType": "Add Type",
         "addItem": "Add Dict Item",
         "dictName": "Dict Name",
@@ -1012,7 +383,6 @@
           "jobGroup": "Defaults to DEFAULT",
           "status": "Please select status",
           "targetSelect": "Please select target method",
-          "param": "Please enter {name}",
           "invokeTarget": "Invoke target string (auto-generated or manual input)",
           "invokeTargetRequired": "Please enter invoke target",
           "serviceName": "Leave empty to belong to this service (recommended)",
@@ -1024,22 +394,17 @@
           "invokeTargetFormat": "Format: beanName.methodName (no args) or beanName.methodName(param1,param2) (with args), auto-generated after selecting a method",
           "serviceName1": "Tasks are executed by whichever service (spring.application.name). The task method is a Bean invoked via reflection and only exists in its owning service; therefore the \"Invoke Target\" dropdown only lists the task methods declared by this service, ",
           "serviceName2": "leave empty to belong to this service",
-          "serviceName3": " (applies to both create and update); if you fill in another service name, make sure that service really has this method, otherwise execution will fail with",
           "serviceName4": ".",
           "cronExamples": "Common examples: 0 0 2 * * ? (daily at 2 AM), 0 */5 * * * ? (every 5 minutes), 0 0 6 * * MON-FRI (weekdays at 6 AM)"
         },
         "message": {
-          "pauseConfirm": "Are you sure you want to pause job \"{name}\"?",
           "pauseSuccess": "Paused successfully",
           "pauseFail": "Failed to pause",
-          "resumeConfirm": "Are you sure you want to resume job \"{name}\"?",
           "resumeSuccess": "Resumed successfully",
           "resumeFail": "Failed to resume",
-          "triggerConfirm": "Are you sure you want to run job \"{name}\" now?",
           "triggerSuccess": "Executed successfully",
           "triggerFail": "Execution failed",
           "deleteConfirm": "Are you sure you want to delete this job?",
-          "cronValidWithTime": "Expression valid, next execution time: {time}",
           "cronValid": "Expression valid",
           "cronInvalid": "Invalid CRON expression, please check",
           "cronCheckFail": "CRON expression validation failed",
@@ -1082,6 +447,14 @@
           "title": "Please select title",
           "state": "Please select status",
           "level": "Please select level"
+        },
+        "clean": "Clean up history logs",
+        "message": {
+          "cleanConfirmHeader": "Clean up history logs",
+          "cleanConfirmTip": "Operation and login logs older than the given number of days will be deleted. This cannot be undone.",
+          "daysLabel": "Days to keep",
+          "cleanSuccess": "Logs cleaned up",
+          "cleanFail": "Failed to clean up logs"
         }
       },
       "task": {
@@ -1141,7 +514,6 @@
         "tenantId": "Tenant ID",
         "kick": "Force Offline",
         "message": {
-          "kickConfirm": "Are you sure you want to force user \"{name}\" offline?",
           "kickSuccess": "User has been forced offline"
         }
       },
@@ -1162,14 +534,11 @@
         "cacheName": "Cache Name",
         "clear": "Clear",
         "empty": "No caches",
-        "detailTitle": "Cache Detail - {name}",
         "keyName": "Key",
         "message": {
           "clearConfirmHeader": "Confirm Clear",
           "deleteConfirmHeader": "Confirm Delete",
-          "clearAllConfirm": "Are you sure you want to clear all caches? This cannot be undone!",
-          "clearCacheConfirm": "Are you sure you want to clear cache \"{name}\"?",
-          "deleteKeyConfirm": "Are you sure you want to delete cache key \"{key}\"?"
+          "clearAllConfirm": "Are you sure you want to clear all caches? This cannot be undone!"
         }
       },
       "monitor": {
@@ -1243,7 +612,6 @@
         },
         "message": {
           "tokenFail": "Failed to get token",
-          "evictConfirm": "Clear the token cache of \"{name}\"?",
           "evictSuccess": "Cache cleared",
           "evictFail": "Failed to clear"
         }
@@ -1357,18 +725,14 @@
           "placeholder": {
             "group": "Please select group",
             "name": "e.g. Leave Approval Notification",
-            "code": "Unique code, e.g. leave_approval",
-            "tpl": "Supports {v} placeholders"
+            "code": "Unique code, e.g. leave_approval"
           }
         },
         "message": {
-          "copySuccess": "Copied",
           "sendSuccess": "Sent successfully",
           "groupNameCodeRequired": "Please enter group name and code",
           "templateNameCodeRequired": "Please enter template name and code",
-          "codePattern": "Template code may only contain letters, digits and underscores, and must start with a letter",
-          "deleteGroupConfirm": "Are you sure you want to delete group \"{name}\"?",
-          "deleteTemplateConfirm": "Are you sure you want to delete template \"{name}\"?"
+          "codePattern": "Template code may only contain letters, digits and underscores, and must start with a letter"
         }
       },
       "codegen": {
@@ -1383,8 +747,7 @@
         "createModule": "New Module",
         "tabs": {
           "table": "Select Tables",
-          "preview": "Code Preview",
-          "previewWithCount": "Code Preview ({count})"
+          "preview": "Code Preview"
         },
         "placeholder": {
           "module": "Select an existing module",
@@ -1407,8 +770,6 @@
           "treeFrontendSavePage": "Frontend Tree Edit Page"
         },
         "tablePanel": {
-          "tableCount": "{count} tables",
-          "selected": "Selected: {name}",
           "tableName": "Table Name",
           "comment": "Comment",
           "message": {
@@ -1468,41 +829,11 @@
           "downloadZipSuccess": "ZIP downloaded successfully",
           "treeDetected": "Tree fields detected (e.g. parent_id); switched to tree table mode automatically",
           "moduleNameRequired": "Please enter module name",
-          "moduleExists": "Module already exists: {name}",
-          "moduleCreateSuccess": "Module created: {name}\nPath: {path}",
-          "moduleCreateFail": "Failed to create module: {msg}",
-          "selectFileFirst": "Please select at least one file",
-          "saveFail": "Failed to save: {msg}"
+          "selectFileFirst": "Please select at least one file"
         }
       }
     },
     "user": {
-      "markDay": "Good afternoon, today marks your 100th day at the company",
-      "greeting": "Hi, Image",
-      "unit": "(times)",
-      "account": "My Account",
-      "organization": "Company / Business Group / Product Department / Operations Center / Merchant Services Group",
-      "personalInfo": {
-        "title": "Personal Info",
-        "position": "Employee of the Hong Kong and Macau Business Expansion team",
-        "desc": {
-          "phone": "Phone",
-          "mobile": "Mobile",
-          "seat": "Seat",
-          "email": "Email",
-          "position": "Position",
-          "leader": "Leader",
-          "entity": "Entity",
-          "joinDay": "Day of join",
-          "group": "Group"
-        },
-        "tencentGroup": "Group Headquarters",
-        "seniorDesigner": "Senior UI Designer"
-      },
-      "visitData": "Visit Data",
-      "contentList": "Content List",
-      "teamMember": "Team Member",
-      "serviceProduction": "Service Product",
       "profile": {
         "changeAvatar": "Change Avatar",
         "normalUser": "Regular User",
@@ -1518,7 +849,6 @@
           "loginTime": "Login Time"
         },
         "socialTitle": "Social Accounts",
-        "boundTo": "Bound: {name}",
         "notBound": "Not Bound",
         "bind": "Bind",
         "unbind": "Unbind",
@@ -1545,7 +875,6 @@
           "passwordEncryptFail": "Password encryption failed, please refresh and retry",
           "bindSuccess": "Bound successfully",
           "bindFail": "Failed to bind",
-          "unbindConfirm": "Unbind the {name} account?",
           "unbindSuccess": "Unbound successfully",
           "unbindFail": "Failed to unbind"
         }
@@ -1622,9 +951,6 @@
         },
         "rules": {
           "codePattern": "Code must start with a letter and contain only letters, digits, underscores or hyphens (1-50 characters)"
-        },
-        "message": {
-          "confirmDelete": "Delete category \"{name}\"? This cannot be undone."
         }
       },
       "definition": {
@@ -1644,13 +970,10 @@
         "message": {
           "needBpmnXml": "Please paste or select a BPMN XML file",
           "suspendTitle": "Suspend Process Definition",
-          "suspendConfirm": "Suspending will pause all running instances. Suspend \"{name}\"?",
           "suspendSuccess": "Suspended successfully",
           "activateTitle": "Activate Process Definition",
-          "activateConfirm": "Activating allows all running instances to continue. Activate \"{name}\"?",
           "activateSuccess": "Activated successfully",
-          "deleteTitle": "Delete Process Deployment",
-          "deleteConfirm": "Deleting will cascade-delete all process instances and history. Delete \"{name}\"?"
+          "deleteTitle": "Delete Process Deployment"
         },
         "action": {
           "activate": "Activate",
@@ -1673,7 +996,6 @@
           "initiatorId": "Exact match on initiator user ID"
         },
         "message": {
-          "startSuccess": "Process started, instance ID: {id}",
           "cancelTitle": "Cancel Process Instance",
           "cancelConfirm": "Are you sure you want to cancel this process instance? This cannot be undone.",
           "cancelSuccess": "Cancelled successfully",
@@ -1702,7 +1024,6 @@
         },
         "message": {
           "claimTitle": "Claim Task",
-          "claimConfirm": "Claim task \"{name}\"? Once claimed it will be assigned to you.",
           "claimSuccess": "Claimed successfully",
           "completeSuccess": "Approved successfully",
           "delegateSuccess": "Delegated successfully"
@@ -1719,7 +1040,6 @@
         "downloadXml": "Download XML",
         "importBpmn": "Import BPMN File",
         "propsEmpty": "Click a node on the canvas to view / edit its properties",
-        "propsTitle": "{type} Properties",
         "elementId": "Element ID",
         "element": "Element",
         "assigneeType": "Assignee Type",
@@ -1765,11 +1085,6 @@
         },
         "message": {
           "unknownError": "Unknown error",
-          "parseFail": "Failed to parse BPMN: {msg}",
-          "exportXmlFail": "Failed to export XML: {msg}",
-          "updateIdFail": "Failed to update ID: {msg}",
-          "updateNameFail": "Failed to update name: {msg}",
-          "updateAssigneeFail": "Failed to update assignee properties: {msg}",
           "newBlankSuccess": "Blank process created",
           "loadedTip": "Process loaded; after editing click \"Deploy\" to publish as a new version",
           "needBpmnXml": "Please draw the process or paste BPMN XML content first",
@@ -1847,7 +1162,6 @@
         "title": "Conversation Title",
         "model": "Model",
         "tips": "Conversation records are read-only data written automatically during Q&A; only querying and cleanup are provided here.",
-        "messageTitle": "Messages - {title}",
         "emptyMessages": "No messages",
         "viewMessages": "View Messages",
         "roleMap": {
@@ -2011,10 +1325,8 @@
           "fruitApple": "Apple",
           "fruitBanana": "Banana",
           "fruitOrange": "Orange",
-          "currentValue": "Current value: {v}",
           "datePlaceholder": "Select date",
           "uploadBtn": "Select File",
-          "selected": "Selected: {name}",
           "selectedFile": "File selected",
           "age": "Age",
           "userNameRequired": "Username is required",
@@ -2050,7 +1362,6 @@
           "empty": "No data",
           "resultTitle": "Submitted successfully",
           "resultSubtitle": "Your request has been received",
-          "currentColor": "Current color: {v}",
           "role": "Role",
           "dept": "Department",
           "deptRd": "R&D Center",
@@ -2096,15 +1407,13 @@
           "content3": "Content 3",
           "linkPrimary": "Primary Link",
           "linkSuccess": "Success Link",
-          "linkUnderline": "Underlined",
-          "switchTo": "Switched to: {val}"
+          "linkUnderline": "Underlined"
         },
         "shared": {
           "sectionDesc": "The following are shared business components built into the jffast framework (in @/components), ready to use.",
           "treeSelectTitle": "DeptUserTreeSelect Department/User Tree Select",
           "langTitle": "LanguageSwitcher Language Switch",
           "personPlaceholder": "Please select a person",
-          "selectedValue": "Selected value: {v}",
           "langTip": "Use the dropdown to switch between Chinese / English (powered by i18n)",
           "treeSelectComment": "Supports modelValue / multiple / onlyLeaf / placeholder / lazy"
         }

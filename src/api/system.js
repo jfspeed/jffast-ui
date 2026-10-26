@@ -71,6 +71,9 @@ const log = createCrud('/sys/log', {
   titleList: () => http.get('/sys/log/titleList'),
   // 按查询条件导出操作/登录日志 Excel
   exportLog: (params) => http.download('/sys/log/export', params, '系统日志.xlsx'),
+  // 清理指定天数前的历史日志（后端 SysLogController#clean，权限 system:log:delete）
+  // http.delete(url, data?, config?) —— 查询参数走 config.params
+  cleanLog: (days) => http.delete('/sys/log/clean', undefined, { params: { days } }),
 });
 
 const config = createCrud('/sys/config');

@@ -49,7 +49,9 @@ limitations under the License.
                   @clear="onSearch"
                   @enter="onSearch"
                 />
-                <t-button theme="default" @click="onSearch">{{ t('common.query') }}</t-button>
+                <t-button v-permission="'system:notification:template:view'" theme="default" @click="onSearch">{{
+                  t('common.query')
+                }}</t-button>
               </t-space>
               <t-space>
                 <t-button theme="default" @click="resetSearch">{{ t('common.reset') }}</t-button>

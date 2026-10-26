@@ -74,6 +74,7 @@ import { useI18n } from 'vue-i18n';
 
 import oauth2Client from '@/api/oauth2Client';
 import { useTable } from '@/hooks/useTable';
+import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
@@ -143,29 +144,42 @@ const columns = computed<PrimaryTableCol[]>(() => [
     width: 200,
     align: 'center',
     fixed: 'right',
-    cell: (h: any, { row }: any) =>
-      h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, [
-        h('a', { onClick: () => edit(row) }, t('common.edit')),
-        h('a', { onClick: () => handleToken(row) }, t('pages.system.oauth2Client.token')),
-        h('a', { onClick: () => handleEvict(row) }, t('pages.system.oauth2Client.evict')),
-        h(
-          'a',
-          {
-            style: 'color:var(--td-error-color)',
-            onClick: () => {
-              const confirmDia = DialogPlugin.confirm({
-                header: t('common.tips'),
-                body: t('common.confirmDelete'),
-                onConfirm: () => {
-                  confirmDia.destroy();
-                  handleDelete(row);
-                },
-              });
+    cell: (h: any, { row }: any) => {
+      const btns = [];
+      // 权限码与后端 @SaCheckPermission 逐条对齐：
+      // 修改=system:oauth2client:update / 读取凭据=system:oauth2client:token /
+      // 清除令牌缓存=system:oauth2client:update（后端 evict 复用 update 权限）/
+      // 删除=system:oauth2client:delete
+      if (hasPermission('system:oauth2client:update')) {
+        btns.push(h('a', { onClick: () => edit(row) }, t('common.edit')));
+        btns.push(h('a', { onClick: () => handleEvict(row) }, t('pages.system.oauth2Client.evict')));
+      }
+      if (hasPermission('system:oauth2client:token')) {
+        btns.push(h('a', { onClick: () => handleToken(row) }, t('pages.system.oauth2Client.token')));
+      }
+      if (hasPermission('system:oauth2client:delete')) {
+        btns.push(
+          h(
+            'a',
+            {
+              style: 'color:var(--td-error-color)',
+              onClick: () => {
+                const confirmDia = DialogPlugin.confirm({
+                  header: t('common.tips'),
+                  body: t('common.confirmDelete'),
+                  onConfirm: () => {
+                    confirmDia.destroy();
+                    handleDelete(row);
+                  },
+                });
+              },
             },
-          },
-          t('common.delete'),
-        ),
-      ]),
+            t('common.delete'),
+          ),
+        );
+      }
+      return h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, btns);
+    },
   },
 ]);
 

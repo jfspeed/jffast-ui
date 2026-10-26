@@ -50,6 +50,7 @@ limitations under the License.
           <t-button theme="primary" type="submit">{{ t('common.query') }}</t-button>
           <t-button v-permission="'demo:example:add'" theme="success" @click="add">{{ t('common.add') }}</t-button>
           <t-button
+            v-permission="'demo:example:delete'"
             theme="danger"
             variant="outline"
             :disabled="selection.length === 0"
@@ -110,6 +111,7 @@ import { useI18n } from 'vue-i18n';
 
 import api from '@/api/demo';
 import { useTable } from '@/hooks/useTable';
+import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
@@ -172,6 +174,9 @@ const columns = computed<PrimaryTableCol[]>(() => [
         value: row.status,
         customValue: [1, 0],
         loading: row.statusLoading,
+        // 状态开关直接写库（PUT /updateStatus），后端校验 demo:example:update；
+        // 无该权限时置为禁用，避免点了被服务端 403
+        disabled: !hasPermission('demo:example:update'),
         onChange: (val: any) => onStatusChange(row, val),
       }),
   },
@@ -197,27 +202,34 @@ const columns = computed<PrimaryTableCol[]>(() => [
     align: 'center',
     fixed: 'right',
     cell: (h: any, { row }: any) => {
-      return h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, [
-        h('a', { onClick: () => show(row) }, t('common.view')),
-        h('a', { onClick: () => edit(row) }, t('common.edit')),
-        h(
-          'a',
-          {
-            style: 'color:var(--td-error-color)',
-            onClick: () => {
-              const confirmDia = DialogPlugin.confirm({
-                header: t('common.tips'),
-                body: t('common.confirmDelete'),
-                onConfirm: () => {
-                  confirmDia.destroy();
-                  handleDelete(row);
-                },
-              });
+      const btns = [];
+      // 权限码与后端 @SaCheckPermission 逐条对齐：修改=demo:example:update / 删除=demo:example:delete
+      btns.push(h('a', { onClick: () => show(row) }, t('common.view')));
+      if (hasPermission('demo:example:update')) {
+        btns.push(h('a', { onClick: () => edit(row) }, t('common.edit')));
+      }
+      if (hasPermission('demo:example:delete')) {
+        btns.push(
+          h(
+            'a',
+            {
+              style: 'color:var(--td-error-color)',
+              onClick: () => {
+                const confirmDia = DialogPlugin.confirm({
+                  header: t('common.tips'),
+                  body: t('common.confirmDelete'),
+                  onConfirm: () => {
+                    confirmDia.destroy();
+                    handleDelete(row);
+                  },
+                });
+              },
             },
-          },
-          t('common.delete'),
-        ),
-      ]);
+            t('common.delete'),
+          ),
+        );
+      }
+      return h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, btns);
     },
   },
 ]);

@@ -37,6 +37,7 @@ limitations under the License.
             t('common.add')
           }}</t-button>
           <t-button
+            v-permission="'demo:tenant-example:delete'"
             theme="danger"
             variant="outline"
             :disabled="selection.length === 0"
@@ -81,6 +82,7 @@ import { useI18n } from 'vue-i18n';
 
 import api from '@/api/demo';
 import { useTable } from '@/hooks/useTable';
+import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
@@ -139,27 +141,35 @@ const columns = computed<PrimaryTableCol[]>(() => [
     align: 'center',
     fixed: 'right',
     cell: (h: any, { row }: any) => {
-      return h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, [
-        h('a', { onClick: () => show(row) }, t('common.view')),
-        h('a', { onClick: () => edit(row) }, t('common.edit')),
-        h(
-          'a',
-          {
-            style: 'color:var(--td-error-color)',
-            onClick: () => {
-              const confirmDia = DialogPlugin.confirm({
-                header: t('common.tips'),
-                body: t('common.confirmDelete'),
-                onConfirm: () => {
-                  confirmDia.destroy();
-                  handleDelete(row);
-                },
-              });
+      const btns = [];
+      // 权限码与后端 @SaCheckPermission 逐条对齐：
+      // 修改=demo:tenant-example:edit / 删除=demo:tenant-example:delete
+      btns.push(h('a', { onClick: () => show(row) }, t('common.view')));
+      if (hasPermission('demo:tenant-example:edit')) {
+        btns.push(h('a', { onClick: () => edit(row) }, t('common.edit')));
+      }
+      if (hasPermission('demo:tenant-example:delete')) {
+        btns.push(
+          h(
+            'a',
+            {
+              style: 'color:var(--td-error-color)',
+              onClick: () => {
+                const confirmDia = DialogPlugin.confirm({
+                  header: t('common.tips'),
+                  body: t('common.confirmDelete'),
+                  onConfirm: () => {
+                    confirmDia.destroy();
+                    handleDelete(row);
+                  },
+                });
+              },
             },
-          },
-          t('common.delete'),
-        ),
-      ]);
+            t('common.delete'),
+          ),
+        );
+      }
+      return h('div', { style: 'display:flex;gap:8px;justify-content:center;' }, btns);
     },
   },
 ]);
