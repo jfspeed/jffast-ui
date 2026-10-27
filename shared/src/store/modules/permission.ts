@@ -97,7 +97,11 @@ function filterProRoutes(routes: RouteItem[]): RouteItem[] {
 
 export const usePermissionStore = defineStore('permission', {
   state: () => ({
-    whiteListRouters: ['/login'],
+    // 免登录可达的静态路由：
+    // - /login：登录页
+    // - /social/callback：社交授权回调中转页。OAuth 平台回跳的弹窗可能尚未建立登录态，
+    //   若被守卫拦去登录页，授权码就丢了（后端兑换需要 code + state）。
+    whiteListRouters: ['/login', '/social/callback'],
     routers: [] as RouteRecordRaw[],
     removeRoutes: [] as RouteRecordRaw[],
     asyncRoutes: [] as RouteRecordRaw[],

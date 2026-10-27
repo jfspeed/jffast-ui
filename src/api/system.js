@@ -128,7 +128,9 @@ const notificationTemplateGroup = createCrud('/sys/notification/template/group',
 
 const social = {
   authorize: (provider) => http.get('/social/authorize', { provider }),
-  callback: (provider, code, state) => http.get('/social/callback', { provider, code, state }),
+  // provider 由后端从**签名 state** 里解码得到，不需要也不应该由客户端回传
+  // （回传值无法参与验签，传错只会让请求与 state 对不上）。
+  callback: (code, state) => http.get('/social/callback', { code, state }),
   bind: (ticket) => http.post('/social/bind', { ticket }),
   unbind: (provider) => http.delete(`/social/unbind/${provider}`),
   listBinds: () => http.get('/social/binds'),

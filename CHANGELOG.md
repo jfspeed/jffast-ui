@@ -31,12 +31,14 @@
 
 ### 修复
 
+- **社交账号绑定走不通**：第三方平台按 `redirect-uri` 回跳到的是后端接口地址（返回 JSON），浏览器直接打开只会看到一段 JSON，绑定流程在最后一步断掉。新增前端中转页 `src/pages/social/callback.vue`（静态路由 `/social/callback`，并在 `whiteListRouters` 放行以便未登录时也能打开）：取到 `code` / `state` 后用 `postMessage` 交回发起绑定的那个同源窗口，由该窗口调后端 `GET /social/callback` 兑换。`targetOrigin` 取本页自身 origin ⇒ 消息只可能投递给同源接收方，第三方页面拿不到授权码；发起方还会比对 `event.source` 与自己 `window.open` 的返回值，伪造消息无效
 - **50 个 i18n 键缺失**：带插值的 `t('key', { ... })` 在门禁里既不按字面量校验、也不报「动态键」，被静默跳过 ⇒ 暂停/恢复/执行任务、缓存清理、用户解锁、通知面板时间等确认框直接显示原始键路径。补齐中英两份语言包缺失键，并把门禁改为「带参数的 `t()` 也必须校验」
 - **渲染函数把组件写成字符串**：`h('t-switch')` / `h('t-tag')` / `h('t-progress')` 被 Vue 当作未知原生标签 ⇒ 示例管理状态开关无法交互、通知状态标签无样式、监控磁盘进度条不显示。改为传入 `Switch` / `Tag` / `Progress` 组件对象
 - 请假申请页补 `meta.perm = demo:leave:view`：菜单种子已授该权限，路由未声明时任意登录用户都能打开页面、接口随后 403
 - 首页快捷入口按权限渲染：无 `system:user:view` 等权限的用户不再看到点了会落到 404 的入口
 - 头像上传关闭 TDesign 内置上传（`:auto-upload="false"`）并补 `catch`，避免请求失败产生未捕获 rejection
 - 菜单搜索按当前语言取 `meta.title`（英文环境不再恒显示中文），空结果文案走 i18n
+- 通知草稿「接收人」补必填校验：`recipientType` 选角色 / 部门 / 用户时表单未校验 `recipientIds` 就允许保存，空接收人的通知要等到点「发送」才被后端 fail-closed 拒绝（`请选择接收人`），中间没有任何提示。补 `recipientIds` 必填规则（该表单项在 `all` 下不渲染 ⇒ 字段未注册，全体广播不受影响），提示文案与后端一致
 - 文档与配置：`docs/README.md` 跨仓链接改 `blob/master`；`.gitignore` 补 `.env.production`（已废弃，防止按旧流程重建后误提交）
 
 ### 修复（历史条目）

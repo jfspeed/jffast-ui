@@ -681,6 +681,7 @@
           "level": "请选择通知级别",
           "recipientType": "请选择发送类型",
           "recipientTypeForm": "请选择接收人类型",
+          "recipientIds": "请选择接收人",
           "status": "请选择状态",
           "templateCode": "可选：选择模板自动填充标题、内容与类型",
           "role": "请选择角色",
@@ -936,6 +937,14 @@
           "markReadSuccess": "已标记为已读",
           "markAllReadSuccess": "全部标记为已读"
         }
+      }
+    },
+    "social": {
+      "callback": {
+        "processing": "正在处理授权回调……",
+        "success": "授权完成，正在关闭窗口……",
+        "missingParams": "回调参数缺失，请返回重新发起绑定",
+        "noOpener": "未找到发起绑定的窗口，请返回重新发起绑定"
       }
     },
     "flow": {

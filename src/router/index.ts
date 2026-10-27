@@ -43,6 +43,14 @@ const defaultRouterList: Array<RouteRecordRaw> = [
     redirect: '/dashboard/dashboardBase',
   },
   {
+    // 社交账号授权回调的中转页：OAuth 平台按 `redirect-uri` 回跳到本页，
+    // 由本页把 code/state 交回发起绑定的那个同源窗口（兑换授权码仍由后端完成）。
+    // 静态注册（不走菜单）⇒ 未登录时也要能打开，见 shared permission store 的 whiteListRouters。
+    path: '/social/callback',
+    name: 'socialCallback',
+    component: () => import('@/pages/social/callback.vue'),
+  },
+  {
     // 404 落点页必须是**真实路由**：PAGE_NOT_FOUND_ROUTE（/:w+）与守卫多处
     // next({ path: '/result/404' }) 都指向这里。此前它只存在于常量的 redirect 目标里，
     // 从无记录注册 ⇒ /result/404 又被 /:w+ 匹配 ⇒ redirect 回自身 ⇒

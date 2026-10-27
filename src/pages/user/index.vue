@@ -398,9 +398,9 @@ const handleBind = async (provider: string) => {
         window.removeEventListener('message', handleCallback);
         socialMessageHandler = null;
         popup?.close();
-        const { provider: p, code, state } = event.data;
+        const { code, state } = event.data;
         if (code && state) {
-          const callbackRes = await api.social.callback(p, code, state);
+          const callbackRes = await api.social.callback(code, state);
           if (callbackRes?.code === 200 && callbackRes.data?.bindTicket) {
             const bindRes = await api.social.bind(callbackRes.data.bindTicket);
             if (bindRes?.code === 200) {

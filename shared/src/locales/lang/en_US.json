@@ -681,6 +681,7 @@
           "level": "Please select notification level",
           "recipientType": "Please select send type",
           "recipientTypeForm": "Please select recipient type",
+          "recipientIds": "Please select recipients",
           "status": "Please select status",
           "templateCode": "Optional: select a template to auto-fill title, content and type",
           "role": "Please select role",
@@ -936,6 +937,14 @@
           "markReadSuccess": "Marked as read",
           "markAllReadSuccess": "All marked as read"
         }
+      }
+    },
+    "social": {
+      "callback": {
+        "processing": "Processing the authorization callback...",
+        "success": "Authorization completed. Closing the window...",
+        "missingParams": "Missing callback parameters. Go back and start the binding again.",
+        "noOpener": "Cannot find the window that started the binding. Go back and start the binding again."
       }
     },
     "flow": {

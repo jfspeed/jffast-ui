@@ -147,6 +147,10 @@ const titleMap = computed<Record<string, string>>(() => ({
 const rules = computed<Record<string, FormRule[]>>(() => ({
   title: [{ required: true, message: t('pages.system.notification.placeholder.title'), trigger: 'blur' }],
   content: [{ required: true, message: t('pages.system.notification.placeholder.content'), trigger: 'blur' }],
+  // 「接收人」表单项在 recipientType = all 时不渲染，字段未注册 ⇒ 该规则只约束指定角色/部门/用户
+  recipientIds: [
+    { required: true, message: t('pages.system.notification.placeholder.recipientIds'), trigger: 'change' },
+  ],
 }));
 
 // 通知类型标签走 i18n（typeLabelOf 未命中词条时回退中文常量，与铃铛一致）
