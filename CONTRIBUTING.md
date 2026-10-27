@@ -49,7 +49,7 @@ type(scope): description
 
 ## 编码规范
 
-前端开发指南以后端仓库 [`docs/前端开发指南.md`](https://github.com/summerZstar/jffast/blob/master/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md) 为权威来源，本仓库 AGENTS.md 只做摘要。要点：
+前端开发指南以本仓库 [`docs/前端开发指南.md`](docs/前端开发指南.md) 为权威来源，本仓库 AGENTS.md 只做摘要。要点：
 
 - 组件使用 Vue 3 `<script setup>` + TypeScript
 - 列表页统一走 `createCrud` 三件套，不重复手写增删改查样板

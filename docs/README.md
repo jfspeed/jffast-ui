@@ -1,6 +1,7 @@
 # jffast-ui 使用与二开文档
 
 > 面向使用者和二次开发者。仓库根 [README.md](../README.md) 是快速开始，本文补充结构与约定。
+> 编码规范见 [前端开发指南](./前端开发指南.md)（Monorepo、别名、CRUD 工厂、组件/Hooks 准入、权限指令、i18n、样式、安全约束、测试）。
 > 后端说明见 [jffast](https://github.com/summerZstar/jffast)。
 
 ## 1 环境要求

@@ -9,7 +9,7 @@
 [![Vite](https://img.shields.io/badge/Vite-6.x-purple)](https://vitejs.dev/)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue)](https://www.apache.org/licenses/LICENSE-2.0)
 
-[快速开始](#快速开始) · [功能特性](#功能特性) · [开发指南](https://github.com/summerZstar/jffast/blob/master/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md)
+[快速开始](#快速开始) · [功能特性](#功能特性) · [开发指南](docs/前端开发指南.md)
 
 </div>
 
@@ -348,6 +348,21 @@ defineExpose({ open, setData });
 </template>
 ```
 
+### 社交账号授权回调页
+
+`src/pages/social/callback.vue` 是社交账号绑定的**中转页**：静态注册在 `/social/callback`
+（不走菜单，见 `src/router/index.ts`），并在 `shared/src/store/modules/permission.ts` 的
+`whiteListRouters` 里放行，因此第三方平台回跳时即便没有登录态也能打开。
+
+链路：第三方平台按后端配置的 `redirect-uri`（默认 `http://localhost:7201/social/callback`）
+回跳 → 本页取出 `code` / `state`，用 `postMessage` 交回发起绑定的那个同源窗口 →
+该窗口调后端 `GET /social/callback` 兑换授权码（授权码只能用一次，且必须由后端兑换），
+再调 `POST /social/bind` 提交一次性绑定票据。
+
+`postMessage` 的 `targetOrigin` 取本页自身的 origin ⇒ 消息只可能投递给同源接收方，
+第三方页面拿不到授权码；发起绑定的窗口还会比对 `event.source` 与自己 `window.open` 的
+返回值，伪造消息同样无效。
+
 ### 别名映射
 
 | 别名           | 指向                  |
@@ -409,4 +424,4 @@ server: {
 | ----------------------------------------------- | --------- | ---------- |
 | [jffast](https://github.com/summerZstar/jffast) | Base 后端 | Apache 2.0 |
 
-完整开发约束（Monorepo、别名映射、组件/Hooks 准入、权限指令、i18n、样式、安全约束、测试）详见 [前端开发指南](https://github.com/summerZstar/jffast/blob/master/docs/%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97.md)。
+完整开发约束（Monorepo、别名映射、组件/Hooks 准入、权限指令、i18n、样式、安全约束、测试）详见 [前端开发指南](docs/前端开发指南.md)。
