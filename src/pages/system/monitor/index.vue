@@ -123,6 +123,7 @@ limitations under the License.
 </template>
 <script lang="ts" setup>
 import type { PrimaryTableCol } from 'tdesign-vue-next';
+import { Progress } from 'tdesign-vue-next';
 import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -172,7 +173,7 @@ const diskColumns = computed<PrimaryTableCol[]>(() => [
     cell: (h, { row }) => {
       const color = getProgressColor(row.usage / 100);
       return h('div', [
-        h('t-progress', {
+        h(Progress, {
           percentage: row.usage,
           color,
           style: 'display: inline-block; width: 120px; margin-right: 8px;',

@@ -80,27 +80,27 @@ limitations under the License.
       <t-col :xs="12" :lg="4">
         <t-card :title="t('pages.dashboardBase.quickEntry.title')" :bordered="false">
           <div class="quick-entry">
-            <div class="entry-item" @click="router.push('/system/user')">
+            <div v-if="hasPermission('system:user:view')" class="entry-item" @click="router.push('/system/user')">
               <t-icon name="user" size="24px" style="color: var(--td-brand-color)" />
               <span>{{ t('pages.dashboardBase.quickEntry.user') }}</span>
             </div>
-            <div class="entry-item" @click="router.push('/system/role')">
+            <div v-if="hasPermission('system:role:view')" class="entry-item" @click="router.push('/system/role')">
               <t-icon name="usergroup" size="24px" style="color: var(--td-success-color)" />
               <span>{{ t('pages.dashboardBase.quickEntry.role') }}</span>
             </div>
-            <div class="entry-item" @click="router.push('/system/menu')">
+            <div v-if="hasPermission('system:menu:view')" class="entry-item" @click="router.push('/system/menu')">
               <t-icon name="menu" size="24px" style="color: var(--td-warning-color)" />
               <span>{{ t('pages.dashboardBase.quickEntry.menu') }}</span>
             </div>
-            <div class="entry-item" @click="router.push('/system/dept')">
+            <div v-if="hasPermission('system:dept:view')" class="entry-item" @click="router.push('/system/dept')">
               <t-icon name="organization" size="24px" style="color: var(--td-error-color)" />
               <span>{{ t('pages.dashboardBase.quickEntry.dept') }}</span>
             </div>
-            <div class="entry-item" @click="router.push('/system/dict')">
+            <div v-if="hasPermission('system:dict:view')" class="entry-item" @click="router.push('/system/dict')">
               <t-icon name="books" size="24px" style="color: #8b5cf6" />
               <span>{{ t('pages.dashboardBase.quickEntry.dict') }}</span>
             </div>
-            <div class="entry-item" @click="router.push('/system/log')">
+            <div v-if="hasPermission('system:log:view')" class="entry-item" @click="router.push('/system/log')">
               <t-icon name="file-copy" size="24px" style="color: #ec4899" />
               <span>{{ t('pages.dashboardBase.quickEntry.log') }}</span>
             </div>
@@ -127,6 +127,7 @@ import { useI18n } from 'vue-i18n';
 import { useRouter } from 'vue-router';
 
 import api from '@/api/system';
+import { hasPermission } from '@/utils/permission';
 
 defineOptions({
   name: 'DashboardBase',

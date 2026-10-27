@@ -2,7 +2,7 @@
 node_modules
 /dist
 
-# 环境变量：入库的 .env*（.env / .env.development / .env.production / .env.test /
+# 环境变量：入库的 .env*（.env / .env.development / .env.test /
 # .env.example）只含基础值或占位——RSA 公钥一律留空，不写内部后端地址；
 # 个人 / 环境专属覆盖写 .env*.local（不入库，见下）。
 # local env files
@@ -13,6 +13,8 @@ node_modules
 # （后者要求以 .local 结尾，匹配不到 .env.release），照 README 建文件后一 commit 就入库。
 .env.release
 .env.release.*
+# .env.production 已废弃（release 构建使用 .env.release），重建后不得入库
+.env.production
 
 # Log files
 npm-debug.log*

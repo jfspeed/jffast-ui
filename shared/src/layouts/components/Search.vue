@@ -23,7 +23,7 @@ limitations under the License.
   >
     <template #content>
       <div class="search-result-panel" @mousedown.prevent>
-        <div v-if="searchResults.length === 0 && searchData" class="search-empty">未找到匹配的菜单</div>
+        <div v-if="searchResults.length === 0 && searchData" class="search-empty">{{ t('layout.searchNoMatch') }}</div>
         <div
           v-for="(item, index) in searchResults"
           :key="item.path"
@@ -58,7 +58,7 @@ limitations under the License.
 import { computed, ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
 
-import { t } from '@/locales';
+import { i18n, t } from '@/locales';
 import { usePermissionStore } from '@/store';
 
 defineProps({
@@ -95,7 +95,9 @@ const flattenMenus = (routes: MenuNode[], parentPath = ''): SearchMenuItem[] => 
     const rawTitle = meta.title;
     let title = '';
     if (typeof rawTitle === 'object' && rawTitle !== null) {
-      title = (rawTitle as Record<string, string>).zh_CN || '';
+      const localized = rawTitle as Record<string, string>;
+      // 按当前语言取标题；英文环境此前恒取 zh_CN，搜索结果是中文
+      title = localized[i18n.global.locale.value] || localized.zh_CN || '';
     } else if (typeof rawTitle === 'string') {
       title = rawTitle;
     }

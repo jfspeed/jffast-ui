@@ -31,6 +31,16 @@
 
 ### 修复
 
+- **50 个 i18n 键缺失**：带插值的 `t('key', { ... })` 在门禁里既不按字面量校验、也不报「动态键」，被静默跳过 ⇒ 暂停/恢复/执行任务、缓存清理、用户解锁、通知面板时间等确认框直接显示原始键路径。补齐中英两份语言包缺失键，并把门禁改为「带参数的 `t()` 也必须校验」
+- **渲染函数把组件写成字符串**：`h('t-switch')` / `h('t-tag')` / `h('t-progress')` 被 Vue 当作未知原生标签 ⇒ 示例管理状态开关无法交互、通知状态标签无样式、监控磁盘进度条不显示。改为传入 `Switch` / `Tag` / `Progress` 组件对象
+- 请假申请页补 `meta.perm = demo:leave:view`：菜单种子已授该权限，路由未声明时任意登录用户都能打开页面、接口随后 403
+- 首页快捷入口按权限渲染：无 `system:user:view` 等权限的用户不再看到点了会落到 404 的入口
+- 头像上传关闭 TDesign 内置上传（`:auto-upload="false"`）并补 `catch`，避免请求失败产生未捕获 rejection
+- 菜单搜索按当前语言取 `meta.title`（英文环境不再恒显示中文），空结果文案走 i18n
+- 文档与配置：`docs/README.md` 跨仓链接改 `blob/master`；`.gitignore` 补 `.env.production`（已废弃，防止按旧流程重建后误提交）
+
+### 修复（历史条目）
+
 - **按钮级权限码没有前端入口（19 个）**：种子 `sys_menu.perms` 有、后端 `@SaCheckPermission` 有，**前端却没有任何门控** —— 按钮对所有人显示，点下去被服务端 403，用户只看到一句"接口失败"。本次补齐：`demo:example:update|delete`（含批量删除与状态开关）、`demo:tenant-example:edit|delete`、`demo:leave:view|edit|delete`、`ai:document:edit|delete`、`ai:conversation:delete`、`system:config:update|delete`、`system:cache:delete`（清空全部 / 清空单个 / 删除键三处）、`system:oauth2client:update|delete|token`、`system:notification:template:view`；权限码与后端注解**逐条对齐**（oauth2 的「清除令牌缓存」复用后端的 `update` 权限）
 - **系统日志「清理历史日志」没有入口**：后端 `DELETE /sys/log/clean`（`SysLogController#clean`，权限 `system:log:delete`）与种子权限行都已就位，前端**既无 API 也无按钮** ⇒ 能力等于半残。补 `api.log.cleanLog(days)` 与「清理历史日志」对话框（可填保留天数，默认 90 天），按钮带 `v-permission="'system:log:delete'"`
 - **`<t-result>` 解析不到组件**：组件展示页用了 `<t-result>`，但本仓锁定的 `tdesign-vue-next 1.20.9` **没有 Result 组件**（其 `es/components.mjs` 导出表里没有）⇒ Vue 解析失败、只 `console.warn`，页面**少一块却没有任何报错**，编译 / 类型检查 / 单测全绿。改用确实存在的 `t-icon` + 文本组合出同样的结果态展示

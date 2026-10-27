@@ -20,7 +20,13 @@ limitations under the License.
       <div class="profile-head">
         <div class="avatar-wrap">
           <t-avatar :image="userInfo.avatar" size="72px">{{ avatarText }}</t-avatar>
-          <t-upload :show-upload-list="false" accept="image/*" theme="file" @change="handleUploadHead">
+          <t-upload
+            :show-upload-list="false"
+            :auto-upload="false"
+            accept="image/*"
+            theme="file"
+            @change="handleUploadHead"
+          >
             <t-button size="small" variant="outline" class="avatar-btn">{{
               t('pages.user.profile.changeAvatar')
             }}</t-button>
@@ -205,10 +211,14 @@ const handleUploadHead = async (files: unknown) => {
   if (!file?.raw) return false;
   const formData = new FormData();
   formData.append('file', file.raw);
-  const res = await api.user.uploadHead(formData);
-  if (res?.code === 200) {
-    MessagePlugin.success(t('pages.user.profile.message.avatarUpdated'));
-    await refreshUser();
+  try {
+    const res = await api.user.uploadHead(formData);
+    if (res?.code === 200) {
+      MessagePlugin.success(t('pages.user.profile.message.avatarUpdated'));
+      await refreshUser();
+    }
+  } catch {
+    // 错误提示已由 request 拦截器统一弹出，此处只避免未捕获的 rejection
   }
   return false;
 };

@@ -87,9 +87,15 @@
       "emptyUnread": "暂无未读通知",
       "connected": "实时推送已连接",
       "disconnected": "实时推送未连接",
-      "justNow": "刚刚"
+      "justNow": "刚刚",
+      "minutesAgo": "{n} 分钟前",
+      "hoursAgo": "{n} 小时前",
+      "daysAgo": "{n} 天前",
+      "from": "来自 {sender}",
+      "emptyByType": "暂无{type}消息"
     },
     "searchPlaceholder": "请输入搜索内容",
+    "searchNoMatch": "未找到匹配的菜单",
     "tagTabs": {
       "closeOther": "关闭其他",
       "closeLeft": "关闭左侧",
@@ -230,7 +236,10 @@
           "templateDownloaded": "模板已下载",
           "asyncExportCreated": "异步导出任务已创建，可在「系统管理-异步任务」查看进度",
           "asyncImportCreated": "异步导入任务已创建，可在「系统管理-异步任务」查看进度",
-          "passwordEncryptFail": "密码加密失败"
+          "passwordEncryptFail": "密码加密失败",
+          "importPartial": "导入完成：成功 {success} 条，失败 {failure} 条；{detail}",
+          "importSuccess": "导入成功 {count} 条",
+          "unlockConfirm": "确定解锁用户「{name}」吗？"
         }
       },
       "dept": {
@@ -336,7 +345,8 @@
           "code": "请输入字典代码",
           "value": "请输入字典值",
           "remark": "请输入备注"
-        }
+        },
+        "itemTitleWith": "字典项（{name}）"
       },
       "config": {
         "configName": "参数名称",
@@ -388,14 +398,16 @@
           "serviceName": "留空 = 归属本服务（推荐）",
           "cron": "如：0 0 2 * * ?",
           "cronRequired": "请输入CRON表达式",
-          "remark": "请输入备注"
+          "remark": "请输入备注",
+          "param": "参数（{name}），多个用英文逗号分隔"
         },
         "tips": {
           "invokeTargetFormat": "格式：beanName.methodName（无参）或 beanName.methodName(param1,param2)（带参），选择方法后自动生成",
           "serviceName1": "任务由哪个服务执行（spring.application.name）。任务方法是被反射调用的 Bean，只有归属服务里有它；因此页面上的\"调用目标\"下拉列出的只是本服务声明的任务方法，",
           "serviceName2": "留空即归属本服务",
           "serviceName4": "。",
-          "cronExamples": "常用示例：0 0 2 * * ?（每天凌晨2点）、0 */5 * * * ?（每5分钟）、0 0 6 * * MON-FRI（工作日早上6点）"
+          "cronExamples": "常用示例：0 0 2 * * ?（每天凌晨2点）、0 */5 * * * ?（每5分钟）、0 0 6 * * MON-FRI（工作日早上6点）",
+          "serviceName3": "留空即归属本服务。"
         },
         "message": {
           "pauseSuccess": "暂停成功",
@@ -409,7 +421,11 @@
           "cronInvalid": "CRON表达式不合法，请检查",
           "cronCheckFail": "CRON表达式校验失败",
           "cronCheckFirst": "请先校验CRON表达式",
-          "serviceNamePattern": "只能是小写字母、数字与连字符，例如 jffast-system-service"
+          "serviceNamePattern": "只能是小写字母、数字与连字符，例如 jffast-system-service",
+          "cronValidWithTime": "表达式合法，下次执行：{time}",
+          "pauseConfirm": "确定暂停任务「{name}」吗？",
+          "resumeConfirm": "确定恢复任务「{name}」吗？",
+          "triggerConfirm": "确定立即执行任务「{name}」吗？"
         }
       },
       "jobLog": {
@@ -514,7 +530,8 @@
         "tenantId": "租户ID",
         "kick": "强制下线",
         "message": {
-          "kickSuccess": "已强制下线"
+          "kickSuccess": "已强制下线",
+          "kickConfirm": "确定强制下线「{name}」吗？"
         }
       },
       "cache": {
@@ -538,8 +555,11 @@
         "message": {
           "clearConfirmHeader": "确认清空",
           "deleteConfirmHeader": "确认删除",
-          "clearAllConfirm": "确定要清空全部缓存吗？此操作不可恢复。"
-        }
+          "clearAllConfirm": "确定要清空全部缓存吗？此操作不可恢复。",
+          "clearCacheConfirm": "确定清空缓存「{name}」吗？",
+          "deleteKeyConfirm": "确定删除缓存键「{key}」吗？"
+        },
+        "detailTitle": "缓存详情：{name}"
       },
       "monitor": {
         "serverInfoTitle": "服务器信息",
@@ -613,7 +633,8 @@
         "message": {
           "tokenFail": "获取令牌失败",
           "evictSuccess": "缓存已清除",
-          "evictFail": "清除失败"
+          "evictFail": "清除失败",
+          "evictConfirm": "确定下线「{name}」的会话吗？"
         }
       },
       "notification": {
@@ -725,14 +746,17 @@
           "placeholder": {
             "group": "请选择分组",
             "name": "如：请假审批通知",
-            "code": "唯一编码，如：leave_approval"
+            "code": "唯一编码，如：leave_approval",
+            "tpl": "支持 {v} 等占位符"
           }
         },
         "message": {
           "sendSuccess": "发送成功",
           "groupNameCodeRequired": "请填写分组名称与编码",
           "templateNameCodeRequired": "请填写模板名称与编码",
-          "codePattern": "模板编码只能用字母/数字/下划线，且以字母开头"
+          "codePattern": "模板编码只能用字母/数字/下划线，且以字母开头",
+          "deleteGroupConfirm": "确定删除分组「{name}」吗？",
+          "deleteTemplateConfirm": "确定删除模板「{name}」吗？"
         }
       },
       "codegen": {
@@ -747,7 +771,8 @@
         "createModule": "新建模块",
         "tabs": {
           "table": "选择数据表",
-          "preview": "代码预览"
+          "preview": "代码预览",
+          "previewWithCount": "预览（{count}）"
         },
         "placeholder": {
           "module": "选择已有模块",
@@ -774,7 +799,9 @@
           "comment": "备注",
           "message": {
             "loadFail": "加载表列表失败"
-          }
+          },
+          "selected": "已选择：{name}",
+          "tableCount": "共 {count} 张表"
         },
         "preview": {
           "treeMode": "树表模式",
@@ -829,7 +856,11 @@
           "downloadZipSuccess": "打包下载成功",
           "treeDetected": "检测到树形字段（如 parent_id），已自动切换为树表模式",
           "moduleNameRequired": "请输入模块名",
-          "selectFileFirst": "请至少选择一个文件"
+          "selectFileFirst": "请至少选择一个文件",
+          "moduleCreateFail": "创建模块失败：{msg}",
+          "moduleCreateSuccess": "模块创建成功：{name}",
+          "moduleExists": "模块「{name}」已存在",
+          "saveFail": "保存失败：{msg}"
         }
       }
     },
@@ -876,8 +907,10 @@
           "bindSuccess": "绑定成功",
           "bindFail": "绑定失败",
           "unbindSuccess": "解绑成功",
-          "unbindFail": "解绑失败"
-        }
+          "unbindFail": "解绑失败",
+          "unbindConfirm": "确定解除「{name}」的绑定吗？"
+        },
+        "boundTo": "已绑定：{name}"
       },
       "notification": {
         "pageTitle": "我的通知",
@@ -951,6 +984,9 @@
         },
         "rules": {
           "codePattern": "编码须以字母开头，仅允许字母数字/下划线/中横线，长度 1-50"
+        },
+        "message": {
+          "confirmDelete": "确定删除分类「{name}」吗？"
         }
       },
       "definition": {
@@ -973,7 +1009,10 @@
           "suspendSuccess": "挂起成功",
           "activateTitle": "激活流程定义",
           "activateSuccess": "激活成功",
-          "deleteTitle": "删除流程部署"
+          "deleteTitle": "删除流程部署",
+          "activateConfirm": "确定激活流程「{name}」吗？",
+          "deleteConfirm": "确定删除流程「{name}」吗？",
+          "suspendConfirm": "确定挂起流程「{name}」吗？"
         },
         "action": {
           "activate": "激活",
@@ -999,7 +1038,8 @@
           "cancelTitle": "取消流程实例",
           "cancelConfirm": "确定取消该流程实例吗？取消后不可恢复。",
           "cancelSuccess": "取消成功",
-          "defaultCancelReason": "用户主动取消"
+          "defaultCancelReason": "用户主动取消",
+          "startSuccess": "流程发起成功，实例 ID：{id}"
         }
       },
       "task": {
@@ -1026,7 +1066,8 @@
           "claimTitle": "签收任务",
           "claimSuccess": "签收成功",
           "completeSuccess": "审批完成",
-          "delegateSuccess": "转办成功"
+          "delegateSuccess": "转办成功",
+          "claimConfirm": "确定签收任务「{name}」吗？"
         }
       },
       "designer": {
@@ -1089,8 +1130,14 @@
           "loadedTip": "已加载流程，编辑后点击「部署」可发布为新版本",
           "needBpmnXml": "请先绘制流程或粘贴 BPMN XML 内容",
           "xmlRootRequired": "BPMN XML 必须包含 <definitions> 或 <bpmn> 根元素",
-          "initFail": "可视化设计器初始化失败，请切换到 XML 代码模式"
-        }
+          "initFail": "可视化设计器初始化失败，请切换到 XML 代码模式",
+          "exportXmlFail": "导出 XML 失败：{msg}",
+          "parseFail": "BPMN 解析失败：{msg}",
+          "updateAssigneeFail": "更新审批人失败：{msg}",
+          "updateIdFail": "更新节点 ID 失败：{msg}",
+          "updateNameFail": "更新节点名称失败：{msg}"
+        },
+        "propsTitle": "节点属性：{type}"
       }
     },
     "ai": {
@@ -1175,7 +1222,8 @@
         "message": {
           "loadFail": "消息加载失败",
           "confirmDelete": "确定删除该对话及其消息吗？"
-        }
+        },
+        "messageTitle": "对话消息：{title}"
       }
     },
     "demo": {
@@ -1342,7 +1390,9 @@
           "districtXuhui": "徐汇区",
           "cityBeijing": "北京",
           "districtChaoyang": "朝阳区",
-          "districtHaidian": "海淀区"
+          "districtHaidian": "海淀区",
+          "currentValue": "当前值：{v}",
+          "selected": "已选择：{name}"
         },
         "data": {
           "cardTableTitle": "t-table 表格",
@@ -1372,7 +1422,8 @@
           "roleEditor": "编辑",
           "roleVisitor": "访客",
           "stateDisabled": "禁用",
-          "sampleImage": "示例图片"
+          "sampleImage": "示例图片",
+          "currentColor": "当前颜色：{v}"
         },
         "feedback": {
           "cardDialogTitle": "t-dialog 对话框",
@@ -1407,7 +1458,8 @@
           "content3": "内容三",
           "linkPrimary": "主要链接",
           "linkSuccess": "成功链接",
-          "linkUnderline": "带下划线"
+          "linkUnderline": "带下划线",
+          "switchTo": "已切换到：{val}"
         },
         "shared": {
           "sectionDesc": "以下为 jffast 框架内置的共享业务组件（位于 @/components），开箱即用。",
@@ -1415,7 +1467,8 @@
           "langTitle": "LanguageSwitcher 语言切换",
           "personPlaceholder": "请选择人员",
           "langTip": "点击下拉可切换中 / 英文（基于 i18n）",
-          "treeSelectComment": "支持 modelValue / multiple / onlyLeaf / placeholder / lazy"
+          "treeSelectComment": "支持 modelValue / multiple / onlyLeaf / placeholder / lazy",
+          "selectedValue": "选中值：{v}"
         }
       }
     }

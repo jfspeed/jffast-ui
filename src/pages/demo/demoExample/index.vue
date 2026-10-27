@@ -105,7 +105,7 @@ limitations under the License.
 </template>
 <script lang="ts" setup>
 import type { PrimaryTableCol } from 'tdesign-vue-next';
-import { DialogPlugin, MessagePlugin, Tag } from 'tdesign-vue-next';
+import { DialogPlugin, MessagePlugin, Switch, Tag } from 'tdesign-vue-next';
 import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -170,7 +170,7 @@ const columns = computed<PrimaryTableCol[]>(() => [
     width: 80,
     align: 'center',
     cell: (h: any, { row }: any) =>
-      h('t-switch', {
+      h(Switch, {
         value: row.status,
         customValue: [1, 0],
         loading: row.statusLoading,

@@ -109,7 +109,7 @@ limitations under the License.
 <script lang="ts" setup>
 import type { PrimaryTableCol } from 'tdesign-vue-next';
 
-import { DialogPlugin, MessagePlugin } from 'tdesign-vue-next';
+import { DialogPlugin, MessagePlugin, Tag } from 'tdesign-vue-next';
 import { computed, h, onMounted, reactive, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -161,8 +161,8 @@ const columns = computed<PrimaryTableCol[]>(() => [
     width: 80,
     cell: (h, { row }) =>
       row.status === 1
-        ? h('t-tag', { theme: 'success', variant: 'light' }, t('pages.system.notification.statusMap.enabled'))
-        : h('t-tag', { theme: 'default', variant: 'light' }, t('pages.system.notification.statusMap.disabled')),
+        ? h(Tag, { theme: 'success', variant: 'light' }, t('pages.system.notification.statusMap.enabled'))
+        : h(Tag, { theme: 'default', variant: 'light' }, t('pages.system.notification.statusMap.disabled')),
   },
   {
     colKey: 'op',

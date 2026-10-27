@@ -44,8 +44,7 @@ export default [
             zh_CN: '示例管理',
             en_US: 'Example',
           },
-          // 静态注册模块的页面级权限（与 sql/demo_init_data.sql 的菜单 201/202 一致）；
-          // 请假申请页没有对应菜单权限，故不声明（声明了会只剩超管能访问）。
+          // 与 sql/demo_init_data.sql 的菜单 201/202 一致
           perm: 'demo:example:view',
         },
       },
@@ -58,6 +57,9 @@ export default [
             zh_CN: '请假申请',
             en_US: 'Leave Application',
           },
+          // 与 sql/demo_init_data.sql 的菜单 205（demo:leave:view）一致：
+          // 不声明时任意登录用户都能打开页面，接口随后 403。
+          perm: 'demo:leave:view',
         },
       },
       {

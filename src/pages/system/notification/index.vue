@@ -149,7 +149,7 @@ limitations under the License.
 </template>
 <script lang="ts" setup>
 import type { PrimaryTableCol } from 'tdesign-vue-next';
-import { DialogPlugin, MessagePlugin } from 'tdesign-vue-next';
+import { DialogPlugin, MessagePlugin, Tag } from 'tdesign-vue-next';
 import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -207,8 +207,8 @@ const columns = computed<PrimaryTableCol[]>(() => [
     width: 80,
     cell: (h, { row }) => {
       return row.status === 1
-        ? h('t-tag', { theme: 'success', variant: 'light' }, t('pages.system.notification.statusMap.sent'))
-        : h('t-tag', { theme: 'default', variant: 'light' }, t('pages.system.notification.statusMap.unsent'));
+        ? h(Tag, { theme: 'success', variant: 'light' }, t('pages.system.notification.statusMap.sent'))
+        : h(Tag, { theme: 'default', variant: 'light' }, t('pages.system.notification.statusMap.unsent'));
     },
   },
   { colKey: 'sender', title: t('pages.system.notification.sender'), width: 100 },
@@ -377,8 +377,8 @@ const statsColumns = computed<PrimaryTableCol[]>(() => [
     width: 100,
     cell: (h, { row }) => {
       return row.isRead === 1
-        ? h('t-tag', { theme: 'success', variant: 'light' }, t('pages.system.notification.stats.read'))
-        : h('t-tag', { theme: 'warning', variant: 'light' }, t('pages.system.notification.stats.unread'));
+        ? h(Tag, { theme: 'success', variant: 'light' }, t('pages.system.notification.stats.read'))
+        : h(Tag, { theme: 'warning', variant: 'light' }, t('pages.system.notification.stats.unread'));
     },
   },
   { colKey: 'readTime', title: t('pages.system.notification.stats.readTime'), width: 180 },
