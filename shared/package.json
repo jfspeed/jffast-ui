@@ -15,12 +15,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/summerZstar/jffast-ui.git",
+    "url": "git+https://github.com/jfspeed/jffast-ui.git",
     "directory": "shared"
   },
-  "homepage": "https://github.com/summerZstar/jffast-ui#readme",
+  "homepage": "https://github.com/jfspeed/jffast-ui#readme",
   "bugs": {
-    "url": "https://github.com/summerZstar/jffast-ui/issues"
+    "url": "https://github.com/jfspeed/jffast-ui/issues"
   },
   "main": "src/index.ts",
   "types": "src/index.ts",

@@ -7,11 +7,11 @@
   "description": "疾风（jffast）前端 Base：Vue 3 + TypeScript + Vite + TDesign 的后台管理前端",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/summerZstar/jffast-ui.git"
+    "url": "git+https://github.com/jfspeed/jffast-ui.git"
   },
-  "homepage": "https://github.com/summerZstar/jffast-ui#readme",
+  "homepage": "https://github.com/jfspeed/jffast-ui#readme",
   "bugs": {
-    "url": "https://github.com/summerZstar/jffast-ui/issues"
+    "url": "https://github.com/jfspeed/jffast-ui/issues"
   },
   "workspaces": [
     "shared"

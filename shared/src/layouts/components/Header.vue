@@ -216,11 +216,11 @@ const handleLogout = async () => {
 
 // 统一补 noopener,noreferrer：即便目标是固定的 GitHub 地址，也不让新页面拿到 window.opener
 const navToGitHub = () => {
-  window.open('https://github.com/summerZstar/jffast', '_blank', 'noopener,noreferrer');
+  window.open('https://github.com/jfspeed/jffast', '_blank', 'noopener,noreferrer');
 };
 
 const navToHelper = () => {
-  window.open('https://github.com/summerZstar/jffast/tree/master/docs', '_blank', 'noopener,noreferrer');
+  window.open('https://github.com/jfspeed/jffast/tree/master/docs', '_blank', 'noopener,noreferrer');
 };
 </script>
 <style lang="less" scoped>

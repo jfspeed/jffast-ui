@@ -2,7 +2,7 @@
 
 > 面向使用者和二次开发者。仓库根 [README.md](../README.md) 是快速开始，本文补充结构与约定。
 > 编码规范见 [前端开发指南](./前端开发指南.md)（Monorepo、别名、CRUD 工厂、组件/Hooks 准入、权限指令、i18n、样式、安全约束、测试）。
-> 后端说明见 [jffast](https://github.com/summerZstar/jffast)。
+> 后端说明见 [jffast](https://github.com/jfspeed/jffast)。
 
 ## 1 环境要求
 
@@ -115,7 +115,7 @@ CI 按 `.nvmrc` 安装 Node，四道门禁任一失败即红。
 
 ## 9. 安全基线与已知取舍
 
-> 后端侧的安全取舍与加固基线见后端仓库的 [`SECURITY.md`](https://github.com/summerZstar/jffast/blob/master/SECURITY.md)。本节只管前端这一侧。
+> 后端侧的安全取舍与加固基线见后端仓库的 [`SECURITY.md`](https://github.com/jfspeed/jffast/blob/master/SECURITY.md)。本节只管前端这一侧。
 
 ### 9.1 已收紧项（改动前先读这里的理由）
 

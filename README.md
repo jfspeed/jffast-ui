@@ -152,8 +152,8 @@ docker build --build-arg VITE_RSA_PUBLIC_KEY=<公钥> -t jffast-web:latest .
 ```
 
 ```bash
-git clone https://github.com/summerZstar/jffast.git
-git clone https://github.com/summerZstar/jffast-ui.git
+git clone https://github.com/jfspeed/jffast.git
+git clone https://github.com/jfspeed/jffast-ui.git
 docker network create jffast-net        # 两栈共用的外部网络，只需建一次
 ```
 
@@ -420,8 +420,8 @@ server: {
 
 ## 🏛️ 相关项目
 
-| 项目                                            | 说明      | 许可证     |
-| ----------------------------------------------- | --------- | ---------- |
-| [jffast](https://github.com/summerZstar/jffast) | Base 后端 | Apache 2.0 |
+| 项目                                        | 说明      | 许可证     |
+| ------------------------------------------- | --------- | ---------- |
+| [jffast](https://github.com/jfspeed/jffast) | Base 后端 | Apache 2.0 |
 
 完整开发约束（Monorepo、别名映射、组件/Hooks 准入、权限指令、i18n、样式、安全约束、测试）详见 [前端开发指南](docs/前端开发指南.md)。
