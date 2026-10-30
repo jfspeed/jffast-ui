@@ -9,9 +9,9 @@
 | 依赖    | 版本                                                      |
 | ------- | --------------------------------------------------------- |
 | Node.js | `^22.22.1 \|\| ^24 \|\| >=26`（推荐 24 LTS，见 `.nvmrc`） |
-| npm     | >= 10                                                     |
+| npm     | 10.x+（随 Node 22/24 自带，`engines` 未单独声明 npm）     |
 
-Node 23 **不可用**：`vitest` 与若干 ESLint 插件不支持该奇数版；仓库 `.npmrc` 开启 `engine-strict`，版本不符时 `npm ci` 会直接失败。
+Node 23 **不可用**：`vitest` 与若干 ESLint 插件不支持该奇数版；仓库 `.npmrc` 开启 `engine-strict`，Node 版本不符时 `npm ci` 会直接失败（该开关只约束 `package.json` 已声明的 `engines.node`）。
 
 ```bash
 nvm use            # 读取 .nvmrc
@@ -25,19 +25,21 @@ npm run dev        # http://localhost:7201，代理后端 /jffast-api
 jffast-ui/
 ├── shared/                  @jfspeed/shared 公共包（workspace）
 │   └── src/
-│       ├── api/             createCrud（通用 CRUD 工厂）/ http（axios 封装）
+│       ├── api/core/        createCrud（通用 CRUD 工厂）/ http（axios 封装）
 │       ├── hooks/           useTable / useForm / useDict / useResponsive
 │       ├── components/      公共组件（含 Watermark）
 │       ├── layouts/         布局与导航
 │       ├── store/           Pinia（user / permission 等）
 │       ├── locales/         中英文资源
+│       ├── assets/          公共静态资源
 │       ├── constants/       业务常量
 │       ├── types/           全局类型声明
-│       └── utils/           工具与纯函数（如 user-edit-rules）
+│       └── utils/           工具与纯函数（如 request.ts / user-edit-rules.ts）
 └── src/                     Base 应用
-    ├── api/                 业务接口（system / flow / codegen / ai / job …）
+    ├── api/                 业务接口（system / flow / codegen / ai / job / demo / oauth2Client …）
     ├── pages/               页面
     ├── router/modules/      路由模块（自动扫描注册）
+    ├── types/               应用级类型声明
     ├── permission.ts        路由守卫（登录态、动态路由注入）
     └── create-app.ts        createBaseApp 工厂（应用装配入口）
 ```
@@ -56,10 +58,10 @@ jffast-ui/
 
 ```js
 // src/api/system.js
-import { createCrud } from '@jfspeed/shared/api/crud';
+import { createCrud } from '@/api/core/crud';
 
 export const userApi = createCrud('/sys/user');
-// 自带 page / detail / add / update / delete
+// 自带 page / detail / create / update / delete / list（list 对应后端 /all；不自带 batchDelete）
 ```
 
 ### 3.2 列表与表单

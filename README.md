@@ -39,21 +39,23 @@ jffast-ui/
 ├── shared/                        @jfspeed/shared 公共包
 │   └── src/
 │       ├── api/core/              createCrud / http 适配层
-│       ├── hooks/                 useTable / useForm / useDict
+│       ├── hooks/                 useTable / useForm / useDict / useResponsive
 │       ├── utils/                 工具函数
 │       ├── components/            公共组件
 │       ├── store/                 Pinia 状态管理
 │       ├── layouts/               布局组件
 │       ├── style/                 全局样式
 │       ├── locales/               国际化资源
+│       ├── assets/                公共静态资源（logo 等）
 │       ├── config/                配置
 │       ├── constants/             常量
 │       └── types/                 TypeScript 类型
 ├── src/                           Base 应用（pages / router / api / create-app.ts）
-│   ├── pages/                     页面（dashboard/login/system/user/flow/ai）
+│   ├── pages/                     页面（dashboard/login/result/demo/system/flow/ai/user/social）
 │   ├── router/                    路由（modules/ 自动扫描）
-│   ├── api/                       业务 API（system/codegen/flow/ai）
+│   ├── api/                       业务 API（system/codegen/flow/ai/job/demo/oauth2Client + modules/auth）
 │   ├── assets/                    静态资源
+│   ├── types/                     应用级类型声明
 │   ├── create-app.ts              createBaseApp 工厂函数
 │   ├── main.ts                    启动入口
 │   └── permission.ts              路由守卫
@@ -67,10 +69,10 @@ jffast-ui/
 
 ### 环境要求
 
-| 依赖    | 版本                                                      |
-| ------- | --------------------------------------------------------- |
-| Node.js | `^22.22.1 \|\| ^24 \|\| >=26`（推荐 24 LTS，见 `.nvmrc`） |
-| npm     | >= 10.x                                                   |
+| 依赖    | 版本                                                                                        |
+| ------- | ------------------------------------------------------------------------------------------- |
+| Node.js | `^22.22.1 \|\| ^24 \|\| >=26`（推荐 24 LTS，见 `.nvmrc`）                                   |
+| npm     | 10.x+（随 Node 22/24 自带；`engines` 只声明 node，`.npmrc` 的 `engine-strict` 只约束 node） |
 
 > **RSA 公钥**：开发模式由后端 `GET /sys/rsaPublicKey` 动态下发，无需配置。
 > 生产构建（`npm run build` / `--mode release`）必须注入本次部署自己的公钥，缺失会被 `vite.config.ts` 直接拦截（见「构建生产版本」）。仓库里**不存任何密钥字面量**，也没有可沿用的示例公钥可抄。

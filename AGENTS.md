@@ -1,6 +1,6 @@
 # jffast-ui 项目规则
 
-> 疾风框架基础前端（Base，Apache 2.0）。最后更新：2026-09-25  
+> 疾风框架基础前端（Base，Apache 2.0）。最后更新：2026-10-29  
 > 结构：协作规范 → 前端规范 → 项目信息。冲突时以本文件「前端规范」与权威文档摘要为准。
 
 <!-- BEGIN: 协作规范 -->
@@ -96,26 +96,26 @@
 
 ### 1.1 可复用能力索引（增量维护）
 
-| 类别   | 能力              | 路径                                                          | 何时用                                                                                              |
-| ------ | ----------------- | ------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| 脚手架 | CRUD API 工厂     | `shared/src/api/core/crud.js`（`createCrud`）                 | 标准增删改查，默认 page/detail/create/update/delete/batchDelete/list                                |
-| 脚手架 | 表格 hook         | `shared/src/hooks/useTable.js`                                | **所有列表页表格逻辑，禁止重写**                                                                    |
-| 脚手架 | 表单 hook         | `shared/src/hooks/useForm.js`                                 | **所有新增/编辑弹窗，禁止重写**                                                                     |
-| 脚手架 | 字典 hook         | `shared/src/hooks/useDict.js`                                 | 下拉选项取字典                                                                                      |
-| 请求   | HTTP 封装         | `shared/src/api/core/http.js` + `shared/src/utils/request.ts` | 统一拦截器、token、`R` 结构；禁止裸用 axios                                                         |
-| 工具   | 权限              | `shared/src/utils/permission.js`                              | `v-permission` / `hasPermission` / `hasRole`                                                        |
-| 工具   | 加解密            | `shared/src/utils/crypto.js`                                  | RSA/Web Crypto（密码）；**无 `tool.js`**                                                            |
-| 工具   | 日期              | `shared/src/utils/date.ts`                                    | 格式化                                                                                              |
-| 工具   | 错误收集          | `shared/src/utils/error-logger.ts`                            | `initErrorLogger()` JS/Promise/接口上报                                                             |
-| 工具   | 主题/图表色       | `shared/src/utils/color.ts`                                   | `getColorFromTheme` / `getChartListColor`                                                           |
-| 工具   | 图表辅助          | `shared/src/utils/charts.ts`                                  | 时间轴 / 随机数组                                                                                   |
-| 工具   | 路由装配          | `shared/src/utils/route/`                                     | `setupViewsModules` + LAYOUT/IFRAME                                                                 |
-| 工具   | 登录跳转 redirect | `shared/src/utils/login-redirect.ts`                          | 跳登录页 / 读回跳地址的**唯一入口**（编码、解码、站内白名单），禁止自行 `encodeURIComponent` 拼回跳 |
-| 工具   | WebSocket         | `shared/src/utils/websocket.ts`                               | 站内通知单例 + 心跳 + 退避重连                                                                      |
-| 状态   | store 模块        | `shared/src/store/modules/`                                   | user / permission / setting / notification…                                                         |
-| 约定   | 路径别名          | `vite.config.ts`                                              | 见项目信息别名表；禁止深层 `../../`                                                                 |
-| 约定   | 路由注册          | `src/router/modules/*.ts` 自动扫描                            | 见项目信息                                                                                          |
-| 常量   | 权限常量          | `shared/src/constants/`                                       | `ROLE_SUPER_ADMIN` / `PERM_WILDCARD`                                                                |
+| 类别   | 能力              | 路径                                                          | 何时用                                                                                                                                    |
+| ------ | ----------------- | ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| 脚手架 | CRUD API 工厂     | `shared/src/api/core/crud.js`（`createCrud`）                 | 标准增删改查，默认 create/update/delete/detail/page/list；**不自带 `batchDelete`**（只有实现了批量删除的资源才在自己的 `options` 里声明） |
+| 脚手架 | 表格 hook         | `shared/src/hooks/useTable.js`                                | **所有列表页表格逻辑，禁止重写**                                                                                                          |
+| 脚手架 | 表单 hook         | `shared/src/hooks/useForm.js`                                 | **所有新增/编辑弹窗，禁止重写**                                                                                                           |
+| 脚手架 | 字典 hook         | `shared/src/hooks/useDict.js`                                 | 下拉选项取字典                                                                                                                            |
+| 请求   | HTTP 封装         | `shared/src/api/core/http.js` + `shared/src/utils/request.ts` | 统一拦截器、token、`R` 结构；禁止裸用 axios                                                                                               |
+| 工具   | 权限              | `shared/src/utils/permission.js`                              | `v-permission` / `hasPermission` / `hasRole`                                                                                              |
+| 工具   | 加解密            | `shared/src/utils/crypto.js`                                  | `rsaEncrypt`（**jsencrypt**，非 Web Crypto）；**无 `tool.js`**                                                                            |
+| 工具   | 日期              | `shared/src/utils/date.ts`                                    | 格式化                                                                                                                                    |
+| 工具   | 错误收集          | `shared/src/utils/error-logger.ts`                            | `initErrorLogger()` JS/Promise/接口上报                                                                                                   |
+| 工具   | 主题/图表色       | `shared/src/utils/color.ts`                                   | `getColorFromTheme` / `getChartListColor`                                                                                                 |
+| 工具   | 图表辅助          | `shared/src/utils/charts.ts`                                  | 时间轴 / 随机数组                                                                                                                         |
+| 工具   | 路由装配          | `shared/src/utils/route/`                                     | `setupViewsModules` + LAYOUT/IFRAME                                                                                                       |
+| 工具   | 登录跳转 redirect | `shared/src/utils/login-redirect.ts`                          | 跳登录页 / 读回跳地址的**唯一入口**（编码、解码、站内白名单），禁止自行 `encodeURIComponent` 拼回跳                                       |
+| 工具   | WebSocket         | `shared/src/utils/websocket.ts`                               | 站内通知单例 + 心跳 + 退避重连                                                                                                            |
+| 状态   | store 模块        | `shared/src/store/modules/`                                   | user / permission / setting / notification…                                                                                               |
+| 约定   | 路径别名          | `vite.config.ts`                                              | 见项目信息别名表；禁止深层 `../../`                                                                                                       |
+| 约定   | 路由注册          | `src/router/modules/*.ts` 自动扫描                            | 见项目信息                                                                                                                                |
+| 常量   | 权限常量          | `shared/src/constants/`                                       | `ROLE_SUPER_ADMIN` / `PERM_WILDCARD`                                                                                                      |
 
 ### 1.2 复用纪律
 
@@ -133,6 +133,9 @@ src/pages/{模块}/{页面名}/
 
 - 页面内不写请求细节，请求走 API 层
 - 删除确认用 `DialogPlugin.confirm()`（不是 `MessagePlugin.confirm`）
+- **路由页必须声明组件名**：被菜单/静态路由直接挂载的 `index.vue`（`flow/task/todo.vue` 这类）要写
+  `defineOptions({ name: 'Xxx' })`，`Xxx` = 静态路由 `name` = 后端菜单 `upperFirst(sys_menu.path)`。
+  `Content.vue` 的 keep-alive `:include` 用 `route.name`，而 Vue 按**组件名**匹配；缺这句页签保活**静默失效**（不报错）
 
 ## 三、浏览器测试规范（硬性）
 
@@ -146,8 +149,13 @@ src/pages/{模块}/{页面名}/
 
 ## 四、常见坑与已知限制
 
-- **`tool.js` 已删除**：加解密只走 `crypto.js`（Web Crypto），勿再引用
+- **`tool.js` 已删除**：加解密只走 `crypto.js`（底层 `jsencrypt`，不是 Web Crypto），勿再引用
 - **`/jffast-api` 代理必须 `ws: true`**，否则站内通知 WebSocket 升级不转发
+- **同一代理还须 `rewriteWsOrigin: true`**：后端把「`allowed-origins` 留空」定义为**只放行同源握手**
+  （Spring `OriginHandshakeInterceptor`：非同源且来源不在名单 ⇒ 403）。dev 下浏览器 `Origin` 是页面源
+  （:7201），而 `changeOrigin` 已把 `Host` 改成后端（:7200）⇒ 后端判跨源 ⇒ 握手 403、
+  站内通知连不上。改写 `Origin` 让 dev 与生产（nginx 同源反代）保持同一套语义。漏掉这条的表现是
+  「接口全通、只有站内通知永远收不到推送」
 - **只加路由文件不插后端菜单** → 菜单不显示（菜单由 `sys_menu` 驱动时）
 - Token 写入 `localStorage` 的键为 `token` / `user`（与 request 拦截器一致），勿另起键名
 
@@ -165,7 +173,7 @@ src/pages/{模块}/{页面名}/
 - **License**：Apache 2.0
 - **技术栈**：Vue 3.5（`<script setup>`）、Vite 6、Pinia 3、Vue Router 4、TDesign Vue Next ^1.19、less
 - **Monorepo**：npm workspaces —— `shared/`（`@jfspeed/shared`）+ `src/`（Base 应用）
-- **端口与环境**：前端 **7201**，代理后端 **7200**（`/jffast-api`）；Node.js `^22.22.1 || ^24.0.0 || >=26.0.0`（见 package.json engines，推荐 24 LTS）、npm >= 10.x（`.npmrc` 设了 engine-strict=true，版本不满足时 npm install 直接失败）
+- **端口与环境**：前端 **7201**，代理后端 **7200**（`/jffast-api`）；Node.js `^22.22.1 || ^24.0.0 || >=26.0.0`（见 package.json engines，推荐 24 LTS）；npm 需 **10.x+**（Node 22/24 自带即满足；`engines` 只声明 node，`.npmrc` 的 engine-strict 只对已声明的 node 生效）
 
 ## 二、架构与目录结构
 
@@ -180,12 +188,13 @@ jffast-ui/
 │   ├── style/                 #   index.less / variables.less / reset.less
 │   ├── locales/lang/          #   zh_CN.json / en_US.json
 │   ├── utils/                 #   request.ts / permission.js / crypto.js / date.ts / websocket.ts / error-logger.ts / color.ts / charts.ts / route/
+│   ├── assets/                #   公共静态资源（logo 等）
 │   ├── config/ constants/ types/
 ├── src/                       # Base 应用
-│   ├── pages/                 #   dashboard / login / result / demo / system / flow / user
-│   ├── router/modules/        #   ai.ts / demo.ts / homepage.ts / system.ts / user.ts（自动扫描）
+│   ├── pages/                 #   dashboard / login / result / demo / system / flow / ai / user / social
+│   ├── router/modules/        #   ai.ts / demo.ts / flow.ts / homepage.ts / system.ts / user.ts（自动扫描）
 │   ├── api/                   #   平铺：system.js / codegen.js / flow.js / ai.js / job.js / demo.js / oauth2Client.js / index.js；登录专用 modules/auth.js
-│   ├── assets/  create-app.ts  main.ts  permission.ts
+│   ├── assets/  types/  create-app.ts  main.ts  permission.ts
 ├── docker/                    # nginx 配置：默认站点模板 + WebSocket map
 ├── deploy/                    # 前端栈 compose + .env.example
 └── vite.config.ts  package.json  .env.development  Dockerfile  .dockerignore
