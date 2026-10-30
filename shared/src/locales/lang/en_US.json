@@ -241,7 +241,9 @@
           "passwordEncryptFail": "Password encryption failed",
           "importPartial": "Import finished: {success} succeeded, {failure} failed; {detail}",
           "importSuccess": "Imported {count} rows",
-          "unlockConfirm": "Unlock user \"{name}\"?"
+          "unlockConfirm": "Unlock user \"{name}\"?",
+          "deptListNotEmpty": "Department bindings cannot be cleared; keep at least one department",
+          "deptMustBeInBindings": "The primary department must be one of the selected departments"
         }
       },
       "dept": {

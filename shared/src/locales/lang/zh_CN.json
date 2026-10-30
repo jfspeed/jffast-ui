@@ -241,7 +241,9 @@
           "passwordEncryptFail": "密码加密失败",
           "importPartial": "导入完成：成功 {success} 条，失败 {failure} 条；{detail}",
           "importSuccess": "导入成功 {count} 条",
-          "unlockConfirm": "确定解锁用户「{name}」吗？"
+          "unlockConfirm": "确定解锁用户「{name}」吗？",
+          "deptListNotEmpty": "不能清空该用户的部门绑定；如需调整请至少保留一个部门",
+          "deptMustBeInBindings": "归属部门必须是已勾选的部门之一"
         }
       },
       "dept": {
