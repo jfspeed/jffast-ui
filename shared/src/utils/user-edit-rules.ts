@@ -145,3 +145,49 @@ export const evaluateDeptBindingRules = (input: DeptBindingRuleInput): DeptRuleV
   }
   return null;
 };
+
+/**
+ * 岗位提交集合（三态契约的前端半边）：
+ * `null` ⇒ 调用方必须让 `postList` **键缺席**，后端完全不触碰 `sys_user_post`；
+ * `[]`   ⇒ 显式清空该用户全部岗位绑定；
+ * 非空   ⇒ 整组替换。
+ * <p>与角色的「任何身份都等值重提」是有意差异：岗位是组织归属、由管理员维护，
+ * 自助编辑不提交该键。</p>
+ * <p>id 归一复用 {@link normalizeDeptIds}：数字串语义与部门 id 相同（雪花 id 不做 `Number()`），
+ * 不引第二份实现造成口径分叉。</p>
+ */
+export const computeSubmittedPostIds = (
+  canEditPosts: boolean,
+  postIds: readonly unknown[] | null | undefined,
+): Array<{ id: string }> | null => {
+  if (!canEditPosts) {
+    return null;
+  }
+  return normalizeDeptIds(postIds).map((id) => ({ id }));
+};
+
+export interface PostOption {
+  label: string;
+  value: string;
+}
+
+/**
+ * R-J：选项 = 下拉结果 ∪ 详情回填项，按 id 去重、下拉顺序优先。
+ * <p>停用岗位不在 `postSelect` 结果里，但若仍被该用户绑定就必须留在选项中——
+ * 否则编辑其它字段会顺手把这条绑定抹掉（提交集合里少了它，后端按整组替换执行）。</p>
+ */
+export const mergePostOptions = (
+  dropdown: readonly PostOption[] | null | undefined,
+  backfilled: readonly PostOption[] | null | undefined,
+): PostOption[] => {
+  const merged: PostOption[] = [];
+  const seen = new Set<string>();
+  (dropdown ?? []).concat(backfilled ?? []).forEach((option) => {
+    const value = normalizeDeptId(option.value);
+    if (value !== null && !seen.has(value)) {
+      seen.add(value);
+      merged.push({ label: option.label, value });
+    }
+  });
+  return merged;
+};

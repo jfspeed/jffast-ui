@@ -206,6 +206,7 @@
           "dept": "Department",
           "deptBindings": "Department Bindings",
           "role": "Role",
+          "post": "Position",
           "password": "Password"
         },
         "placeholder": {
@@ -217,6 +218,7 @@
           "password": "Please enter password",
           "dept": "Please select department",
           "role": "Please select role",
+          "post": "Please select position",
           "state": "Please select status"
         },
         "action": {

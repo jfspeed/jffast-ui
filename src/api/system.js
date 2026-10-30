@@ -78,7 +78,9 @@ const log = createCrud('/sys/log', {
 
 const config = createCrud('/sys/config');
 
-const post = createCrud('/sys/post');
+const post = createCrud('/sys/post', {
+  postSelect: () => http.get('/sys/post/postSelect'),
+});
 
 // 异步任务（后端 /sys/task）
 const task = createCrud('/sys/task', {

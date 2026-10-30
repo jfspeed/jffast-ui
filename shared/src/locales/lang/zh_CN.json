@@ -206,6 +206,7 @@
           "dept": "部门",
           "deptBindings": "部门绑定",
           "role": "角色",
+          "post": "岗位",
           "password": "密码"
         },
         "placeholder": {
@@ -217,6 +218,7 @@
           "password": "请输入密码",
           "dept": "请选择部门",
           "role": "请选择角色",
+          "post": "请选择岗位",
           "state": "请选择状态"
         },
         "action": {

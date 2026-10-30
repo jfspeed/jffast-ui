@@ -80,6 +80,17 @@ limitations under the License.
           :loading="roleLoading"
         />
       </t-form-item>
+      <t-form-item :label="t('pages.system.user.field.post')" name="postList">
+        <t-select
+          v-model="postIds"
+          :placeholder="t('pages.system.user.placeholder.post')"
+          multiple
+          clearable
+          :disabled="!canEditPosts"
+          :options="postOptions"
+          :loading="postLoading"
+        />
+      </t-form-item>
     </t-form>
     <template #footer>
       <t-button variant="outline" @click="visible = false">{{ t('common.dialogCancel') }}</t-button>
@@ -99,10 +110,13 @@ import api from '@/api/system';
 import { useForm } from '@/hooks/useForm';
 import { useUserStore } from '@/store';
 import { encryptPassword, getRsaPublicKey } from '@/utils/rsa-key';
+import type { PostOption } from '@/utils/user-edit-rules';
 import {
   computeIsSelfEdit,
   computeSubmittedDeptIds,
+  computeSubmittedPostIds,
   evaluateDeptBindingRules,
+  mergePostOptions,
   normalizeDeptId,
   normalizeDeptIds,
 } from '@/utils/user-edit-rules';
@@ -125,6 +139,8 @@ interface SysUserFormData {
   deptId?: string | null;
   roleList?: Array<{ id: number | string }>;
   deptList?: Array<{ id: number | string }>;
+  /** 岗位绑定：详情回填带 postName，提交只带 id；键缺席 = 后端不触碰 sys_user_post */
+  postList?: Array<{ id: number | string; postName?: string }>;
   /** 后端下发的逗号分隔部门串（兼容字段，前端不主动提交） */
   deptIds?: string;
 }
@@ -136,6 +152,12 @@ const roleLoading = ref(false);
 const deptIds = ref<string[]>([]);
 const deptTreeOptions = ref([]);
 const deptLoading = ref(false);
+
+/** 岗位：下拉结果与详情回填项各存一份，选项由二者并集而来（R-J，见 user-edit-rules.mergePostOptions） */
+const postIds = ref<string[]>([]);
+const postDropdownOptions = ref<PostOption[]>([]);
+const postBackfilledOptions = ref<PostOption[]>([]);
+const postLoading = ref(false);
 
 const titleMap = computed<Record<string, string>>(() => ({
   add: t('common.add'),
@@ -171,6 +193,7 @@ const {
     deptId: null,
     roleList: [],
     deptList: [],
+    postList: [],
   },
 });
 
@@ -199,6 +222,22 @@ const canEditDept = computed<boolean>(() => !isEdit.value || canEditBindings.val
 
 /** R-EDIT-1/2/4 与提交体共用：实际会提交的集合 */
 const submittedDeptIds = computed<string[]>(() => computeSubmittedDeptIds(canEditBindings.value, deptIds.value));
+
+/**
+ * 岗位：自助编辑不提交该键（岗位是组织归属，由管理员维护）。
+ * <p>与角色项的有意差异：角色任何身份都等值重提，岗位在自助编辑时键缺席 = 后端不改。</p>
+ */
+const canEditPosts = computed<boolean>(() => !isSelfEdit.value);
+
+/** null ⇒ 键缺席；[] ⇒ 显式清空；非空 ⇒ 整组替换 */
+const submittedPostIds = computed<Array<{ id: string }> | null>(() =>
+  computeSubmittedPostIds(canEditPosts.value, postIds.value),
+);
+
+/** R-J：下拉 ∪ 回填，按 id 去重——停用岗位若仍被绑定必须留在选项里 */
+const postOptions = computed<PostOption[]>(() =>
+  mergePostOptions(postDropdownOptions.value, postBackfilledOptions.value),
+);
 
 /** 内置 admin 目标：角色控件只读的来源之二 */
 const isBuiltinAdminTarget = computed<boolean>(() => isEdit.value && form.userName === 'admin');
@@ -237,6 +276,27 @@ const loadDeptTree = async () => {
   }
 };
 
+/**
+ * 岗位下拉：只列启用中的岗位。
+ * <p>能改用户 ≠ 能读岗位下拉——缺 `system:post:view` 时这里 403，按设计降级为空选项；
+ * 已绑定的（含停用）岗位仍由详情回填项兜住，且 `canEditPosts` 为假时键根本不会提交，
+ * 不会因拿不到选项就把既有绑定清空。</p>
+ */
+const loadPosts = async () => {
+  postLoading.value = true;
+  try {
+    const res = await api.post.postSelect();
+    const list = res?.data || res || [];
+    postDropdownOptions.value = Array.isArray(list)
+      ? list.map((item) => ({ label: item.postName, value: String(item.id) }))
+      : [];
+  } catch {
+    postDropdownOptions.value = [];
+  } finally {
+    postLoading.value = false;
+  }
+};
+
 const setDataEx = async (data: SysUserFormData) => {
   if (data.id) {
     const res = await api.user.detail(data.id);
@@ -250,6 +310,11 @@ const setDataEx = async (data: SysUserFormData) => {
   originalDeptIds.value = normalizeDeptIds(data.deptList?.length ? data.deptList : data.deptIds);
   deptIds.value = [...originalDeptIds.value];
   roleIds.value = data.roleList?.length ? data.roleList.map((r) => r.id) : [];
+  // 出参口径：postList 为 null / 缺席都读作「没有绑定」，消费一律走 ?.length
+  postBackfilledOptions.value = data.postList?.length
+    ? data.postList.map((p) => ({ label: p.postName ?? '', value: String(p.id) }))
+    : [];
+  postIds.value = data.postList?.length ? data.postList.map((p) => String(p.id)) : [];
 };
 
 const onSubmit = async () => {
@@ -295,6 +360,14 @@ const onSubmit = async () => {
 
   // 角色：任何身份都提交（非超管 / 自助为等值重提）
   submitData.roleList = roleIds.value.map((id) => ({ id }));
+
+  // 岗位：null ⇒ 键缺席（后端不触碰 sys_user_post）；[] ⇒ 显式清空；非空 ⇒ 整组替换
+  delete submitData.postList;
+  const submittedPosts = submittedPostIds.value;
+  if (submittedPosts !== null) {
+    submitData.postList = submittedPosts;
+  }
+
   delete submitData.password;
   if (mode.value === 'add' && form.password) {
     // 公钥来源：构建期注入优先（生产），否则向后端动态拉取（dev/test 启动时自动生成）。
@@ -330,6 +403,7 @@ const onSubmit = async () => {
 onMounted(() => {
   loadRoles();
   loadDeptTree();
+  loadPosts();
 });
 
 defineExpose({ open, setData: setDataEx });

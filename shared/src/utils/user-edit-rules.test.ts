@@ -16,11 +16,13 @@
 
 import { describe, expect, it } from 'vitest';
 
-import type { DeptBindingRuleInput } from '@/utils/user-edit-rules';
+import type { DeptBindingRuleInput, PostOption } from '@/utils/user-edit-rules';
 import {
   computeIsSelfEdit,
   computeSubmittedDeptIds,
+  computeSubmittedPostIds,
   evaluateDeptBindingRules,
+  mergePostOptions,
   normalizeDeptId,
   normalizeDeptIds,
 } from '@/utils/user-edit-rules';
@@ -392,5 +394,80 @@ describe('normalizeDeptIds 回填归一（编辑态 deptList / deptIds 双向保
         submittedDeptIds,
       }),
     ).toBeNull();
+  });
+});
+
+describe('computeSubmittedPostIds 三态（键缺席 / 显式清空 / 整组替换）', () => {
+  it('自助编辑 ⇒ null：postList 键必须缺席，后端不触碰 sys_user_post', () => {
+    expect(computeSubmittedPostIds(false, [SNOWFLAKE_A])).toBeNull();
+    expect(computeSubmittedPostIds(false, [])).toBeNull();
+    expect(computeSubmittedPostIds(false, null)).toBeNull();
+  });
+
+  it('空选 ⇒ 空数组：清空意图必须显式，不得退化成 null', () => {
+    expect(computeSubmittedPostIds(true, [])).toEqual([]);
+  });
+
+  it('管理员等值重提：回填原样提交，顺序无关且 id 保留字符串字面值', () => {
+    expect(computeSubmittedPostIds(true, [{ id: SNOWFLAKE_A }, { id: SNOWFLAKE_B }])).toEqual([
+      { id: SNOWFLAKE_A },
+      { id: SNOWFLAKE_B },
+    ]);
+    expect(computeSubmittedPostIds(true, [SNOWFLAKE_B, SNOWFLAKE_A])).toEqual([
+      { id: SNOWFLAKE_B },
+      { id: SNOWFLAKE_A },
+    ]);
+  });
+
+  it('新集合：新增与移除都落进提交体，非数字项与空 id 被剔除', () => {
+    expect(computeSubmittedPostIds(true, [SNOWFLAKE_A, 'abc', '', null, undefined])).toEqual([{ id: SNOWFLAKE_A }]);
+  });
+
+  it('雪花 id 不经 Number()，17 位以上仍逐字保真', () => {
+    const longId = '1379414580741734912';
+    expect(computeSubmittedPostIds(true, [longId])).toEqual([{ id: longId }]);
+  });
+
+  it('后端逗号串回填形态同样可用', () => {
+    expect(computeSubmittedPostIds(true, `${SNOWFLAKE_A},${SNOWFLAKE_B}` as never)).toEqual([
+      { id: SNOWFLAKE_A },
+      { id: SNOWFLAKE_B },
+    ]);
+  });
+});
+
+describe('mergePostOptions 并集（R-J：停用岗位的绑定不得被顺手抹掉）', () => {
+  const dropdown: PostOption[] = [
+    { label: '架构师', value: SNOWFLAKE_A },
+    { label: '开发工程师', value: SNOWFLAKE_B },
+  ];
+
+  it('下拉未含的回填项必须补进选项，否则提交集合少了它 = 静默解绑', () => {
+    const backfilled: PostOption[] = [
+      { label: '已停用岗位', value: SNOWFLAKE_B },
+      { label: '产品经理', value: '99' },
+    ];
+    expect(mergePostOptions(dropdown, backfilled)).toEqual([
+      { label: '架构师', value: SNOWFLAKE_A },
+      { label: '开发工程师', value: SNOWFLAKE_B },
+      { label: '产品经理', value: '99' },
+    ]);
+  });
+
+  it('同 id 以下拉标签为准，顺序保持下拉在前', () => {
+    const backfilled: PostOption[] = [{ label: '旧标签', value: SNOWFLAKE_A }];
+    expect(mergePostOptions(dropdown, backfilled)).toEqual(dropdown);
+  });
+
+  it('两侧皆空 ⇒ 空选项；下拉为空时回填项全量兜住', () => {
+    expect(mergePostOptions([], [])).toEqual([]);
+    const backfilled: PostOption[] = [{ label: '已停用岗位', value: SNOWFLAKE_B }];
+    expect(mergePostOptions([], backfilled)).toEqual(backfilled);
+  });
+
+  it('并集结果直接喂提交函数：等值重提不丢停用岗位', () => {
+    const options = mergePostOptions(dropdown, [{ label: '已停用岗位', value: SNOWFLAKE_B }]);
+    const selected = options.map((option) => option.value);
+    expect(computeSubmittedPostIds(true, selected)).toEqual([{ id: SNOWFLAKE_A }, { id: SNOWFLAKE_B }]);
   });
 });
