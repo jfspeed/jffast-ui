@@ -75,5 +75,10 @@ const navToHelper = () => {
       margin-left: var(--td-comp-margin-l);
     }
   }
+
+  .logo {
+    height: 40px;
+    width: auto;
+  }
 }
 </style>
