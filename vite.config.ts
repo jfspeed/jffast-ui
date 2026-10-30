@@ -163,6 +163,13 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
           // ws: true —— 站内通知 WebSocket 走 ${VITE_API_URL}/ws，不开启 upgrade 转发则
           // 前端永远连不上实时推送（且不会报错，只是永远没有推送）
           ws: true,
+          // rewriteWsOrigin: true —— 后端把「allowed-origins 留空」定义为**只放行同源握手**
+          // （Spring 的 OriginHandshakeInterceptor：非同源且来源不在名单里 ⇒ 403）。
+          // dev 下浏览器发的 Origin 是页面源（http://localhost:7201），而 changeOrigin 已把
+          // Host 改成后端（localhost:7200）⇒ 后端判定跨源 ⇒ 握手被 403，站内通知连不上。
+          // 改写 Origin 让 dev 与生产（nginx 同源反代）保持同一套同源语义。
+          // 漏掉这条的表现：接口全通、只有站内通知永远收不到推送。
+          rewriteWsOrigin: true,
         },
         // 上传文件（/upload/**）由后端静态映射提供（WebMvcConfig → 磁盘 / MinIO）。
         // 后端返回的是**无前缀绝对路径** /upload/xxx，前端按原样渲染，所以这里必须把 /upload
