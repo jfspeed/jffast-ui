@@ -94,6 +94,22 @@ export const useUserStore = defineStore('user', {
       void import('@/utils/websocket')
         .then(({ closeNotificationSocket }) => closeNotificationSocket())
         .catch(() => undefined);
+      // 换账号但不刷新页面时会「串」到下一账号的三处会话态：
+      //   · tabsRouter：开了 persist，不清理会在重登后从 localStorage 复活上一账号的页签；
+      //   · notification：铃铛列表与未读角标会继续显示上一账号的通知正文；
+      //   · RSA 公钥缓存：后端重启后是一次性新密钥对，缓存不失效则之后的登录一直用旧公钥加密。
+      // 同样用动态 import：store ←→ store 静态互引会在模块初始化期打结，启动时直接报错。
+      void Promise.all([
+        import('@/store/modules/tabs-router'),
+        import('@/store/modules/notification'),
+        import('@/utils/rsa-key'),
+      ])
+        .then(([tabs, notificationModule, rsaKey]) => {
+          tabs.getTabsRouterStore().removeTabRouterList();
+          notificationModule.useNotificationStore().resetState();
+          rsaKey.clearRsaPublicKeyCache();
+        })
+        .catch(() => undefined);
     },
   },
   // token 单源：localStorage['token']（request/websocket 只读它）；pinia 内存态由 state 初始化 hydrate，不再双写。

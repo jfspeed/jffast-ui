@@ -93,8 +93,15 @@ export const useTabsRouterStore = defineStore('tabsRouter', {
       const homeIdx: number = this.tabRouters.findIndex((route: TRouterInfo) => route.isHome);
       this.tabRouterList = routeIdx === homeIdx ? homeRoute : homeRoute.concat([this.tabRouterList?.[routeIdx]]);
     },
+    /**
+     * 登出 / 会话清理用：页签复位到「只剩首页」。
+     *
+     * <p>这里有个坑：本 store 开了 persist，赋 {@code []} 会把 localStorage 也写成空数组，
+     * 而其余 action 都以 {@code homeRoute} 为基准往上 concat（首页页签是本 store 的不变量），
+     * 空数组会让它们各自重新拼出首页，行为反而不可预期。显式复位到 homeRoute 最干净。
+     */
     removeTabRouterList() {
-      this.tabRouterList = [];
+      this.tabRouterList = homeRoute.map((route) => ({ ...route }));
     },
     initTabRouterList(newRoutes: TRouterInfo[]) {
       newRoutes?.forEach((route: TRouterInfo) => this.appendTabRouterList(route));

@@ -65,7 +65,7 @@ limitations under the License.
           <!-- <language-switcher /> -->
           <t-dropdown :min-column-width="120" trigger="click">
             <template #dropdown>
-              <t-dropdown-item class="operations-dropdown-container-item" @click="handleNav('/user/index')">
+              <t-dropdown-item class="operations-dropdown-container-item" @click="goByRouteName('PersonalCenter')">
                 <user-circle-icon />{{ t('layout.header.user') }}
               </t-dropdown-item>
               <!-- 移动端把次要入口收进用户菜单 -->
@@ -200,6 +200,13 @@ const handleNav = (url: string) => {
   router.push(url);
 };
 
+// 按**路由名**跳而不是写死 path：本项目的静态路由与菜单驱动路由本来就是两套 URL
+// （菜单路由 path 取自 sys_menu.path，如 /system/systemPost 对静态 /system/post），
+// 写死任一种 path，菜单或路由表一调整就会静默失效
+const goByRouteName = (name: string) => {
+  router.push({ name });
+};
+
 const handleLogout = async () => {
   try {
     // 先让后端吊销会话（删除 Redis 中的 token/session），否则旧 token 在有效期内仍可访问接口
@@ -302,8 +309,8 @@ const navToHelper = () => {
   gap: 8px;
 
   .t-logo {
-    width: 28px;
-    height: 28px;
+    height: 32px;
+    width: auto;
   }
 
   .header-logo-title {

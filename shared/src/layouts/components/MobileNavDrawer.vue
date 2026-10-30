@@ -114,8 +114,8 @@ watch(
   }
 
   .mobile-nav-drawer-logo {
-    width: 28px;
-    height: 28px;
+    height: 32px;
+    width: auto;
   }
 
   .mobile-nav-drawer-title {

@@ -154,6 +154,20 @@ export const useNotificationStore = defineStore('notification', {
       }
     },
 
+    /**
+     * 登出 / 会话清理：清空通知列表与角标。
+     *
+     * <p>本 store 不进 localStorage（persist: false），只在 App 生命周期内存活；但登出时不重置的话，
+     * 「退出 A 账号 → 同一个标签页登录 B 账号」会继续显示 A 的通知标题、正文与未读角标，
+     * 直到用户手动触发一次重新拉取。
+     */
+    resetState() {
+      this.msgData = [];
+      this.unreadCount = 0;
+      this.latestMessage = null;
+      this.latestSeq = 0;
+    },
+
     setConnected(connected: boolean) {
       this.connected = connected;
     },

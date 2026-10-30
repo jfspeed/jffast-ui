@@ -28,7 +28,7 @@ limitations under the License.
       <template #logo>
         <div :class="`${prefix}-side-nav-logo-bar`">
           <span v-if="showLogo" :class="`${prefix}-side-nav-logo-wrapper`" @click="goHome">
-            <img :src="logoIcon" :class="logoCls" />
+            <img :src="logoIcon" :class="logoCls" class="side-nav-logo-img" />
             <span v-if="!collapsed" :class="`${prefix}-side-nav-logo-title`">{{ appTitle }}</span>
           </span>
           <span :class="`${prefix}-side-nav-collapse-wrapper`">
@@ -197,4 +197,9 @@ const toggleCollapsed = () => {
   });
 };
 </script>
-<style lang="less" scoped></style>
+<style lang="less" scoped>
+.side-nav-logo-img {
+  height: 32px;
+  width: auto;
+}
+</style>

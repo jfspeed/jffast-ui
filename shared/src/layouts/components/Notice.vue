@@ -145,7 +145,8 @@ const showInAppPopup = (item: NotificationItem) => {
     duration: 5000,
     onClick: () => {
       store.markAsRead(item.id);
-      router.push('/user/notification');
+      // 按路由名跳：本项目静态路由与菜单驱动路由是两套 URL，写死 path 在菜单调整后会静默失效
+      router.push({ name: 'MyNotification' });
     },
   } as Parameters<typeof NotifyPlugin.info>[0]);
 };
@@ -222,7 +223,7 @@ const formatTime = (dateStr: string) => {
 const goDetail = () => {
   popupVisible.value = false;
   nextTick(() => {
-    router.push('/user/notification');
+    router.push({ name: 'MyNotification' });
   });
 };
 </script>
