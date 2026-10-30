@@ -24,8 +24,9 @@ test.describe('登录冒烟', () => {
 
     await expect(page).toHaveURL(/\/dashboard/);
 
-    // 左侧菜单（TDesign Menu 根节点 ul.t-menu）渲染出菜单分组
-    const sideMenu = page.locator('ul.t-menu');
+    // 左侧菜单渲染出两层 ul.t-menu（外层空壳 + 内层滚动容器），只取带菜单项的那层，
+    // 否则 locator 命中 2 个元素触发 Playwright strict mode。
+    const sideMenu = page.locator('ul.t-menu--scroll');
     await expect(sideMenu).toBeVisible();
     await expect(sideMenu.getByText('系统管理')).toBeVisible();
   });
