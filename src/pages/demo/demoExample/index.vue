@@ -115,6 +115,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'DemoExample',
+});
+
 const { t } = useI18n();
 
 const selectedRowKeys = ref([]);

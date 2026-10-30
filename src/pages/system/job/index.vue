@@ -75,6 +75,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'SystemJob',
+});
+
 const { t } = useI18n();
 const router = useRouter();
 
@@ -162,7 +166,8 @@ const handleTrigger = async (row: any) => {
 const handleViewLog = (row: any) => {
   // 必须用 useRouter()：本仓从未给 window.$router 赋值（应用走 app.use(router) → globalProperties），
   // 旧写法 (window as any).$router?.push(...) 可选链短路 → 点了没反应且无任何报错。
-  router.push({ path: '/system/job/log', query: { jobName: row.jobName, jobGroup: row.jobGroup } });
+  // 按路由名跳：本项目静态路由与菜单驱动路由是两套 URL（静态 /system/job/log），写死 path 在菜单调整后会失效
+  router.push({ name: 'SystemJobLog', query: { jobName: row.jobName, jobGroup: row.jobGroup } });
 };
 
 const columns = computed<PrimaryTableCol[]>(() => [

@@ -118,6 +118,10 @@ import { useI18n } from 'vue-i18n';
 import { history as historyApi, process } from '@/api/flow';
 import { hasPermission } from '@/utils/permission';
 
+defineOptions({
+  name: 'FlowInstance',
+});
+
 const { t } = useI18n();
 
 const loading = ref(false);

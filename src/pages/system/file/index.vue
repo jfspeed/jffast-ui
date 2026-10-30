@@ -83,6 +83,10 @@ import api from '@/api/system';
 import { useTable } from '@/hooks/useTable';
 import { hasPermission } from '@/utils/permission';
 
+defineOptions({
+  name: 'SystemFile',
+});
+
 const { t } = useI18n();
 
 /** 文件行：命名已知字段（全可选，兼容 TDesign TableRowData）+ 索引签名兜底动态 payload */

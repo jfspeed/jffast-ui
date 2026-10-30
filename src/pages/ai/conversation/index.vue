@@ -84,6 +84,10 @@ import api from '@/api/ai';
 import { useTable } from '@/hooks/useTable';
 import { hasPermission } from '@/utils/permission';
 
+defineOptions({
+  name: 'AiConversation',
+});
+
 const { t } = useI18n();
 
 // 消息角色文案（响应语言切换）

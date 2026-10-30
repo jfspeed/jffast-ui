@@ -79,6 +79,10 @@ import api from '@/api/system';
 import { useTable } from '@/hooks/useTable';
 import { hasPermission } from '@/utils/permission';
 
+defineOptions({
+  name: 'SystemTask',
+});
+
 const { t } = useI18n();
 
 /** 状态展示：待处理 / 进行中 / 已完成 / 失败（文案随语言切换，需 computed 响应） */

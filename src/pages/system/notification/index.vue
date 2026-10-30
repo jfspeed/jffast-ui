@@ -162,6 +162,10 @@ import saveDialog from './save.vue';
 import sendDialog from './send.vue';
 import templateManage from './template.vue';
 
+defineOptions({
+  name: 'SystemNotification',
+});
+
 const { t } = useI18n();
 
 const activeTab = ref('list');

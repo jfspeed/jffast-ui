@@ -115,6 +115,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'SystemUser',
+});
+
 const { t } = useI18n();
 
 /** 用户列表行：命名已知字段 + 索引签名，兼容后端动态 payload 与 TDesign TableRowData */

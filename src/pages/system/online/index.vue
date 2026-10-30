@@ -40,6 +40,10 @@ import { useI18n } from 'vue-i18n';
 import api from '@/api/system';
 import { hasPermission } from '@/utils/permission';
 
+defineOptions({
+  name: 'SystemOnline',
+});
+
 const { t } = useI18n();
 
 const loading = ref(false);

@@ -78,6 +78,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'SystemOAuth2Client',
+});
+
 const { t } = useI18n();
 
 const tokenDialogVisible = ref(false);

@@ -24,13 +24,13 @@ export default [
     children: [
       {
         path: 'index',
-        name: 'personalCenter',
+        name: 'PersonalCenter',
         component: () => import('@/pages/user/index.vue'),
         meta: { title: { zh_CN: '个人中心', en_US: 'Personal Center' }, hidden: true },
       },
       {
         path: 'notification',
-        name: 'myNotification',
+        name: 'MyNotification',
         component: () => import('@/pages/user/notification.vue'),
         meta: { title: { zh_CN: '我的通知', en_US: 'My Notifications' }, hidden: true },
       },

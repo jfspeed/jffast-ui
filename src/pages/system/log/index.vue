@@ -105,6 +105,10 @@ import { useI18n } from 'vue-i18n';
 import api from '@/api/system';
 import { useTable } from '@/hooks/useTable';
 
+defineOptions({
+  name: 'SystemLog',
+});
+
 const { t } = useI18n();
 
 const dateRange = ref([]);

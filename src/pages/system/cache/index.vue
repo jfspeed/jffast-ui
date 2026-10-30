@@ -131,6 +131,10 @@ import { useI18n } from 'vue-i18n';
 
 import systemApi from '@/api/system';
 
+defineOptions({
+  name: 'SystemCache',
+});
+
 const { t } = useI18n();
 
 const redisInfo = ref<{

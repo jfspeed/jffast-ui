@@ -95,6 +95,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'SystemDict',
+});
+
 const { t } = useI18n();
 
 /** 字典类型树节点 */

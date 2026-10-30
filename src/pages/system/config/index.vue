@@ -73,6 +73,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'SystemConfig',
+});
+
 const { t } = useI18n();
 
 const columns = computed<PrimaryTableCol[]>(() => [

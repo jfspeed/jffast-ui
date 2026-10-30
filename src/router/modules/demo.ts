@@ -50,7 +50,7 @@ export default [
       },
       {
         path: 'leave',
-        name: 'LeaveApplication',
+        name: 'DemoLeaveApplication',
         component: () => import('@/pages/demo/leaveApplication/index.vue'),
         meta: {
           title: {
@@ -77,7 +77,7 @@ export default [
       },
       {
         path: 'components',
-        name: 'DemoComponents',
+        name: 'Components',
         component: () => import('@/pages/demo/componentShowcase/index.vue'),
         meta: {
           title: {

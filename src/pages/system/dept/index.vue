@@ -55,6 +55,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'SystemDept',
+});
+
 const { t } = useI18n();
 
 /** 部门树行：命名已知字段（全可选，兼容 TDesign TableRowData）+ 索引签名兜底动态 payload */

@@ -169,6 +169,11 @@ import api from '@/api/system';
 import { useUserStore } from '@/store';
 import { encryptPassword, getRsaPublicKey } from '@/utils/rsa-key';
 
+// 组件名必须与路由名一致（keep-alive :include 用 route.name，Vue 按组件名匹配）
+defineOptions({
+  name: 'PersonalCenter',
+});
+
 const { t } = useI18n();
 
 const userStore = useUserStore();

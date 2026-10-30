@@ -59,6 +59,19 @@ const defaultRouterList: Array<RouteRecordRaw> = [
     name: 'result404',
     component: () => import('@/pages/result/404/index.vue'),
   },
+  // 403 / 500 两个页面此前只有 .vue 文件、**没有任何路由记录**，直接访问会被下面的
+  // catch-all 吃掉渲染成 404 页 —— 「页面画了却到不了」的死资源。这里补注册，
+  // 供守卫在「已登录但无权限」/「服务异常」时落到对应页。
+  {
+    path: '/result/403',
+    name: 'result403',
+    component: () => import('@/pages/result/403/index.vue'),
+  },
+  {
+    path: '/result/500',
+    name: 'result500',
+    component: () => import('@/pages/result/500/index.vue'),
+  },
   {
     path: '/:pathMatch(.*)*',
     name: 'notFound',

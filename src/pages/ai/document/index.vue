@@ -83,6 +83,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'AiDocument',
+});
+
 const { t } = useI18n();
 
 // 状态下拉（响应语言切换）

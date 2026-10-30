@@ -68,6 +68,11 @@ import { useRoute } from 'vue-router';
 import { jobLog } from '@/api/job';
 import { useTable } from '@/hooks/useTable';
 
+// 组件名必须与路由名一致（`system.ts` 的 name: 'SystemJobLog'；keep-alive :include 用 route.name，Vue 按组件名匹配）
+defineOptions({
+  name: 'SystemJobLog',
+});
+
 const { t } = useI18n();
 const route = useRoute();
 

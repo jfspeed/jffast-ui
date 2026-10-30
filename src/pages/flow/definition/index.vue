@@ -88,6 +88,10 @@ import DeployDialog from './components/DeployDialog.vue';
 import DiagramViewDialog from './components/DiagramViewDialog.vue';
 import XmlViewDialog from './components/XmlViewDialog.vue';
 
+defineOptions({
+  name: 'FlowDefinition',
+});
+
 const { t } = useI18n();
 
 const loading = ref(false);

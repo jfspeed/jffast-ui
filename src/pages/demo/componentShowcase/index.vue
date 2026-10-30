@@ -47,6 +47,12 @@ limitations under the License.
   </div>
 </template>
 <script setup lang="ts">
+// 组件名必须与路由名一致（`Content.vue` 的 keep-alive :include 用的就是 route.name，
+// 而 Vue 按**组件名**匹配）。路由名来自后端菜单：`upperFirst(sys_menu.path)`，
+// 与静态路由 modules/*.ts 的 name 字段同源。缺这句时页签保活静默失效。
+defineOptions({
+  name: 'Components',
+});
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 

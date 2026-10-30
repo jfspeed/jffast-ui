@@ -129,6 +129,10 @@ import { useI18n } from 'vue-i18n';
 
 import systemApi from '@/api/system';
 
+defineOptions({
+  name: 'SystemMonitor',
+});
+
 const { t } = useI18n();
 
 interface ServerInfo {

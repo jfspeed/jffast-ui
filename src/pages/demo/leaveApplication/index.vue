@@ -80,6 +80,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'DemoLeaveApplication',
+});
+
 const { t } = useI18n();
 
 // 请假类型下拉（响应语言切换）

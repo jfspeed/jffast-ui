@@ -51,6 +51,10 @@ import { useI18n } from 'vue-i18n';
 
 import { history as historyApi } from '@/api/flow';
 
+defineOptions({
+  name: 'FlowTaskDone',
+});
+
 const { t } = useI18n();
 
 const loading = ref(false);

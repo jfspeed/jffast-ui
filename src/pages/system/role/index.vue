@@ -61,6 +61,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'SystemRole',
+});
+
 const { t } = useI18n();
 
 const dataScopeMap = computed<Record<string, string>>(() => ({

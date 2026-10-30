@@ -70,6 +70,10 @@ import { hasPermission } from '@/utils/permission';
 
 import saveDialog from './save.vue';
 
+defineOptions({
+  name: 'FlowCategory',
+});
+
 const { t } = useI18n();
 
 const {

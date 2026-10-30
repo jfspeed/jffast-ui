@@ -102,6 +102,10 @@ import { useI18n } from 'vue-i18n';
 import { task } from '@/api/flow';
 import { hasPermission } from '@/utils/permission';
 
+defineOptions({
+  name: 'FlowTaskTodo',
+});
+
 const { t } = useI18n();
 
 const loading = ref(false);

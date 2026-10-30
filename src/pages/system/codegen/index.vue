@@ -136,6 +136,10 @@ import CreateModuleDialog from './components/CreateModuleDialog.vue';
 import SaveLocalDialog from './components/SaveLocalDialog.vue';
 import TableSelectPanel from './components/TableSelectPanel.vue';
 
+defineOptions({
+  name: 'SystemCodegen',
+});
+
 const { t } = useI18n();
 
 const selectedKeys = ref([]);
