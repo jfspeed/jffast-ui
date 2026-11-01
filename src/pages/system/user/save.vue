@@ -298,23 +298,47 @@ const loadPosts = async () => {
 };
 
 const setDataEx = async (data: SysUserFormData) => {
+  // 1) 先**同步**用列表行设置基础数据（编辑前最新标量），让弹窗即时显示且作为「用户尚未修改」基准
+  setData(data);
+  const rowValues: Record<string, unknown> = {};
+  Object.keys(form).forEach((k) => {
+    rowValues[k] = (form as Record<string, unknown>)[k];
+  });
+
   if (data.id) {
     const res = await api.user.detail(data.id);
     if (res?.data) {
-      data = res.data;
+      const d = res.data as SysUserFormData;
+      // 2) 详情回来前用户/自动化可能已填值（如编辑弹窗立即可见即填）：这些字段不得被详情覆盖。
+      //    否则并发/程序化填充时详情晚回会覆盖 → 提交旧值（见 test_user_crud_full_flow）。
+      const userOverrides: Record<string, unknown> = {};
+      Object.keys(form).forEach((k) => {
+        const v = (form as Record<string, unknown>)[k];
+        if (v !== rowValues[k]) userOverrides[k] = v;
+      });
+      // 3) 详情整体回填（修正 userName/isSelfEdit 等标量，并补全关联集合）
+      setData(d);
+      // 4) 恢复详情回来前已修改的字段（如 nickName），避免被详情的旧值覆盖
+      Object.keys(userOverrides).forEach((k) => {
+        (form as Record<string, unknown>)[k] = userOverrides[k];
+      });
+      // 关联集合以详情为准（提交用这些 ref，而非 form 内数组）
+      if (d.roleList?.length) {
+        roleIds.value = d.roleList.map((r) => r.id);
+      }
+      if (d.postList?.length) {
+        postBackfilledOptions.value = d.postList.map((p) => ({ label: p.postName ?? '', value: String(p.id) }));
+        postIds.value = d.postList.map((p) => String(p.id));
+      }
+      if (d.deptList?.length || d.deptIds) {
+        originalDeptIds.value = normalizeDeptIds(d.deptList?.length ? d.deptList : d.deptIds);
+        deptIds.value = [...originalDeptIds.value];
+        const deptId = normalizeDeptId(d.deptId ?? null);
+        form.deptId = deptId;
+        originalDeptId.value = deptId;
+      }
     }
   }
-  setData(data);
-  form.deptId = normalizeDeptId(data.deptId ?? null);
-  originalDeptId.value = normalizeDeptId(data.deptId ?? null);
-  originalDeptIds.value = normalizeDeptIds(data.deptList?.length ? data.deptList : data.deptIds);
-  deptIds.value = [...originalDeptIds.value];
-  roleIds.value = data.roleList?.length ? data.roleList.map((r) => r.id) : [];
-  // 出参口径：postList 为 null / 缺席都读作「没有绑定」，消费一律走 ?.length
-  postBackfilledOptions.value = data.postList?.length
-    ? data.postList.map((p) => ({ label: p.postName ?? '', value: String(p.id) }))
-    : [];
-  postIds.value = data.postList?.length ? data.postList.map((p) => String(p.id)) : [];
 };
 
 const onSubmit = async () => {
