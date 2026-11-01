@@ -48,3 +48,6 @@ deploy/.env
 *.pfx
 *.jks
 *.keystore
+
+# 本机联调辅助脚本（外部工作台调用），不入公开仓
+stop-dev.bat
