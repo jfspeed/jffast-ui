@@ -237,8 +237,9 @@ const handleCloseDrawer = () => {
 };
 
 const getThumbnailUrl = (name: string): string => {
-  // 布局缩略图本地化（public/img/setting/）：CSP img-src 'self' 会拦截 CDN，且离线环境无法展示
-  return `/img/setting/${name}.png`;
+  // 布局缩略图本地化（public/img/setting/）：CSP img-src 'self' 会拦截 CDN，且离线环境无法展示。
+  // 使用项目自制 SVG，避免再引入来源不明的模板位图。
+  return `/img/setting/${name}.svg`;
 };
 
 watchEffect(() => {

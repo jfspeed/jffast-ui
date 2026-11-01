@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120" role="img" aria-label="混合导航布局">
+  <rect width="200" height="120" rx="6" fill="#F5F7FA"/>
+  <rect width="200" height="16" rx="6" fill="#E8EBF0"/>
+  <rect x="8" y="5" width="26" height="6" rx="3" fill="#0052D9"/>
+  <rect x="160" y="5" width="32" height="6" rx="3" fill="#C9D0DA"/>
+  <rect y="16" width="44" height="104" fill="#E8EBF0"/>
+  <rect x="8" y="24" width="28" height="5" rx="2" fill="#0052D9"/>
+  <rect x="8" y="38" width="24" height="4" rx="2" fill="#C9D0DA"/>
+  <rect x="8" y="48" width="20" height="4" rx="2" fill="#C9D0DA"/>
+  <rect x="52" y="24" width="140" height="88" rx="4" fill="#FFFFFF"/>
+  <rect x="60" y="32" width="56" height="6" rx="3" fill="#DDE2E9"/>
+  <rect x="60" y="46" width="124" height="58" rx="3" fill="#F0F3F7"/>
+</svg>
