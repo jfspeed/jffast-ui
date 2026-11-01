@@ -88,22 +88,35 @@ export function notifySessionExpired() {
 /** 401 处理是否已在执行（单飞）：并发多个 401 只清一次、只跳一次 */
 let sessionExpiredHandling = false;
 
-/** 5xx 对外统一文案：后端原文可能携带异常堆栈 / 内部表名 */
+/** 兜底文案：仅在消息为空或疑似技术细节时使用 */
 const SYSTEM_ERROR_MESSAGE = '服务器繁忙，请稍后重试';
 
 /**
+ * 疑似技术细节（堆栈 / 类名 / SQL 片段等）。命中时一律折叠成通用文案，避免内部信息外泄。
+ * 后端兜底异常处理器已把未捕获异常收敛为「系统异常，请联系管理员」等安全文案，
+ * 但个别 controller 仍会直接 R.error(e.getMessage())，这里再兜一层。
+ */
+const TECH_ERROR_RE =
+  /Exception|Error|Caused by|\bat\s+[\w.$]+\s*\(|java\.|javax\.|jakarta\.|org\.|com\.|cn\.|SQL|nested exception|空指针|NullPointer|Duplicate entry|Data integrity|Connection refused|Communications link failure|Deadlock|数据库连接/;
+
+/**
  * 把后端返回的错误收敛为可对外展示的文案。
- * 5xx 与未捕获异常的 message 常常是堆栈或内部表名，直接 toast 给终端用户
- * 既是糟糕体验也是信息泄露；这类原文只落控制台供排障。
- * 4xx 属于业务校验结果，文案本就面向用户，保留原文。
+ *
+ * <p>后端契约：业务校验失败默认 code=400（`R.error(msg)` / BusinessException），
+ * code=500 只表示服务端真故障。但服务端仍可能把异常原文带回（如 SQL / 驱动消息），
+ * 且 500 分支需要兜底，因此这里按「消息内容」判定：为空、过长/多行（堆栈）或命中
+ * 技术指纹时折叠成通用文案；其余原文展示。原始消息仍先落控制台，便于排障。
  */
 function resolveErrorMessage(res: Partial<ApiResult>): string {
-  const raw = res?.message || '';
-  if ((res.code ?? 0) >= 500) {
+  const raw = (res?.message || '').trim();
+  if ((res?.code ?? 0) >= 500) {
     if (raw) {
       console.error('[request] 服务端错误：', res.code, raw);
     }
-    return SYSTEM_ERROR_MESSAGE;
+    if (!raw || raw.length > 200 || raw.includes('\n') || TECH_ERROR_RE.test(raw)) {
+      return SYSTEM_ERROR_MESSAGE;
+    }
+    return raw;
   }
   return raw || '操作失败，请重试';
 }
@@ -223,13 +236,13 @@ service.interceptors.response.use(
       } else if (status === 403) {
         MessagePlugin.error(body?.message || '权限不足，无法执行此操作！');
       } else if (status === 500) {
-        // 不回显后端原始 message：500 常携带异常堆栈 / 内部表名，属信息泄露。
-        // 原始信息仅落控制台，便于定位。
+        // 兜底异常处理已把未捕获异常收敛为安全文案（如「系统异常，请联系管理员」）；
+        // 走同一套收敛规则，既能展示安全原文，也能避免堆栈 / 内部表名外泄。
         const raw = body?.message;
         if (raw) {
           console.error('[request] HTTP 500 详情：', raw);
         }
-        MessagePlugin.error('Status:500，服务器发生错误！');
+        MessagePlugin.error(resolveErrorMessage({ code: 500, message: raw }));
       } else if (status === 401) {
         // 401 只表示「未登录 / 登录已失效」，不代表「无权限」（那是 403）。
         // 早先这里弹的模态框写的是「无权限访问」，语义错位；而且 401 一定伴随跳转登录页，
