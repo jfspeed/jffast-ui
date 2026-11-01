@@ -8,6 +8,8 @@ This product includes software developed by:
 - pinia-plugin-persistedstate (https://github.com/prazdev/pinia-plugin-persistedstate) - MIT
 - TDesign Vue Next (https://tdesign.tencent.com/vue-next/overview) - MIT
 - TDesign Icons Vue Next (https://github.com/Tencent/tdesign-icons-vue-next) - MIT
+- TDesign Vue Next Starter (https://github.com/Tencent/tdesign-vue-next-starter) - MIT
+  (the following page assets are copied from this starter; see the section below)
 - ECharts (https://echarts.apache.org/) - Apache 2.0
 - bpmn-js (https://bpmn.io/toolkit/bpmn-js/) - MIT (Camunda Services GmbH), with the bpmn.io
   watermark-retention clause - see the note below
@@ -58,3 +60,55 @@ from tdesign-icons-vue-next@0.4.4 by scripts/gen-tdesign-icon-sprite.cjs. It is 
 covered by this project's Apache-2.0 license. The file keeps the upstream Tencent MIT
 copyright and permission notice in its header, as MIT requires. The generator script is
 included in this repository so the artifact can be reproduced locally.
+
+
+TDesign Vue Next Starter assets
+-------------------------------
+
+The following files are copied **unmodified** from Tencent/tdesign-vue-next-starter
+(https://github.com/Tencent/tdesign-vue-next-starter) and remain under the MIT License.
+Their Git blob hashes match the upstream files byte-for-byte:
+
+  src/assets/assets-empty.svg
+  src/assets/assets-login-bg-black.png
+  src/assets/assets-login-bg-white.png
+  src/assets/assets-product-1.svg
+  src/assets/assets-product-2.svg
+  src/assets/assets-product-3.svg
+  src/assets/assets-product-4.svg
+  shared/src/assets/assets-result-403.svg
+  shared/src/assets/assets-result-404.svg
+  shared/src/assets/assets-result-500.svg
+  shared/src/assets/assets-result-ie.svg
+  shared/src/assets/assets-result-maintenance.svg
+  shared/src/assets/assets-result-wifi.svg
+  shared/src/assets/assets-setting-auto.svg
+  shared/src/assets/assets-setting-dark.svg
+  shared/src/assets/assets-setting-light.svg
+
+MIT License (upstream: https://github.com/Tencent/tdesign-vue-next-starter/blob/develop/LICENSE)
+
+Copyright (c) 2021 TDesign
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Assets with the same file name but a different Git blob (for example
+src/assets/assets-logo-full.svg) are this project's own artwork, not the upstream file.
+
+All other artwork under src/assets/ and public/img/ is original to this project.

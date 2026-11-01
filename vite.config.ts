@@ -15,11 +15,12 @@
  */
 
 import { Buffer } from 'node:buffer';
+import { copyFileSync, existsSync } from 'node:fs';
 import path from 'node:path';
 
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
-import type { ConfigEnv, UserConfig } from 'vite';
+import type { ConfigEnv, Plugin, UserConfig } from 'vite';
 import { loadEnv } from 'vite';
 import svgLoader from 'vite-svg-loader';
 
@@ -35,6 +36,30 @@ function stripBase64Padding(value: string): string {
 }
 
 /**
+ * 构建后把仓库根的 LICENSE / NOTICE 复制进 dist。
+ *
+ * 根目录是这两份文件的唯一事实源；不放进 public/ 是为了避免出现第二份副本后静默漂移。
+ */
+function copyLegalFiles(): Plugin {
+  return {
+    name: 'copy-legal-files',
+    apply: 'build',
+    closeBundle() {
+      const distDir = path.resolve(__dirname, 'dist');
+      if (!existsSync(distDir)) {
+        return;
+      }
+      for (const file of ['LICENSE', 'NOTICE']) {
+        const source = path.resolve(__dirname, file);
+        if (existsSync(source)) {
+          copyFileSync(source, path.join(distDir, file));
+        }
+      }
+    },
+  };
+}
+
+/**
  * 判断一个字符串是不是一把**真实可用的 RSA 公钥**。
  *
  * 判据：严格 Base64 字符集 + Base64 严格回环 + ASN.1 SEQUENCE 头 + 长度下限
@@ -42,7 +67,7 @@ function stripBase64Padding(value: string): string {
  *
  * 为什么不再比「是否等于仓库曾公开的示例公钥」：那把示例公钥已随历史清理一并移除
  * （仓库内已无任何密钥材料），拿它当哨兵等于比一个永远命不中的字符串，守卫会静默失效。
- * 结构校验比等值比较更强：空值、占位符（***REMOVED*** 之类）、截断串、乱码一律拦得住。
+ * 结构校验比等值比较更强：空值、占位符（not-a-key 之类）、截断串、乱码一律拦得住。
  */
 function isRsaPublicKey(candidate: string): boolean {
   const trimmed = (candidate || '').trim();
@@ -147,7 +172,7 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
       },
     },
 
-    plugins: [vue(), vueJsx(), svgLoader()],
+    plugins: [vue(), vueJsx(), svgLoader(), copyLegalFiles()],
 
     server: {
       port: 7201,

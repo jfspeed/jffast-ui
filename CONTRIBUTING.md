@@ -7,7 +7,7 @@
 | 依赖    | 版本                                |
 | ------- | ----------------------------------- |
 | Node.js | ^22.22.1 \|\| ^24.0.0 \|\| >=26.0.0 |
-| npm     | >= 9.x                              |
+| npm     | >= 10.x                             |
 
 > Node 版本与 `package.json` 的 `engines` 一致，且 `.npmrc` 设了 `engine-strict=true`
 > —— 版本不满足时 `npm install` 会**直接失败**（不是警告）。
@@ -47,6 +47,18 @@ type(scope): description
 - **scope**：模块名或页面名，如 `router`、`system`、`flow`、`shared`
 - 示例：`fix(router): 登录失效重新登录后跳回原页面`
 
+## 贡献者声明（DCO）
+
+本项目采用 [Developer Certificate of Origin 1.1](DCO)。每个提交必须包含 `Signed-off-by` 行，
+署名必须与提交作者一致，用 `git commit -s` 自动追加：
+
+```
+Signed-off-by: Your Name <your@email.com>
+```
+
+请确保 `git config user.name` / `user.email` 与署名一致，并且你有权按本仓库的
+Apache-2.0 许可证提交该代码。未签署的 PR 会被维护者要求补签；DCO 全文见仓库根 [`DCO`](DCO)。
+
 ## 编码规范
 
 前端开发指南以本仓库 [`docs/前端开发指南.md`](docs/前端开发指南.md) 为权威来源，本仓库 AGENTS.md 只做摘要。要点：
@@ -58,8 +70,8 @@ type(scope): description
 
 ## Pull Request 流程
 
-1. Fork 仓库，从 `main` 切出分支（如 `feat/xxx`、`fix/xxx`）
-2. 本地 `npm run build` 通过，无 lint 错误
+1. Fork 仓库，从 `master` 切出分支（如 `feat/xxx`、`fix/xxx`）
+2. 本地 `npm run lint` / `npm test` / `npm run build:type` 通过；构建检查用 `npm run build:test`（或注入自有 `VITE_RSA_PUBLIC_KEY` 后 `npm run build`）
 3. PR 描述中写清：动机、改动内容、影响范围，UI 变动请附截图
 4. 等待 CI（`.github/workflows/ci.yml`）通过后由维护者评审合并
 

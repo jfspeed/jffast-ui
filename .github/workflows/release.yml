@@ -1,8 +1,11 @@
 name: Release
 
-# 打 tag（v*）时构建前端产物并创建 GitHub Release。
-# 产物使用仓库 secrets.VITE_RSA_PUBLIC_KEY 构建；未配置时直接失败，
-# 避免产出「登录必然失败」的镜像/包（公钥必须与后端私钥成对）。
+# 打 tag（v*）时创建 GitHub Release，**仅发布源码**。
+#
+# 为什么不附带 dist 包：前端构建会把 VITE_RSA_PUBLIC_KEY 写进产物，而它必须与部署方
+# 后端的 RSA_PRIVATE_KEY 成对。用维护者自己的公钥构建出来的 dist 换一套后端就登录失败，
+# 无法作为通用制品分发。因此 Release 不构建、不附带 dist；GitHub 会随 Release 自动提供
+# 源码 zip/tar。部署方按 README「快速开始」用自己的密钥对构建。
 
 on:
   push:
@@ -13,43 +16,13 @@ permissions:
 
 jobs:
   release:
-    name: Build & Release
+    name: Create Source Release
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-          cache: 'npm'
-          cache-dependency-path: package-lock.json
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Require RSA public key
-        env:
-          RSA_PUB: ${{ secrets.VITE_RSA_PUBLIC_KEY }}
-        run: |
-          if [ -z "$RSA_PUB" ]; then
-            echo "[FATAL] 未配置 secrets.VITE_RSA_PUBLIC_KEY，发布产物将无法登录" >&2
-            exit 1
-          fi
-          echo "VITE_RSA_PUBLIC_KEY=$RSA_PUB" >> "$GITHUB_ENV"
-
-      - name: Build
-        run: npm run build
-
-      - name: Package dist
-        run: |
-          cd dist
-          zip -qr ../jffast-ui-dist.zip .
-          cd ..
-
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
           generate_release_notes: true
-          files: jffast-ui-dist.zip

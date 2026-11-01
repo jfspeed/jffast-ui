@@ -104,6 +104,9 @@ VITE_RSA_PUBLIC_KEY=<公钥> npm run build
 RSA 公钥（要求 Base64 编码的 X.509 SPKI DER）时构建直接失败。仓库不提供示例公钥，
 所以拦截条件是"这把钥匙本身合不合法"，而不是"有没有抄到示例值"。
 
+> 本仓 GitHub Release **只发布源码，不附带 `dist` 包**：构建期公钥必须与部署方后端私钥成对，
+> 通用包无法跨部署复用。部署方按本节命令用自己的密钥对构建。
+
 - 生产构建走 `--mode release`，依次读 `.env`、`.env.release`、`.env.release.local`
   （后两者**均不入库**，需要时自行创建；不存在则跳过，不影响构建）
 - 公钥用后端工具类 `RsaKeyGenerator` 生成，后端 `RSA_PRIVATE_KEY` 必须成对更换
