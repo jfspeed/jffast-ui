@@ -2,6 +2,12 @@
 node_modules
 /dist
 
+# Python bytecode cache
+# The public hygiene gate is a Python script; running it leaves a __pycache__ next to
+# it. Build output never belongs in the repository.
+__pycache__/
+*.py[cod]
+
 # 环境变量：入库的 .env*（.env / .env.development / .env.test /
 # .env.example）只含基础值或占位——RSA 公钥一律留空，不写内部后端地址；
 # 个人 / 环境专属覆盖写 .env*.local（不入库，见下）。
