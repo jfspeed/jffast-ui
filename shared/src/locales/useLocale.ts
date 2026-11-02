@@ -40,7 +40,14 @@ export function useLocale() {
   };
 
   const getComponentsLocale = computed(() => {
-    return i18n.global.getLocaleMessage(locale.value).componentsLocale as GlobalConfigProvider;
+    // vue-i18n 11 起 getLocaleMessage() 的返回类型去掉了索引签名
+    // （RemoveIndexSignature<...>），不能再直接点任意键。componentsLocale 是本仓
+    // 自定义塞进消息树的 TDesign 组件语言包（见 locales/index.ts），这里显式
+    // 声明它的形状再取值。
+    const message = i18n.global.getLocaleMessage(locale.value) as unknown as {
+      componentsLocale?: GlobalConfigProvider;
+    };
+    return message.componentsLocale as GlobalConfigProvider;
   });
 
   return {
