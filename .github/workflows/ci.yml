@@ -74,12 +74,6 @@ jobs:
             rm -f "$RUNNER_TEMP/ci-rsa.pem"
           fi
 
+      # 只验证生产构建；Release 走源码发布，不再上传/分发 dist 压缩包。
       - name: Build
         run: npm run build
-
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v7
-        with:
-          name: frontend-dist
-          path: dist/
-          retention-days: 7
