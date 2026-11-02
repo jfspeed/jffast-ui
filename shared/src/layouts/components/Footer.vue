@@ -15,12 +15,13 @@ limitations under the License.
 -->
 
 <template>
-  <div :class="`${prefix}-footer`">
-    Copyright © 2021-{{ new Date().getFullYear() }} JP Fast Admin. All Rights Reserved
-  </div>
+  <div :class="`${prefix}-footer`">Copyright © 2024 {{ appTitle }}</div>
 </template>
 <script setup lang="ts">
 import { prefix } from '@/config/global';
+
+// 与登录页页脚、Header 同源：产品在 .env 覆盖 VITE_APP_TITLE
+const appTitle = import.meta.env.VITE_APP_TITLE || '疾风管理系统';
 </script>
 <style lang="less" scoped>
 .@{starter-prefix}-footer {
