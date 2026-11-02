@@ -98,7 +98,9 @@
   "overrides": {
     "tvision-color": {
       "@babel/runtime-corejs3": "^7.26.10"
-    }
+    },
+    "minimatch": "^11.0.3",
+    "follow-redirects": "^1.16.2"
   },
   "engines": {
     "node": "^22.22.1 || ^24.0.0 || >=26.0.0"
