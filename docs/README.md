@@ -117,7 +117,7 @@ CI 按 `.nvmrc` 安装 Node，四道门禁任一失败即红。
 
 ## 9. 安全基线与已知取舍
 
-> 后端侧的安全取舍与加固基线见后端仓库的 [`SECURITY.md`](https://github.com/jfspeed/jffast/blob/master/SECURITY.md)。本节只管前端这一侧。
+> 后端侧的安全取舍与加固基线见后端仓库的 [`SECURITY.md`](https://github.com/jfspeed/jffast/blob/main/SECURITY.md)。本节只管前端这一侧。
 
 ### 9.1 已收紧项（改动前先读这里的理由）
 

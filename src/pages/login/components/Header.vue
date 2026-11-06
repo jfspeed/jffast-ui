@@ -54,7 +54,7 @@ const navToGitHub = () => {
 };
 
 const navToHelper = () => {
-  window.open('https://github.com/jfspeed/jffast/tree/master/docs', '_blank', 'noopener,noreferrer');
+  window.open('https://github.com/jfspeed/jffast/tree/main/docs', '_blank', 'noopener,noreferrer');
 };
 </script>
 <style lang="less" scoped>
