@@ -28,6 +28,50 @@ function setup({ validate = () => Promise.resolve(true), defaultForm = { id: nul
   return { ...state, api };
 }
 
+describe('useForm 默认值深拷贝', () => {
+  it('默认值里的数组按值拷贝：编辑与重置都不会污染默认模板', () => {
+    const defaultForm = { id: null, items: [{ product: 'A', qty: 1 }] };
+    const state = useForm({ defaultForm });
+
+    state.form.items[0].qty = 5;
+    state.form.items.push({ product: 'B', qty: 2 });
+    expect(defaultForm.items).toHaveLength(1);
+    expect(defaultForm.items[0].qty).toBe(1);
+
+    state.resetForm();
+    expect(state.form.items).toHaveLength(1);
+    expect(state.form.items[0].qty).toBe(1);
+    state.form.items[0].qty = 7;
+    expect(defaultForm.items[0].qty).toBe(1);
+  });
+
+  it('编辑赋值不与外部数组共享引用', () => {
+    const state = useForm({ defaultForm: { id: null, items: [] } });
+    const rows = [{ product: 'A', qty: 2 }];
+
+    state.open('edit');
+    state.setData({ id: 3, items: rows });
+    state.form.items[0].qty = 9;
+
+    expect(rows[0].qty).toBe(2);
+    expect(state.form.items[0].qty).toBe(9);
+  });
+
+  it('提交数据是深拷贝，提交后改表单不影响已交给接口的对象', async () => {
+    const state = setup({ defaultForm: { id: null, name: '', items: [{ qty: 1 }] } });
+    let submitted;
+    state.api.create.mockImplementation((payload) => {
+      submitted = payload;
+      return Promise.resolve({ id: 1 });
+    });
+
+    await state.submit(state.api);
+    state.form.items[0].qty = 8;
+
+    expect(submitted.items[0].qty).toBe(1);
+  });
+});
+
 describe('useForm.submit', () => {
   it('校验失败时不调用接口并复位提交态', async () => {
     const { submit, isSaving, api } = setup({ validate: () => Promise.reject(new Error('invalid')) });

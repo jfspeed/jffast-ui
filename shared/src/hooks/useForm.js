@@ -16,12 +16,34 @@
 
 import { reactive, ref } from 'vue';
 
+/**
+ * 递归拷贝数组与普通对象。
+ * defaultForm 里的数组（如主子表的 items）若按引用共享，每次打开弹窗编辑都会污染默认模板，
+ * 第二次打开就带着上一次删改的痕迹。
+ */
+function cloneValue(value) {
+  if (Array.isArray(value)) {
+    return value.map(cloneValue);
+  }
+  if (value && typeof value === 'object') {
+    const proto = Object.getPrototypeOf(value);
+    // Date / File / Blob 等特殊对象保持原引用，只逐键拷贝普通对象
+    if (proto !== Object.prototype && proto !== null) return value;
+    const copy = {};
+    Object.keys(value).forEach((key) => {
+      copy[key] = cloneValue(value[key]);
+    });
+    return copy;
+  }
+  return value;
+}
+
 export function useForm(options = {}) {
   const visible = ref(false);
   const mode = ref('add');
   const isSaving = ref(false);
   const formRef = ref(null);
-  const form = reactive({ ...(options.defaultForm || {}) });
+  const form = reactive(cloneValue(options.defaultForm || {}));
   const rules = options.rules || {};
 
   const titleMap = {
@@ -45,13 +67,13 @@ export function useForm(options = {}) {
 
   const setData = (data) => {
     Object.keys(form).forEach((key) => {
-      form[key] = data[key] !== undefined ? data[key] : (options.defaultForm?.[key] ?? null);
+      form[key] = cloneValue(data[key] !== undefined ? data[key] : (options.defaultForm?.[key] ?? null));
     });
   };
 
   const resetForm = () => {
     Object.keys(form).forEach((key) => {
-      form[key] = options.defaultForm?.[key] ?? null;
+      form[key] = cloneValue(options.defaultForm?.[key] ?? null);
     });
     formRef.value?.clearValidate();
   };
@@ -69,7 +91,7 @@ export function useForm(options = {}) {
       }
       if (valid !== true) return false;
 
-      const submitData = { ...form };
+      const submitData = cloneValue(form);
       if (submitData.id === '' || submitData.id === undefined || submitData.id === null) {
         delete submitData.id;
       }
