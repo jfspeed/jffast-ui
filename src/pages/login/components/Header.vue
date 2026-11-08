@@ -21,10 +21,10 @@ limitations under the License.
       <span class="logo-title">{{ appTitle }}</span>
     </div>
     <div class="operations-container">
-      <t-button theme="default" shape="square" variant="text" @click="navToGitHub">
+      <t-button v-if="showOpenSourceLinks" theme="default" shape="square" variant="text" @click="navToGitHub">
         <t-icon name="logo-github" class="icon" />
       </t-button>
-      <t-button theme="default" shape="square" variant="text" @click="navToHelper">
+      <t-button v-if="showOpenSourceLinks" theme="default" shape="square" variant="text" @click="navToHelper">
         <t-icon name="help-circle" class="icon" />
       </t-button>
       <language-switcher />
@@ -48,13 +48,18 @@ const toggleSettingPanel = () => {
   });
 };
 
+// 右上角「GitHub / 帮助文档」只对开源发行版展示：非开源发行版在 .env 里置 VITE_SHOW_OPEN_SOURCE_LINKS=false
+const showOpenSourceLinks = import.meta.env.VITE_SHOW_OPEN_SOURCE_LINKS !== 'false';
+const gitHubUrl = import.meta.env.VITE_GITHUB_URL || 'https://github.com/jfspeed/jffast-ui';
+const helperUrl = import.meta.env.VITE_DOCS_URL || 'https://github.com/jfspeed/jffast-ui/tree/main/docs';
+
 // 统一补 noopener,noreferrer：即便目标是固定的 GitHub 地址，也不让新页面拿到 window.opener
 const navToGitHub = () => {
-  window.open('https://github.com/jfspeed/jffast', '_blank', 'noopener,noreferrer');
+  window.open(gitHubUrl, '_blank', 'noopener,noreferrer');
 };
 
 const navToHelper = () => {
-  window.open('https://github.com/jfspeed/jffast/tree/main/docs', '_blank', 'noopener,noreferrer');
+  window.open(helperUrl, '_blank', 'noopener,noreferrer');
 };
 </script>
 <style lang="less" scoped>

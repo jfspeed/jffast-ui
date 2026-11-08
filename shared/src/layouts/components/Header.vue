@@ -52,12 +52,12 @@ limitations under the License.
           <!-- 全局通知 -->
           <notice />
 
-          <t-tooltip v-if="!isMobile" placement="bottom" :content="t('layout.header.code')">
+          <t-tooltip v-if="showOpenSourceLinks && !isMobile" placement="bottom" :content="t('layout.header.code')">
             <t-button theme="default" shape="square" variant="text" @click="navToGitHub">
               <t-icon name="logo-github" />
             </t-button>
           </t-tooltip>
-          <t-tooltip v-if="!isMobile" placement="bottom" :content="t('layout.header.help')">
+          <t-tooltip v-if="showOpenSourceLinks && !isMobile" placement="bottom" :content="t('layout.header.help')">
             <t-button theme="default" shape="square" variant="text" @click="navToHelper">
               <t-icon name="help-circle" />
             </t-button>
@@ -69,10 +69,18 @@ limitations under the License.
                 <user-circle-icon />{{ t('layout.header.user') }}
               </t-dropdown-item>
               <!-- 移动端把次要入口收进用户菜单 -->
-              <t-dropdown-item v-if="isMobile" class="operations-dropdown-container-item" @click="navToGitHub">
+              <t-dropdown-item
+                v-if="showOpenSourceLinks && isMobile"
+                class="operations-dropdown-container-item"
+                @click="navToGitHub"
+              >
                 <t-icon name="logo-github" />{{ t('layout.header.code') }}
               </t-dropdown-item>
-              <t-dropdown-item v-if="isMobile" class="operations-dropdown-container-item" @click="navToHelper">
+              <t-dropdown-item
+                v-if="showOpenSourceLinks && isMobile"
+                class="operations-dropdown-container-item"
+                @click="navToHelper"
+              >
                 <t-icon name="help-circle" />{{ t('layout.header.help') }}
               </t-dropdown-item>
               <t-dropdown-item class="operations-dropdown-container-item" @click="handleLogout">
@@ -221,13 +229,22 @@ const handleLogout = async () => {
   router.replace(buildLoginRoute(router.currentRoute.value.fullPath));
 };
 
+/**
+ * 右上角「GitHub / 帮助文档」只对开源发行版展示：
+ * 开源发行版默认开，非开源发行版在各自 .env 里置 VITE_SHOW_OPEN_SOURCE_LINKS=false 关掉；
+ * 链接同样走环境变量，避免共享组件把地址写死到某个仓。
+ */
+const showOpenSourceLinks = import.meta.env.VITE_SHOW_OPEN_SOURCE_LINKS !== 'false';
+const gitHubUrl = import.meta.env.VITE_GITHUB_URL || 'https://github.com/jfspeed/jffast-ui';
+const helperUrl = import.meta.env.VITE_DOCS_URL || 'https://github.com/jfspeed/jffast-ui/tree/main/docs';
+
 // 统一补 noopener,noreferrer：即便目标是固定的 GitHub 地址，也不让新页面拿到 window.opener
 const navToGitHub = () => {
-  window.open('https://github.com/jfspeed/jffast', '_blank', 'noopener,noreferrer');
+  window.open(gitHubUrl, '_blank', 'noopener,noreferrer');
 };
 
 const navToHelper = () => {
-  window.open('https://github.com/jfspeed/jffast/tree/main/docs', '_blank', 'noopener,noreferrer');
+  window.open(helperUrl, '_blank', 'noopener,noreferrer');
 };
 </script>
 <style lang="less" scoped>
