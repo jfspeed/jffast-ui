@@ -64,31 +64,36 @@ limitations under the License.
         </div>
       </t-form-item>
       <t-form-item :label="t('pages.system.job.serviceName')" name="serviceName">
-        <t-input v-model="form.serviceName" :placeholder="t('pages.system.job.placeholder.serviceName')" clearable />
-        <!-- 提示文案由本地 i18n 静态拼接（含 <b>/<code>），无用户输入，v-html 安全 -->
-        <!-- eslint-disable vue/no-v-html -->
-        <div
-          style="color: var(--td-text-color-secondary); font-size: 12px; margin-top: 4px"
-          v-html="serviceNameTipHtml"
-        />
-        <!-- eslint-enable vue/no-v-html -->
+        <!-- 控件与提示文案必须竖排：t-form__controls-content 是 flex 横排，平级放会被挤成窄条 -->
+        <div style="width: 100%">
+          <t-input v-model="form.serviceName" :placeholder="t('pages.system.job.placeholder.serviceName')" clearable />
+          <!-- 提示文案由本地 i18n 静态拼接（含 <b>/<code>），无用户输入，v-html 安全 -->
+          <!-- eslint-disable vue/no-v-html -->
+          <div
+            style="color: var(--td-text-color-secondary); font-size: 12px; margin-top: 4px"
+            v-html="serviceNameTipHtml"
+          />
+          <!-- eslint-enable vue/no-v-html -->
+        </div>
       </t-form-item>
       <t-form-item :label="t('pages.system.job.cronExpression')" name="cronExpression">
-        <t-input
-          v-model="form.cronExpression"
-          :placeholder="t('pages.system.job.placeholder.cron')"
-          clearable
-          @blur="onCronBlur"
-        />
-        <div
-          v-if="cronTip"
-          style="font-size: 12px; margin-top: 4px"
-          :style="{ color: cronValid ? 'var(--td-success-color)' : 'var(--td-error-color)' }"
-        >
-          {{ cronTip }}
-        </div>
-        <div v-else style="color: var(--td-text-color-secondary); font-size: 12px; margin-top: 4px">
-          {{ t('pages.system.job.tips.cronExamples') }}
+        <div style="width: 100%">
+          <t-input
+            v-model="form.cronExpression"
+            :placeholder="t('pages.system.job.placeholder.cron')"
+            clearable
+            @blur="onCronBlur"
+          />
+          <div
+            v-if="cronTip"
+            style="font-size: 12px; margin-top: 4px"
+            :style="{ color: cronValid ? 'var(--td-success-color)' : 'var(--td-error-color)' }"
+          >
+            {{ cronTip }}
+          </div>
+          <div v-else style="color: var(--td-text-color-secondary); font-size: 12px; margin-top: 4px">
+            {{ t('pages.system.job.tips.cronExamples') }}
+          </div>
         </div>
       </t-form-item>
       <t-form-item :label="t('pages.system.job.misfirePolicy')" name="misfirePolicy">
