@@ -25,7 +25,7 @@ interface ImportMetaEnv {
   readonly VITE_USE_STATIC_ROUTES?: string;
   readonly VITE_DEMO_MODE?: string;
   readonly VITE_RSA_PUBLIC_KEY?: string;
-  /** 右上角「GitHub / 帮助文档」入口：开源发行版默认展示，非开源发行版在 .env 里置 false */
+  /** 右上角「GitHub / 帮助文档」入口：默认隐藏，开源发行版在 .env 里置 true 展示 */
   readonly VITE_SHOW_OPEN_SOURCE_LINKS?: string;
   readonly VITE_GITHUB_URL?: string;
   readonly VITE_DOCS_URL?: string;

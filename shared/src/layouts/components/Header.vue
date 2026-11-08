@@ -230,11 +230,10 @@ const handleLogout = async () => {
 };
 
 /**
- * 右上角「GitHub / 帮助文档」只对开源发行版展示：
- * 开源发行版默认开，非开源发行版在各自 .env 里置 VITE_SHOW_OPEN_SOURCE_LINKS=false 关掉；
- * 链接同样走环境变量，避免共享组件把地址写死到某个仓。
+ * 右上角「GitHub / 帮助文档」默认不展示，开源发行版在 .env 里置
+ * VITE_SHOW_OPEN_SOURCE_LINKS=true 打开；链接走环境变量，避免共享组件把地址写死到某个仓。
  */
-const showOpenSourceLinks = import.meta.env.VITE_SHOW_OPEN_SOURCE_LINKS !== 'false';
+const showOpenSourceLinks = import.meta.env.VITE_SHOW_OPEN_SOURCE_LINKS === 'true';
 const gitHubUrl = import.meta.env.VITE_GITHUB_URL || 'https://github.com/jfspeed/jffast-ui';
 const helperUrl = import.meta.env.VITE_DOCS_URL || 'https://github.com/jfspeed/jffast-ui/tree/main/docs';
 
