@@ -19,7 +19,7 @@ limitations under the License.
     <t-card class="profile-card">
       <div class="profile-head">
         <div class="avatar-wrap">
-          <t-avatar :image="userInfo.avatar" size="72px">{{ avatarText }}</t-avatar>
+          <t-avatar :image="avatarUrl" size="72px">{{ avatarText }}</t-avatar>
           <t-upload
             :show-upload-list="false"
             :auto-upload="false"
@@ -167,6 +167,7 @@ import { useI18n } from 'vue-i18n';
 
 import api from '@/api/system';
 import { useUserStore } from '@/store';
+import { apiUrl } from '@/utils/request';
 import { encryptPassword, getRsaPublicKey } from '@/utils/rsa-key';
 
 // 组件名必须与路由名一致（keep-alive :include 用 route.name，Vue 按组件名匹配）
@@ -193,6 +194,9 @@ const userInfo = ref<{
 }>({});
 
 const avatarText = computed(() => (userInfo.value.nickName || userInfo.value.userName || 'U').slice(0, 1));
+// 头像是后端换发的签名直显地址（相对 API 根），需拼上 API 前缀才能被浏览器直取；
+// 签名过期后 <img> 会裂 → onerror 时重新拉一次资料接口换发（长停留自愈）。
+const avatarUrl = computed(() => apiUrl(userInfo.value.avatar));
 
 const getLoginUser = async () => {
   const res = await api.user.getLoginUser();

@@ -196,13 +196,10 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
           // 漏掉这条的表现：接口全通、只有站内通知永远收不到推送。
           rewriteWsOrigin: true,
         },
-        // 上传文件（/upload/**）由后端静态映射提供（WebMvcConfig → 磁盘 / MinIO）。
-        // 后端返回的是**无前缀绝对路径** /upload/xxx，前端按原样渲染，所以这里必须把 /upload
-        // 转发到「后端 API 前缀」之下。漏掉这条表现为「图片全裂、但接口全都正常」，极易误判。
-        '/upload': {
-          target: `${VITE_PROXY_TARGET}${VITE_API_URL}`,
-          changeOrigin: true,
-        },
+        // ⚠️ 原先的 '/upload' 代理已删除：后端的 /upload/** 静态映射（登录即可读任意路径）
+        // 已随文件归属模型改造下线。文件直显现在走
+        // `${VITE_API_URL}/sys/file/view/{id}?ticket=...`（签名直显，匿名可读），
+        // 由上面的 VITE_API_URL 代理规则统一转发，无需单独规则。
       },
     },
 

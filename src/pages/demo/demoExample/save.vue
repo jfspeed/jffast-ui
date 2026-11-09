@@ -193,6 +193,7 @@ import { useI18n } from 'vue-i18n';
 
 import api from '@/api/demo';
 import { useForm } from '@/hooks/useForm';
+import { apiUrl } from '@/utils/request';
 
 const emit = defineEmits(['success', 'closed']);
 
@@ -258,7 +259,9 @@ const imageFiles = ref<UploadFile[]>([]);
 watch(
   () => form.image,
   (val) => {
-    imageFiles.value = val ? [{ url: val, name: 'image', status: 'success' }] : [];
+    // 稳定引用（file:{id}）本身不是可直取地址，预览地址由上传/回填单独维护
+    if (val && String(val).startsWith('file:')) return;
+    imageFiles.value = val ? [{ url: apiUrl(val), name: 'image', status: 'success' }] : [];
   },
   { immediate: true },
 );
@@ -268,9 +271,11 @@ const uploadImage = (fileRaw: any) => {
   return api.demoExample
     .upload(file)
     .then((res) => {
-      if (res && res.code === 200) {
-        form.image = res.data;
-        return { ...fileRaw, url: res.data, status: 'success' };
+      // 后端出参是上传结果对象：fileRef（落库用稳定引用）/ url（即时预览用的签名地址）
+      const data = res?.data;
+      if (res && res.code === 200 && data) {
+        form.image = data.fileRef || data.url;
+        return { ...fileRaw, url: apiUrl(data.url), status: 'success' };
       }
       return { ...fileRaw, status: 'fail', error: (res && res.message) || t('common.uploadFail') };
     })

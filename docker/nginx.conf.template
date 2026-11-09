@@ -60,17 +60,7 @@ server {
         proxy_send_timeout 300s;
     }
 
-    # 本地文件存储访问：后端实际提供的是 ${API_PREFIX}/upload/**，
-    # 而前端拿到的是 /upload/**（jffast.file.storage.local.access-path=/upload），
-    # 这里做一次前缀改写，口径与 vite dev 的 /upload 代理规则保持一致。
-    # 若已改成 minio / OSS / COS 直传，本段不会被命中。
-    location ^~ /upload/ {
-        rewrite ^/upload/(.*)$ ${API_PREFIX}/upload/$1 break;
-        proxy_pass $backend_upstream$uri$is_args$args;
-        proxy_http_version 1.1;
-        proxy_set_header Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
-        proxy_read_timeout 300s;
-    }
+    # ⚠️ 原先的 location ^~ /upload/ 段已删除：后端的 /upload/** 静态映射（登录即可读任意路径）
+    # 已随文件归属模型改造下线。文件直显现在走 ${API_PREFIX}/sys/file/view/{id}?ticket=...，
+    # 由上面的 ${API_PREFIX} 反代段统一转发，无需单独规则。
 }

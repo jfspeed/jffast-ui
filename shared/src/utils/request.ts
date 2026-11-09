@@ -65,6 +65,33 @@ const baseURL =
     ? import.meta.env.VITE_API_URL || '/jffast-api'
     : import.meta.env.VITE_API_URL || '';
 
+/** axios 使用的 API 根前缀（dev 走 vite 代理、生产走同源反代） */
+export const API_BASE_URL = baseURL;
+
+/**
+ * 把后端返回的 **API 根相对路径** 拼成浏览器可直取的地址。
+ *
+ * <p>文件签名直显地址形如 `/sys/file/view/{id}?ticket=...`——相对 API 根，不带部署前缀。
+ * 之所以不返回绝对地址：部署形态不同（单体 context-path / 网关 `/api` 前缀）时外部前缀不同，
+ * 由后端猜前缀一旦猜错就是「接口全正常、只有图片全裂」；这里复用与 axios 完全相同的
+ * baseURL，保证「接口能通的地址」与「图片能取的地址」永远一致。
+ *
+ * <p>已经是绝对地址（http(s)://、//、data:、blob:）时原样返回。
+ */
+/**
+ * 绝对地址判定：带协议（http:/https:/data:/blob: 等）或协议相对（//host/...）。
+ * 提到模块作用域，避免每次调用重新编译正则。
+ */
+const ABSOLUTE_URL_PATTERN = /^[a-z][a-z0-9+.-]*:/i;
+
+export function apiUrl(path?: string | null): string {
+  if (!path) return '';
+  const value = String(path);
+  if (ABSOLUTE_URL_PATTERN.test(value) || value.startsWith('//')) return value;
+  if (!value.startsWith('/')) return value;
+  return `${API_BASE_URL}${value}`;
+}
+
 const service: AxiosInstance = axios.create({
   baseURL,
   timeout: 60000,

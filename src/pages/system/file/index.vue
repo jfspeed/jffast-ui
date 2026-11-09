@@ -160,7 +160,8 @@ const columns = computed<PrimaryTableCol[]>(() => [
         btns.push(
           h(
             'a',
-            { onClick: () => window.open(row.url, '_blank', 'noopener,noreferrer') },
+            // row.url 是后端换发的签名直显地址（相对 API 根），需拼上 API 前缀才能被浏览器直取
+            { onClick: () => window.open(apiUrl(row.url), '_blank', 'noopener,noreferrer') },
             t('pages.system.file.preview'),
           ),
         );
