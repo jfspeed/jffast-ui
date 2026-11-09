@@ -82,6 +82,7 @@ import { useI18n } from 'vue-i18n';
 import api from '@/api/system';
 import { useTable } from '@/hooks/useTable';
 import { hasPermission } from '@/utils/permission';
+import { apiUrl } from '@/utils/request';
 
 defineOptions({
   name: 'SystemFile',
