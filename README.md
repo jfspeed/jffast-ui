@@ -237,7 +237,7 @@ http {
 }
 ```
 
-模板里已经处理好的三件事：history 路由刷新回退 `index.html`、静态资源长缓存、`/upload/` 前缀改写后反代到后端。
+模板里已经处理好的三件事：history 路由刷新回退 `index.html`、静态资源长缓存、API 前缀反代到后端。文件直显走 `${API前缀}/sys/file/view/**`（签名直显），由 API 前缀规则统一转发，**不再需要**单独反代 `/upload/`（后端静态映射已下线）。
 
 ---
 
@@ -407,10 +407,8 @@ server: {
       changeOrigin: true,
       ws: true, // 站内通知 WebSocket 必须开启，否则推送不可达
     },
-    '/upload': {
-      target: `${VITE_PROXY_TARGET}${VITE_API_URL}`,
-      changeOrigin: true,
-    },
+    // '/upload' 代理已删除：后端静态映射下线，文件直显走
+    // `${VITE_API_URL}/sys/file/view/**`（签名直显），由上面的规则统一转发。
   },
 }
 ```

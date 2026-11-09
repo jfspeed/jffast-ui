@@ -133,7 +133,7 @@ CI 按 `.nvmrc` 安装 Node，四道门禁任一失败即红。
 
 - **CSP 保留 `'unsafe-eval'`** —— **当前不可去除**，去掉并实测过：TDesign 分步表单（把函数 `toString` 后重建）、TDesign 内置的 intlify 消息编译器（编译带插值的文案）、echarts 的 GeoJSON 解析，三处都用 `new Function(...)`。去掉后首屏 `EvalError`、**页面整片空白**（不是局部降级）。要真正移除需先替换这三个依赖。详见 `index.html` 里的 CSP 注释。
 - **CSP `style-src` 保留 `'unsafe-inline'`** —— Vue / TDesign 运行时会注入 `<style>`，属已知取舍，不涉及脚本执行面。
-- **`/upload/**` 匿名可读** —— 头像、附件这类图片要能被 `<img src="...">` 直接引用，而 `<img>` 不会携带 Authorization 头，一旦要求鉴权会全部失效。**因此存储根内的每一个文件都视同对外公开**，敏感文件不要放进去（服务端产物写在存储根之外）。
+- **图片直显走签名 URL** —— 头像、附件这类图片要能被 `<img src="...">` 直接引用，而 `<img>` 不会携带 Authorization 头，因此直显统一走 `/sys/file/view/{token}` 短期 HMAC 签名 URL（TTL 900s，匿名白名单，2026-11-09 起替代 `/upload/**` 静态直读）。签名过期由前端换发接口重新获取；敏感文件受 `sys_file` 归属校验保护，拿到旧路径 URL 不再可读。
 - **`user/index.vue` 的 `window.open` 不加 `noopener`** —— 社交授权回调靠 `window.open` 的返回值与 `event.source` 做身份校验，加了会被置为 null 导致绑定静默失败。其它弹窗仍应加 `noopener`。
 
 ### 9.3 密钥
