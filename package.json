@@ -36,7 +36,6 @@
     "bpmn-js": "18.31.0",
     "dayjs": "^1.11.13",
     "echarts": "^6.1.0",
-    "jsencrypt": "^3.5.4",
     "lodash": "^4.17.23",
     "nprogress": "^0.2.0",
     "pinia": "^4.1.0",

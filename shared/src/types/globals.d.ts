@@ -66,10 +66,23 @@ declare module '@/api/core/crud' {
   };
 }
 
-declare module 'jsencrypt' {
-  export default class JSEncrypt {
-    setPublicKey(key: string): void;
-    encrypt(data: string): string | false;
-    decrypt(data: string): string | false;
-  }
+declare module 'node-forge' {
+  export const util: {
+    encodeUtf8: (str: string) => string;
+    decodeUtf8: (str: string) => string;
+    encode64: (str: string) => string;
+    decode64: (str: string) => string;
+  };
+  export const md: {
+    sha256: { create: () => unknown };
+    sha1: { create: () => unknown };
+  };
+  export const pki: {
+    publicKeyFromPem: (pem: string) => {
+      encrypt: (data: string, scheme: string, options?: unknown) => string;
+    };
+    privateKeyFromPem: (pem: string) => {
+      decrypt: (data: string, scheme: string, options?: unknown) => string;
+    };
+  };
 }

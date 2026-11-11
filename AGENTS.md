@@ -104,7 +104,7 @@
 | 脚手架 | 字典 hook         | `shared/src/hooks/useDict.js`                                 | 下拉选项取字典                                                                                                                            |
 | 请求   | HTTP 封装         | `shared/src/api/core/http.js` + `shared/src/utils/request.ts` | 统一拦截器、token、`R` 结构；禁止裸用 axios                                                                                               |
 | 工具   | 权限              | `shared/src/utils/permission.js`                              | `v-permission` / `hasPermission` / `hasRole`                                                                                              |
-| 工具   | 加解密            | `shared/src/utils/crypto.js`                                  | `rsaEncrypt`（**jsencrypt**，非 Web Crypto）；**无 `tool.js`**                                                                            |
+| 工具   | 加解密            | `shared/src/utils/crypto.js`                                  | `rsaEncrypt`（**node-forge**，RSA-OAEP：SHA-256 摘要 + MGF1-SHA1，非 Web Crypto）；**无 `tool.js`**                                       |
 | 工具   | 日期              | `shared/src/utils/date.ts`                                    | 格式化                                                                                                                                    |
 | 工具   | 错误收集          | `shared/src/utils/error-logger.ts`                            | `initErrorLogger()` JS/Promise/接口上报                                                                                                   |
 | 工具   | 主题/图表色       | `shared/src/utils/color.ts`                                   | `getColorFromTheme` / `getChartListColor`                                                                                                 |
@@ -149,7 +149,7 @@ src/pages/{模块}/{页面名}/
 
 ## 四、常见坑与已知限制
 
-- **`tool.js` 已删除**：加解密只走 `crypto.js`（底层 `jsencrypt`，不是 Web Crypto），勿再引用
+- **`tool.js` 已删除**：加解密只走 `crypto.js`（底层 `node-forge`，RSA-OAEP：SHA-256 摘要 + MGF1-SHA1，不是 Web Crypto），勿再引用
 - **`/jffast-api` 代理必须 `ws: true`**，否则站内通知 WebSocket 升级不转发
 - **同一代理还须 `rewriteWsOrigin: true`**：后端把「`allowed-origins` 留空」定义为**只放行同源握手**
   （Spring `OriginHandshakeInterceptor`：非同源且来源不在名单 ⇒ 403）。dev 下浏览器 `Origin` 是页面源
