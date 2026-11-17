@@ -175,6 +175,146 @@
   }
 }
 
+// ---- 滑块验证弹窗：自定义单层卡片 + SDK 原生滑块外观 ----
+// teleport 到 body，脱离 .login-container 的 transform/backdrop-filter 定位参考系。
+.slider-modal-mask {
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0 0 0 / 45%);
+  backdrop-filter: blur(2px);
+}
+
+.slider-modal-card {
+  width: 340px;
+  overflow: hidden;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgb(0 0 0 / 18%);
+}
+
+.slider-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px 10px;
+}
+
+.slider-modal-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--td-text-color-primary, #1f2329);
+}
+
+.slider-modal-close {
+  font-size: 18px;
+  color: var(--td-text-color-placeholder, #8f959e);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--td-text-color-primary, #1f2329);
+  }
+}
+
+.slider-captcha-mount {
+  position: relative;
+  // SDK 的 #tianai-captcha-parent 是个 318×318、带阴影和 padding 的小卡；
+  // 这里把它弱化成一个透明容器，融进我们的白卡，避免"双层卡片"。
+  :deep(#tianai-captcha-parent) {
+    width: 308px;
+    height: auto;
+    margin: 0 auto;
+    padding: 0 8px 6px;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  // 图片区域：参考图是一张大图 + 圆角，略增高让拼图更清楚
+  :deep(#tianai-captcha-box) {
+    height: 188px;
+  }
+
+  :deep(#tianai-captcha.tianai-captcha-slider) {
+    width: 292px;
+
+    .content {
+      height: 176px;
+    }
+  }
+
+  // SDK 默认把提示文字放在图片上方（.slider-tip）；隐藏它，改由滑块轨道承载。
+  :deep(.slider-tip) {
+    display: none;
+  }
+
+  // 滑块轨道：参考图是浅灰圆角长条，文字居中显示在轨道内。
+  :deep(.slider-move) {
+    height: 42px;
+    margin: 10px 0 4px;
+  }
+
+  :deep(.slider-move-track) {
+    height: 42px;
+    line-height: 42px;
+    background: #f5f7fa;
+    border: 1px solid #e3e6eb;
+    border-radius: 6px;
+    color: #909399;
+
+    // 用 JS 注入的 CSS 变量显示文案（--slider-tip-text 为带引号的 JSON 字符串）
+    &::before {
+      content: var(--slider-tip-text);
+    }
+
+    #tianai-captcha-slider-move-track-mask {
+      height: 42px;
+      border-radius: 6px;
+    }
+  }
+
+  // 滑块按钮：参考图是清晰的方形白底按钮（→），盖在轨道左侧
+  :deep(.slider-move-btn) {
+    top: -1px;
+    width: 44px;
+    height: 44px;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px 20px;
+    border: 1px solid #e3e6eb;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+  }
+
+  // 隐藏 SDK 原生底部条（logo/关闭/刷新）——关闭与降级已在卡片层提供
+  :deep(.slider-bottom) {
+    display: none;
+  }
+}
+
+.slider-fade-enter-active,
+.slider-fade-leave-active {
+  transition: opacity 0.2s ease;
+
+  .slider-modal-card {
+    transition: transform 0.2s ease;
+  }
+}
+
+.slider-fade-enter-from,
+.slider-fade-leave-to {
+  opacity: 0;
+
+  .slider-modal-card {
+    transform: translateY(10px);
+  }
+}
+
 .switch-container {
   margin-top: var(--td-comp-margin-xxl);
 
