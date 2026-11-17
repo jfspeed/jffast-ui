@@ -32,7 +32,10 @@ export interface ApiResult<T = unknown> {
   data?: T;
   /** 提示信息（成功时可能为空） */
   message?: string;
-  /** 链路追踪 ID（jffast.web.trace-id.enabled=true 时返回） */
+  /**
+   * 兼容字段：后端 R.error 的第三参实际被塞进 data，并不会出现在这里；
+   * 真实的链路追踪 ID 由 TraceIdFilter 放在响应头 X-Trace-Id 中，请勿依赖本字段读取。
+   */
   traceId?: string;
   [key: string]: unknown;
 }
@@ -149,6 +152,19 @@ function resolveErrorMessage(res: Partial<ApiResult>): string {
 }
 
 /**
+ * 业务码是否表示「登录失效」。
+ *
+ * 后端 BusinessException(401, ...) 因未标注 @ResponseStatus 会以 HTTP 200 + code=401 返回；
+ * 另有一批 401xx 细分码（40101 未登录、40102 token 过期等）同样是登录失效。
+ * 统一按「数值等于 401，或十进制以 401 开头的更长码」识别，避免遗漏 HTTP 200 包裹的会话失效。
+ */
+function isSessionExpiredCode(code?: number): boolean {
+  if (typeof code !== 'number' || !Number.isFinite(code)) return false;
+  const text = String(Math.trunc(code));
+  return text === '401' || (text.length > 3 && text.startsWith('401'));
+}
+
+/**
  * 登录失效的统一处理：
  * ① 单飞去重 —— 页面并发发起多个请求同时 401 时，不会反复 replace(路由)；
  * ② 显式清理登录态（清 token / 权限缓存）；WS 的 token 巡检会因此自动断开连接，
@@ -234,7 +250,11 @@ service.interceptors.response.use(
       if (!res) {
         return blob as unknown as AxiosResponse;
       }
-      // HTTP 200 + 业务失败：与 JSON 分支同一口径处理（静默标记一致生效）
+      // HTTP 200 + 业务失败：与 JSON 分支同一口径处理（静默标记一致生效）。
+      // 业务码 401/401xx 同样表示登录失效，需与 HTTP 401 分支一样清理会话（handleSessionExpired 自带单飞去重）
+      if (isSessionExpiredCode(res.code)) {
+        handleSessionExpired();
+      }
       const silent = response.config?.headers?.['X-Silent-Error'] === 'true';
       if (!silent) {
         MessagePlugin.error(resolveErrorMessage(res));
@@ -243,6 +263,11 @@ service.interceptors.response.use(
     }
     const res = response.data;
     if (res.code !== 200) {
+      // 业务码也可能是登录失效（HTTP 200 包裹的 401/401xx）：与 HTTP 401 分支同口径清会话并跳登录，
+      // handleSessionExpired 自带单飞去重，并发请求不会重复清理 / 重复跳转。
+      if (isSessionExpiredCode(res.code)) {
+        handleSessionExpired();
+      }
       // 调用方显式要求静默时（如登录前探测 RSA 公钥）不弹全局错误，由调用方自行提示
       const silent = response.config?.headers?.['X-Silent-Error'] === 'true';
       if (!silent) {

@@ -523,7 +523,8 @@
         },
         "message": {
           "deleteConfirm": "Delete this file? The stored file will be removed as well.",
-          "batchDeleteConfirm": "Delete the selected files? The stored files will be removed as well."
+          "batchDeleteConfirm": "Delete the selected files? The stored files will be removed as well.",
+          "signedUrlFailed": "Failed to get the preview URL, please try again"
         }
       },
       "online": {

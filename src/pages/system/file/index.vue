@@ -75,7 +75,7 @@ limitations under the License.
 </template>
 <script lang="ts" setup>
 import type { PrimaryTableCol } from 'tdesign-vue-next';
-import { DialogPlugin, Tag } from 'tdesign-vue-next';
+import { DialogPlugin, MessagePlugin, Tag } from 'tdesign-vue-next';
 import { computed, onMounted, ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 
@@ -124,6 +124,28 @@ const formatSize = (size?: number | null) => {
   return `${unit === 0 ? value : value.toFixed(1)} ${units[unit]}`;
 };
 
+/**
+ * 图片预览：每次点击都先向后端换发一次新的签名直显地址。
+ * row.url 是列表加载时签发的、TTL 约 900s 的旧签名，长停留后必然过期；
+ * 不用它、也不做「失败后重试」（window.open 的新标签没有 onerror 可挂），
+ * 而是每次点击都拿新鲜签名，从根上消除过期导致的静默裂图。
+ */
+const openPreview = async (row: SysFileRow) => {
+  try {
+    const res = await api.file.getFileSignedUrl(row.id);
+    const newUrl = res?.data?.url;
+    if (!newUrl) {
+      MessagePlugin.error(t('pages.system.file.message.signedUrlFailed'));
+      return;
+    }
+    // noopener/noreferrer：新标签打开的是不可信目标，缺了它会被反向标签劫持、referer 也会外泄
+    window.open(apiUrl(newUrl), '_blank', 'noopener,noreferrer');
+  } catch {
+    // 换发失败（非本人文件 400 / 网络错误 / 返回 url 为空）明确提示，绝不静默回退到可能已过期的 row.url
+    MessagePlugin.error(t('pages.system.file.message.signedUrlFailed'));
+  }
+};
+
 const columns = computed<PrimaryTableCol[]>(() => [
   { colKey: 'row-select', type: 'multiple', width: 50 },
   { colKey: 'fileName', title: t('pages.system.file.fileName'), ellipsis: true },
@@ -156,16 +178,8 @@ const columns = computed<PrimaryTableCol[]>(() => [
     cell: (h, { row }) => {
       const btns = [];
       if (row.mime && String(row.mime).startsWith('image/') && row.url) {
-        // noopener/noreferrer：row.url 来自后端记录，打开的是不可信目标，
-        // 缺了它新页面可通过 window.opener 反向操作本页（标签劫持），referer 也会外泄。
-        btns.push(
-          h(
-            'a',
-            // row.url 是后端换发的签名直显地址（相对 API 根），需拼上 API 前缀才能被浏览器直取
-            { onClick: () => window.open(apiUrl(row.url), '_blank', 'noopener,noreferrer') },
-            t('pages.system.file.preview'),
-          ),
-        );
+        // 预览走 openPreview：每次点击先换发新签名 URL 再打开，避免 row.url 旧签名（TTL 900s）过期
+        btns.push(h('a', { onClick: () => openPreview(row) }, t('pages.system.file.preview')));
       }
       if (hasPermission('system:file:download')) {
         btns.push(h('a', { onClick: () => handleDownload(row) }, t('common.download')));

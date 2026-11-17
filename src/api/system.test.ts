@@ -91,4 +91,20 @@ describe('api 请求参数位置与后端签名一致', () => {
       params: { cacheName: 'demo', key: 'k1' },
     });
   });
+
+  it('file.getFileSignedUrl 换新签名 URL（GET /sys/file/signed-url/{id}，返回 R<SignedUrlVO> 的 data.url）', async () => {
+    const signed = { url: '/sys/file/view/42?ticket=abc', expiresIn: 900 };
+    httpMock.get.mockResolvedValue({ code: 200, data: signed });
+
+    const res = await api.file.getFileSignedUrl(42);
+
+    expect(httpMock.get).toHaveBeenCalledWith('/sys/file/signed-url/42');
+    // 响应拦截器 resolve 完整 R 对象，新地址在 data.url（不是 res.url / res.data.data.url）
+    expect(res.data.url).toBe(signed.url);
+    expect(res.data.expiresIn).toBe(900);
+  });
+
+  it('file.signedUrl 是 getFileSignedUrl 的兼容别名', () => {
+    expect(api.file.signedUrl).toBe(api.file.getFileSignedUrl);
+  });
 });

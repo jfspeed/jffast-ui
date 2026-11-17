@@ -91,7 +91,8 @@ function isRsaPublicKey(candidate: string): boolean {
  * 生产构建前校验 RSA 公钥（fail-fast）。
  *
  * 此前 `npm run build`（--mode release）只读 `.env`，`VITE_RSA_PUBLIC_KEY` 恒为空 →
- * 产物里根本没有公钥，登录时 `publicKey` 为空直接走**明文密码**分支，安全上不可接受。
+ * 产物里没有公钥，登录页在公钥为空时会阻止提交（不再降级明文传输），或完全依赖运行时
+ * 拉取 `GET /sys/rsaPublicKey`。生产部署必须注入 VITE_RSA_PUBLIC_KEY。
  * 现改为：构建时公钥缺失或不是一把合法 RSA 公钥一律失败，强制构建方自行注入。
  *
  * 注入方式：`VITE_RSA_PUBLIC_KEY=<公钥> npm run build`，或写入 `.env.release.local`（不入库）。
@@ -100,7 +101,7 @@ function assertRsaPublicKeyForBuild(mode: string, publicKey: string): void {
   const key = (publicKey || '').trim();
   if (!key) {
     throw new Error(
-      `[build] VITE_RSA_PUBLIC_KEY 未配置：构建产物将无 RSA 公钥，登录只能发送明文密码。\n` +
+      `[build] VITE_RSA_PUBLIC_KEY 未配置：登录将被阻止提交，或依赖运行时拉取公钥；生产部署必须注入 VITE_RSA_PUBLIC_KEY。\n` +
         `  请用 RsaKeyGenerator 生成密钥对，然后：\n` +
         `    - 环境变量：VITE_RSA_PUBLIC_KEY=<公钥> npm run build\n` +
         `    - 或写入 .env.release.local（已 gitignore，不入库）\n` +
@@ -124,8 +125,8 @@ export default ({ mode, command }: ConfigEnv): UserConfig => {
 
   // 除 test 外的**所有**构建都要强制校验 RSA 公钥。
   // 此前条件是 `mode === 'release'`，于是 `vite build --mode production` 完全绕过检查 ⇒
-  // 产物里没有公钥 ⇒ 登录只能走明文密码分支。仓里还留着一份无人读取的 .env.production
-  // 死配置，更容易让人以为"生产就该用 production 模式"。该死配置已删除，这里同时堵上口子。
+  // 产物里没有公钥 ⇒ 登录将被阻止提交，或只能依赖运行时拉取公钥。仓里还留着一份无人读取的
+  // .env.production 死配置，更容易让人以为"生产就该用 production 模式"。该死配置已删除，这里同时堵上口子。
   // test 档（npm run build:test）属于内部环境打包，走 .env 里的配置即可，不被挡住。
   if (command === 'build' && mode !== 'test') {
     assertRsaPublicKeyForBuild(mode, env.VITE_RSA_PUBLIC_KEY);

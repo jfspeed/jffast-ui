@@ -89,10 +89,16 @@ const task = createCrud('/sys/task', {
 });
 
 // 文件管理（后端 /sys/file，上传由文件存储 Starter 自动登记）
+// 签名直显地址带短期签名（TTL 约 900s）：每次预览点击都先换发一次新签名，从根上避免长停留过期。
+// 后端 GET /sys/file/signed-url/{id} 返回 R<SignedUrlVO>（data.url / data.expiresIn），仅对「本人文件」签发。
+const getFileSignedUrl = (id) => http.get(`/sys/file/signed-url/${id}`);
+
 const file = createCrud('/sys/file', {
   download: (id, filename) => http.download(`/sys/file/download/${id}`, {}, filename),
-  // 换发短期签名 URL：后端只对「本人文件」签发，签名有 TTL，长停留可用它自愈重取
-  signedUrl: (id) => http.get(`/sys/file/signed-url/${id}`),
+  // 每次预览点击先换发：调用点见 src/pages/system/file/index.vue 的 openPreview
+  getFileSignedUrl,
+  // 兼容旧名（全仓已无调用方，保留以免外部脚本依赖）
+  signedUrl: getFileSignedUrl,
   delete: (id) => http.delete(`/sys/file/delete/${id}`),
   // 批量删除：后端确实实现了 DELETE /sys/file/batch（全仓唯一），故在此显式声明。
   // createCrud 不再默认注入它——绝大多数资源并没有这个端点。

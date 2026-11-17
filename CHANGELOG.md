@@ -2,6 +2,35 @@
 
 本项目遵循 [Keep a Changelog](https://keepachangelog.com/zh-CN/1.1.0/) 格式，版本号遵循[语义化版本](https://semver.org/lang/zh-CN/)。
 
+## [Unreleased]
+
+> 记录自 1.0.0 以来合入但尚未发版的一批变更，按类别摘要（不含版本号与具体提交号）。
+
+### Security
+
+- 登录密码加密由 RSA PKCS#1 v1.5 切换为 RSA-OAEP（SHA-256 / MGF1-SHA1）随机化加密。
+- 文件下载改为受控下载 / 签名直显：直显地址带短期签名 ticket，匿名可读但有时效。
+- 响应拦截器补充业务码 401 / 401xx 的登录态清理，HTTP 200 包裹的登录失效不再残留会话。
+- 构建产物缺失或非法 RSA 公钥时 fail-fast；登录页公钥为空时阻止提交，不再降级明文传输。
+
+### Added
+
+- 代码生成器支持导出 ZIP 包。
+- 页面设计器（page-design）支持明细子表。
+- 右上角开源入口开关（`VITE_SHOW_OPEN_SOURCE_LINKS`）与正式文档站地址。
+- 文件签名 URL 换发 API（`GET /sys/file/signed-url/{id}`）声明与接入点标注。
+
+### Fixed
+
+- `useForm` 编辑回显改为深拷贝，避免修改表单时污染原始行数据。
+- 响应错误提示对技术细节（堆栈 / SQL）统一收敛为安全文案。
+- 401 提示去重与单飞清理，避免并发请求重复弹窗 / 重复跳转。
+
+### Changed
+
+- 仓库图片资源瘦身，清理未使用的模板图片。
+- dev 代理与生产同源反代语义对齐（含 WebSocket 握手 Origin 改写）。
+
 ## [1.0.0] - 2026-11-01
 
 ### 新增

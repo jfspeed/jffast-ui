@@ -523,7 +523,8 @@
         },
         "message": {
           "deleteConfirm": "确定删除该文件吗？删除后存储中的文件将一并移除。",
-          "batchDeleteConfirm": "确定删除选中的文件吗？删除后存储中的文件将一并移除。"
+          "batchDeleteConfirm": "确定删除选中的文件吗？删除后存储中的文件将一并移除。",
+          "signedUrlFailed": "获取预览地址失败，请稍后重试"
         }
       },
       "online": {

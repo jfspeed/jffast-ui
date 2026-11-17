@@ -49,8 +49,9 @@ ENV VITE_API_URL=${VITE_API_URL} \
     VITE_ENABLE_MULTI_TENANT=${VITE_ENABLE_MULTI_TENANT} \
     VITE_RSA_PUBLIC_KEY=${VITE_RSA_PUBLIC_KEY}
 
-# 在 Docker 层就拦住，而不是等 vite 抛错：
-# 公钥缺失的产物会在登录时退化成明文密码，等于没有任何登录保护
+# 在 Docker 层就拦住，而不是等 vite 抛错：公钥缺失的产物登录不了——
+# 前端拿不到公钥会直接阻断提交（不退回明文），后端也无条件按 OAEP 密文解密。
+# 也就是说缺公钥不是"降低安全性"，而是"整个登录链路不可用"，必须构建期就给出来。
 RUN if [ -z "${VITE_RSA_PUBLIC_KEY}" ]; then \
       echo '[FATAL] --build-arg VITE_RSA_PUBLIC_KEY is required.' >&2; \
       echo '        生成方式见 jffast/deploy/gen-rsa.sh（后端私钥必须与它成对）' >&2; \
