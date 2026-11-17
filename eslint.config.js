@@ -197,6 +197,9 @@ export default antfu(
       '**/es',
       '**/esm',
       '**/node_modules',
+      // public/ 为原样拷贝到构建产物的静态资源（含第三方验证码 SDK 的原生 JS），
+      // 不属于应用源码，不受项目 lint 规则约束
+      'public/**',
       'src/_common',
       '**/static',
       '**/cypress',

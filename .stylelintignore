@@ -6,3 +6,7 @@
 *.js
 *.jpg
 *.woff
+
+# 第三方 SDK 静态资源（官方原样引入，不受本项目 stylelint 规则约束）
+public/tac/**
+public/js/**

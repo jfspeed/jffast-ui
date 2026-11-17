@@ -1,0 +1,3 @@
+# 第三方 SDK 静态资源：官方原样引入，禁止格式化改写（prettier 会把 min.js 展开、破坏原文件）
+public/tac/**
+public/js/**
